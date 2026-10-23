@@ -1,0 +1,527 @@
+{
+  "slug": "san-ramon-2025",
+  "synthetic": true,
+  "entidad": "Municipio de San Ramón del Río",
+  "departamento": "Santander",
+  "nit": "890.205.318-7",
+  "vigencia": 2025,
+  "pageSize": {
+    "w": 612,
+    "h": 792
+  },
+  "pageCount": 18,
+  "pages": [
+    {
+      "n": 1,
+      "kind": "digital",
+      "title": ""
+    },
+    {
+      "n": 2,
+      "kind": "digital",
+      "title": "Contenido"
+    },
+    {
+      "n": 3,
+      "kind": "escaneada",
+      "title": "Certificación de los estados financieros"
+    },
+    {
+      "n": 4,
+      "kind": "digital",
+      "title": "Dictamen sobre los estados financieros"
+    },
+    {
+      "n": 5,
+      "kind": "digital",
+      "title": "Bases de preparación y políticas contables"
+    },
+    {
+      "n": 6,
+      "kind": "digital",
+      "title": "Estado de situación financiera · Activo"
+    },
+    {
+      "n": 7,
+      "kind": "digital",
+      "title": "Estado de situación financiera · Pasivo y patrimonio"
+    },
+    {
+      "n": 8,
+      "kind": "digital",
+      "title": "Estado de resultados"
+    },
+    {
+      "n": 9,
+      "kind": "digital",
+      "title": "Estado de cambios en el patrimonio"
+    },
+    {
+      "n": 10,
+      "kind": "digital",
+      "title": "Notas a los estados financieros"
+    },
+    {
+      "n": 11,
+      "kind": "digital",
+      "title": "Notas a los estados financieros (continuación)"
+    },
+    {
+      "n": 12,
+      "kind": "digital",
+      "title": "Ejecución presupuestal de ingresos"
+    },
+    {
+      "n": 13,
+      "kind": "escaneada",
+      "title": "Ejecución presupuestal de gastos"
+    },
+    {
+      "n": 14,
+      "kind": "escaneada",
+      "title": "Deuda pública"
+    },
+    {
+      "n": 15,
+      "kind": "digital",
+      "title": "Indicadores de ley"
+    },
+    {
+      "n": 16,
+      "kind": "digital",
+      "title": "Anexo 1 · Relación de bienes inmuebles"
+    },
+    {
+      "n": 17,
+      "kind": "digital",
+      "title": "Anexo 2 · Relación de cuentas bancarias"
+    },
+    {
+      "n": 18,
+      "kind": "digital",
+      "title": "Anexo 3 · Actas"
+    }
+  ],
+  "fields": {
+    "entidad": {
+      "page": 1,
+      "valueText": "Municipio de San Ramón del Río",
+      "cita": "Municipio de San Ramón del Río",
+      "bbox": {
+        "x": 53,
+        "y": 297,
+        "w": 254.048,
+        "h": 22
+      },
+      "scanned": false
+    },
+    "departamento": {
+      "page": 1,
+      "valueText": "Santander",
+      "cita": "Departamento de Santander",
+      "bbox": {
+        "x": 53,
+        "y": 321,
+        "w": 145.238,
+        "h": 17
+      },
+      "scanned": false
+    },
+    "nit": {
+      "page": 1,
+      "valueText": "890.205.318-7",
+      "cita": "NIT 890.205.318-7",
+      "bbox": {
+        "x": 53,
+        "y": 341,
+        "w": 97.71799999999999,
+        "h": 17
+      },
+      "scanned": false
+    },
+    "categoria": {
+      "page": 1,
+      "valueText": "Quinta",
+      "cita": "Categoría Quinta",
+      "bbox": {
+        "x": 53,
+        "y": 361,
+        "w": 182.04399999999998,
+        "h": 17
+      },
+      "scanned": false
+    },
+    "fecha_corte": {
+      "page": 3,
+      "valueText": "31 de diciembre de 2025",
+      "cita": "Fecha de corte: 31 de diciembre de 2025",
+      "bbox": {
+        "x": 53,
+        "y": 189,
+        "w": 187.92000000000002,
+        "h": 16
+      },
+      "scanned": true
+    },
+    "vigencia": {
+      "page": 3,
+      "valueText": "2025",
+      "cita": "Vigencia: 2025",
+      "bbox": {
+        "x": 53,
+        "y": 207,
+        "w": 71.65,
+        "h": 16
+      },
+      "scanned": true
+    },
+    "fecha_firma": {
+      "page": 3,
+      "valueText": "27 de febrero de 2026",
+      "cita": "Se firma en la fecha: 27 de febrero de 2026",
+      "bbox": {
+        "x": 53,
+        "y": 225,
+        "w": 198.04,
+        "h": 16
+      },
+      "scanned": true
+    },
+    "representante_legal": {
+      "page": 3,
+      "valueText": "Édgar Mauricio Rueda Pinzón",
+      "cita": "Édgar Mauricio Rueda Pinzón",
+      "bbox": {
+        "x": 53,
+        "y": 467,
+        "w": 147.14000000000001,
+        "h": 16
+      },
+      "scanned": true
+    },
+    "contador": {
+      "page": 3,
+      "valueText": "Diana Carolina Ortiz Méndez · T.P. 203117-T",
+      "cita": "Diana Carolina Ortiz Méndez Contador público · T.P. 203117-T",
+      "bbox": {
+        "x": 327,
+        "y": 467,
+        "w": 141.02999999999997,
+        "h": 31
+      },
+      "scanned": true
+    },
+    "opinion": {
+      "page": 4,
+      "valueText": "Con salvedades",
+      "cita": "Opinión: Con salvedades.",
+      "bbox": {
+        "x": 53,
+        "y": 177,
+        "w": 134.53050000000002,
+        "h": 16.5
+      },
+      "scanned": false
+    },
+    "efectivo": {
+      "page": 6,
+      "valueText": "11.405.337.918",
+      "cita": "Efectivo y equivalentes al efectivo 11.405.337.918",
+      "bbox": {
+        "x": 69,
+        "y": 167,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "cxc_impuestos": {
+      "page": 6,
+      "valueText": "5.902.118.446",
+      "cita": "Cuentas por cobrar · impuestos 5.902.118.446",
+      "bbox": {
+        "x": 69,
+        "y": 185,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "activo_corriente": {
+      "page": 6,
+      "valueText": "19.822.604.175",
+      "cita": "Total activo corriente 19.822.604.175",
+      "bbox": {
+        "x": 53,
+        "y": 225,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "ppe": {
+      "page": 6,
+      "valueText": "154.208.446.302",
+      "cita": "Propiedades, planta y equipo 154.208.446.302",
+      "bbox": {
+        "x": 69,
+        "y": 279,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "activo_no_corriente": {
+      "page": 6,
+      "valueText": "201.377.915.640",
+      "cita": "Total activo no corriente 201.377.915.640",
+      "bbox": {
+        "x": 53,
+        "y": 319,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "activo_total": {
+      "page": 6,
+      "valueText": "221.200.519.815",
+      "cita": "TOTAL ACTIVO 221.200.519.815",
+      "bbox": {
+        "x": 53,
+        "y": 353,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "pasivo_corriente": {
+      "page": 7,
+      "valueText": "14.117.336.209",
+      "cita": "Total pasivo corriente 14.117.336.209",
+      "bbox": {
+        "x": 69,
+        "y": 167,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "pasivo_no_corriente": {
+      "page": 7,
+      "valueText": "38.902.771.455",
+      "cita": "Total pasivo no corriente 38.902.771.455",
+      "bbox": {
+        "x": 69,
+        "y": 185,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "pasivo_total": {
+      "page": 7,
+      "valueText": "53.020.107.664",
+      "cita": "TOTAL PASIVO 53.020.107.664",
+      "bbox": {
+        "x": 53,
+        "y": 207,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "patrimonio": {
+      "page": 7,
+      "valueText": "168.180.412.151",
+      "cita": "TOTAL PATRIMONIO 168.180.412.151",
+      "bbox": {
+        "x": 53,
+        "y": 321,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "ingresos_fiscales": {
+      "page": 8,
+      "valueText": "27.660.118.904",
+      "cita": "Ingresos fiscales 27.660.118.904",
+      "bbox": {
+        "x": 53,
+        "y": 147,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "transferencias": {
+      "page": 8,
+      "valueText": "31.448.205.763",
+      "cita": "Transferencias y subvenciones 31.448.205.763",
+      "bbox": {
+        "x": 53,
+        "y": 165,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "gastos_admin": {
+      "page": 8,
+      "valueText": "12.905.441.388",
+      "cita": "Gastos de administración y operación 12.905.441.388",
+      "bbox": {
+        "x": 53,
+        "y": 191,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "gasto_social": {
+      "page": 8,
+      "valueText": "33.017.662.490",
+      "cita": "Gasto público social 33.017.662.490",
+      "bbox": {
+        "x": 53,
+        "y": 209,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "resultado": {
+      "page": 8,
+      "valueText": "13.185.220.789",
+      "cita": "RESULTADO DEL EJERCICIO 13.185.220.789",
+      "bbox": {
+        "x": 53,
+        "y": 243,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "ppto_ingresos": {
+      "page": 12,
+      "valueText": "68.900.000.000",
+      "cita": "Presupuesto definitivo de ingresos 68.900.000.000",
+      "bbox": {
+        "x": 53,
+        "y": 147,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "recaudo": {
+      "page": 12,
+      "valueText": "64.315.772.408",
+      "cita": "Recaudo total 64.315.772.408",
+      "bbox": {
+        "x": 53,
+        "y": 165,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "ppto_gastos": {
+      "page": 13,
+      "valueText": "68.900.000.000",
+      "cita": "Presupuesto definitivo de gastos 68.900.000.000",
+      "bbox": {
+        "x": 53,
+        "y": 147,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "compromisos": {
+      "page": 13,
+      "valueText": "63.008.114.772",
+      "cita": "Compromisos 63.008.114.772",
+      "bbox": {
+        "x": 53,
+        "y": 165,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "obligaciones": {
+      "page": 13,
+      "valueText": "60.441.903.115",
+      "cita": "Obligaciones 60.441.903.115",
+      "bbox": {
+        "x": 53,
+        "y": 183,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "pagos": {
+      "page": 13,
+      "valueText": "58.772.018.660",
+      "cita": "Pagos 58.772.018.660",
+      "bbox": {
+        "x": 53,
+        "y": 201,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "superavit": {
+      "page": 13,
+      "valueText": "3.873.869.293",
+      "cita": "Superávit (déficit) presupuestal 3.873.869.293",
+      "bbox": {
+        "x": 53,
+        "y": 227,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "deuda": {
+      "page": 14,
+      "valueText": "9.800.000.000",
+      "cita": "Saldo de la deuda pública a 31 de diciembre 9.800.000.000",
+      "bbox": {
+        "x": 53,
+        "y": 147,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "ley617": {
+      "page": 15,
+      "valueText": "68,9 %",
+      "cita": "Indicador de gastos de funcionamiento (Ley 617 de 2000): 68,9 %",
+      "bbox": {
+        "x": 53,
+        "y": 147,
+        "w": 297.69,
+        "h": 16
+      },
+      "scanned": false
+    },
+    "chip": {
+      "page": 15,
+      "valueText": "Presentado",
+      "cita": "Reporte CHIP a la Contaduría General de la Nación: Presentado",
+      "bbox": {
+        "x": 53,
+        "y": 169,
+        "w": 292.75,
+        "h": 16
+      },
+      "scanned": false
+    }
+  }
+}

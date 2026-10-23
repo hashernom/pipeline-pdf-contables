@@ -1,0 +1,633 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-23T19:52:07.246680+00:00",
+  "title": "Design System: Folio",
+  "extensions": {
+    "colorMeta": {
+      "rail": {
+        "role": "primary",
+        "displayName": "Verde botella del riel",
+        "canonical": "#1f3d36",
+        "oklch": "oklch(33.4% 0.038 177)",
+        "tonalRamp": [
+          "#001711",
+          "#112f28",
+          "#2b4942",
+          "#46655d",
+          "#688880",
+          "#8cada4",
+          "#b1d3ca",
+          "#d5f7ee"
+        ]
+      },
+      "rail-activo": {
+        "role": "primary",
+        "displayName": "Verde botella activo",
+        "canonical": "#2a5047",
+        "oklch": "oklch(40.0% 0.046 177)",
+        "tonalRamp": [
+          "#001811",
+          "#073028",
+          "#254b42",
+          "#40665d",
+          "#628a7f",
+          "#86afa4",
+          "#abd5ca",
+          "#cff9ee"
+        ]
+      },
+      "rail-tinta": {
+        "role": "primary",
+        "displayName": "Tinta del riel",
+        "canonical": "#e6efeb",
+        "oklch": "oklch(94.4% 0.011 168)",
+        "tonalRamp": [
+          "#0d1311",
+          "#242b28",
+          "#3d4441",
+          "#58605c",
+          "#7a827f",
+          "#9ea7a3",
+          "#c4cdc9",
+          "#e8f1ed"
+        ]
+      },
+      "rail-apagado": {
+        "role": "primary",
+        "displayName": "Riel apagado",
+        "canonical": "#a9c2b9",
+        "oklch": "oklch(79.3% 0.030 172)",
+        "tonalRamp": [
+          "#031610",
+          "#192e27",
+          "#324840",
+          "#4d635c",
+          "#6f867e",
+          "#93aba2",
+          "#b8d1c8",
+          "#dbf5ec"
+        ]
+      },
+      "papel": {
+        "role": "neutral",
+        "displayName": "Papel frío",
+        "canonical": "#f3f5f2",
+        "oklch": "oklch(96.8% 0.004 135)",
+        "tonalRamp": [
+          "#111210",
+          "#282927",
+          "#414340",
+          "#5c5e5c",
+          "#7f817e",
+          "#a3a5a2",
+          "#c9cbc8",
+          "#edefec"
+        ]
+      },
+      "hoja": {
+        "role": "neutral",
+        "displayName": "Hoja",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "#121212",
+          "#292929",
+          "#424242",
+          "#5d5d5d",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel",
+        "canonical": "#e9ede9",
+        "oklch": "oklch(94.2% 0.007 146)",
+        "tonalRamp": [
+          "#101210",
+          "#272a27",
+          "#404340",
+          "#5b5f5b",
+          "#7e817e",
+          "#a2a6a2",
+          "#c8ccc8",
+          "#ecf0ec"
+        ]
+      },
+      "linea": {
+        "role": "neutral",
+        "displayName": "Línea",
+        "canonical": "#d6ddd8",
+        "oklch": "oklch(89.1% 0.010 155)",
+        "tonalRamp": [
+          "#0e1310",
+          "#252a27",
+          "#3e4440",
+          "#595f5b",
+          "#7c827e",
+          "#a0a7a2",
+          "#c6cdc8",
+          "#e9f1eb"
+        ]
+      },
+      "linea-fuerte": {
+        "role": "neutral",
+        "displayName": "Línea fuerte",
+        "canonical": "#a9b5ae",
+        "oklch": "oklch(76.2% 0.017 160)",
+        "tonalRamp": [
+          "#0b140f",
+          "#222c26",
+          "#3b453f",
+          "#56615a",
+          "#78837d",
+          "#9ca8a1",
+          "#c2cec7",
+          "#e5f2eb"
+        ]
+      },
+      "tinta": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#18211e",
+        "oklch": "oklch(23.8% 0.014 173)",
+        "tonalRamp": [
+          "#0b1411",
+          "#222b28",
+          "#3b4542",
+          "#56605d",
+          "#78837f",
+          "#9ca8a4",
+          "#c2cec9",
+          "#e6f2ed"
+        ]
+      },
+      "tinta-2": {
+        "role": "neutral",
+        "displayName": "Tinta 2",
+        "canonical": "#46524d",
+        "oklch": "oklch(42.6% 0.017 168)",
+        "tonalRamp": [
+          "#0a1410",
+          "#212c27",
+          "#3a4541",
+          "#55615c",
+          "#77847e",
+          "#9ba8a3",
+          "#c0cec8",
+          "#e4f2ec"
+        ]
+      },
+      "tinta-3": {
+        "role": "neutral",
+        "displayName": "Tinta 3",
+        "canonical": "#5c6863",
+        "oklch": "oklch(50.5% 0.017 169)",
+        "tonalRamp": [
+          "#0a1410",
+          "#212c27",
+          "#3a4541",
+          "#55615c",
+          "#77847e",
+          "#9ba8a3",
+          "#c1cec8",
+          "#e4f2ec"
+        ]
+      },
+      "verde": {
+        "role": "tertiary",
+        "displayName": "Verde verificado",
+        "canonical": "#23704a",
+        "oklch": "oklch(48.8% 0.097 158)",
+        "tonalRamp": [
+          "#001c00",
+          "#003614",
+          "#00512d",
+          "#206e48",
+          "#48926a",
+          "#6db78d",
+          "#93deb2",
+          "#b7ffd6"
+        ]
+      },
+      "verde-fondo": {
+        "role": "tertiary",
+        "displayName": "Fondo verde",
+        "canonical": "#e2f0e7",
+        "oklch": "oklch(94.2% 0.019 158)",
+        "tonalRamp": [
+          "#0a140e",
+          "#212c25",
+          "#3a463e",
+          "#556159",
+          "#77847c",
+          "#9ba8a0",
+          "#c1cec6",
+          "#e5f3ea"
+        ]
+      },
+      "verde-linea": {
+        "role": "tertiary",
+        "displayName": "Línea verde",
+        "canonical": "#9fcbb1",
+        "oklch": "oklch(80.3% 0.059 159)",
+        "tonalRamp": [
+          "#001907",
+          "#06311e",
+          "#234c37",
+          "#3f6851",
+          "#618b73",
+          "#85b097",
+          "#abd7bd",
+          "#cefbe0"
+        ]
+      },
+      "ambar": {
+        "role": "tertiary",
+        "displayName": "Ámbar de alerta",
+        "canonical": "#865800",
+        "oklch": "oklch(49.9% 0.106 74)",
+        "tonalRamp": [
+          "#2a0200",
+          "#461c00",
+          "#633700",
+          "#805300",
+          "#a6762e",
+          "#cc9a55",
+          "#f4c07a",
+          "#ffe49d"
+        ]
+      },
+      "ambar-fondo": {
+        "role": "tertiary",
+        "displayName": "Fondo ámbar",
+        "canonical": "#fbefd3",
+        "oklch": "oklch(95.4% 0.039 88)",
+        "tonalRamp": [
+          "#191000",
+          "#312811",
+          "#4b412a",
+          "#675d44",
+          "#8a7f66",
+          "#afa489",
+          "#d5caae",
+          "#faeed2"
+        ]
+      },
+      "ambar-linea": {
+        "role": "tertiary",
+        "displayName": "Línea ámbar",
+        "canonical": "#e6c06a",
+        "oklch": "oklch(82.3% 0.114 86)",
+        "tonalRamp": [
+          "#260600",
+          "#412000",
+          "#5d3b00",
+          "#7a5700",
+          "#9e7a1c",
+          "#c49f48",
+          "#ecc56f",
+          "#ffea93"
+        ]
+      },
+      "ambar-marca": {
+        "role": "tertiary",
+        "displayName": "Ámbar de marca",
+        "canonical": "#d8981a",
+        "oklch": "oklch(72.4% 0.146 77)",
+        "tonalRamp": [
+          "#300000",
+          "#4d1400",
+          "#6b3100",
+          "#8a4e00",
+          "#af7200",
+          "#d79717",
+          "#ffbd4e",
+          "#ffe48f"
+        ]
+      },
+      "rojo": {
+        "role": "tertiary",
+        "displayName": "Rojo de falla",
+        "canonical": "#a8322a",
+        "oklch": "oklch(49.4% 0.155 28)",
+        "tonalRamp": [
+          "#3f0000",
+          "#600000",
+          "#810005",
+          "#a32d26",
+          "#cc5449",
+          "#f77a6c",
+          "#ffa091",
+          "#ffd0c1"
+        ]
+      },
+      "rojo-fondo": {
+        "role": "tertiary",
+        "displayName": "Fondo rojo",
+        "canonical": "#f9e3e0",
+        "oklch": "oklch(93.3% 0.025 27)",
+        "tonalRamp": [
+          "#1b0d0c",
+          "#342422",
+          "#4f3e3b",
+          "#6b5956",
+          "#8e7b78",
+          "#b49f9c",
+          "#dac5c2",
+          "#ffe9e6"
+        ]
+      },
+      "rojo-linea": {
+        "role": "tertiary",
+        "displayName": "Línea roja",
+        "canonical": "#e3a49e",
+        "oklch": "oklch(77.7% 0.076 25)",
+        "tonalRamp": [
+          "#2b0001",
+          "#471615",
+          "#65312d",
+          "#834c48",
+          "#a96e69",
+          "#d0928d",
+          "#f8b8b2",
+          "#ffdcd5"
+        ]
+      },
+      "sello": {
+        "role": "secondary",
+        "displayName": "Violeta de sello",
+        "canonical": "#5a4a9c",
+        "oklch": "oklch(46.7% 0.128 289)",
+        "tonalRamp": [
+          "#170044",
+          "#2b1362",
+          "#433181",
+          "#5e4ea0",
+          "#7f71c7",
+          "#a396ef",
+          "#c8bcff",
+          "#ece1ff"
+        ]
+      },
+      "sello-tinta": {
+        "role": "secondary",
+        "displayName": "Tinta de sello",
+        "canonical": "#43367a",
+        "oklch": "oklch(38.4% 0.111 289)",
+        "tonalRamp": [
+          "#15003e",
+          "#2a195b",
+          "#423579",
+          "#5c5198",
+          "#7e74be",
+          "#a299e6",
+          "#c8bfff",
+          "#ebe3ff"
+        ]
+      },
+      "sello-fondo": {
+        "role": "secondary",
+        "displayName": "Fondo de sello",
+        "canonical": "#ebe8f5",
+        "oklch": "oklch(93.7% 0.018 297)",
+        "tonalRamp": [
+          "#121019",
+          "#2a2731",
+          "#43414b",
+          "#5e5c67",
+          "#817e8a",
+          "#a5a2af",
+          "#cbc8d5",
+          "#efecf9"
+        ]
+      },
+      "sello-linea": {
+        "role": "secondary",
+        "displayName": "Línea de sello",
+        "canonical": "#b7aedb",
+        "oklch": "oklch(77.4% 0.064 294)",
+        "tonalRamp": [
+          "#14092a",
+          "#2b2245",
+          "#443b61",
+          "#5f577f",
+          "#8279a3",
+          "#a69dca",
+          "#ccc3f1",
+          "#f0e7ff"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Solo el titular del panel de entrada, sobre el riel."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Título de cada página de trabajo."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de sección sobre cada hoja."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Filas, celdas y descripciones; base del documento 0.875rem."
+      },
+      "cifra": {
+        "displayName": "Cifra",
+        "purpose": "Todo número comparable: tabular, alineado a la derecha."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Encabezados de tabla y de grupo, llamadas «f. N», marcas de semáforo; tipo oración."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sheet",
+        "value": "0 1px 2px rgb(24 33 30 / 0.08), 0 4px 16px -8px rgb(24 33 30 / 0.16)",
+        "purpose": "La página del PDF sobre el escritorio del visor."
+      },
+      {
+        "name": "pop",
+        "value": "0 6px 24px -6px rgb(24 33 30 / 0.22), 0 1px 3px rgb(24 33 30 / 0.12)",
+        "purpose": "Diálogos, panel de atajos y aviso flotante del modo de marcado."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Curva única de entrada de la cita, el folio y los despliegues."
+      },
+      {
+        "name": "marco-entra",
+        "value": "480ms",
+        "purpose": "El marco de la cita se dibuja de izquierda a derecha con un halo violeta que se apaga."
+      },
+      {
+        "name": "aparece",
+        "value": "180ms",
+        "purpose": "Entrada de la llamada de folio y del detalle de la fila activa (opacidad + 2px)."
+      },
+      {
+        "name": "color",
+        "value": "150ms",
+        "purpose": "Transiciones de color en botones, riel y llamadas."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "0.01ms",
+        "purpose": "Con prefers-reduced-motion todas las animaciones y transiciones colapsan."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "escritorio",
+        "value": "1240px contenedor normal; 1560px amplio. Solo escritorio: sin layout móvil."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón primario",
+      "kind": "button",
+      "refersTo": "boton-primario",
+      "description": "Única acción primaria de una fila o página; lleva su tecla al final.",
+      "html": "<button class=\"ds-btn ds-btn-primario\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M18 6 7 17l-5-5\"/><path d=\"m22 10-7.5 7.5L13 16\"/></svg>Confirmar <kbd class=\"ds-kbd ds-kbd-oscuro\">↵</kbd></button>",
+      "css": ".ds-btn { font-family: var(--font-sans, 'Libre Franklin', ui-sans-serif, system-ui, sans-serif); display:inline-flex; align-items:center; gap:8px; height:34px; padding:0 14px; font-size:0.8125rem; font-weight:600; border-radius:5px; border:1px solid transparent; cursor:pointer; transition: background-color 150ms, border-color 150ms, color 150ms; } .ds-btn:focus-visible { outline:2px solid var(--color-sello, #5a4a9c); outline-offset:2px; } .ds-btn:disabled { opacity:.45; pointer-events:none; } .ds-kbd { display:inline-flex; align-items:center; justify-content:center; height:18px; min-width:18px; padding:0 4px; font-size:0.625rem; font-weight:600; line-height:1; border-radius:3px; border:1px solid #a9b5ae; background:#fff; color:#46524d; box-shadow:0 1px 0 #a9b5ae; } .ds-kbd-oscuro { border-color:rgba(255,255,255,.25); background:rgba(255,255,255,.1); color:currentColor; box-shadow:none; } .ds-btn-primario { background:var(--color-rail,#1f3d36); color:var(--color-rail-ink,#e6efeb); border-color:var(--color-rail,#1f3d36); } .ds-btn-primario:hover { background:var(--color-rail-2,#2a5047); } .ds-btn-primario:active { background:#173029; }"
+    },
+    {
+      "name": "Botón secundario",
+      "kind": "button",
+      "refersTo": "boton-secundario",
+      "description": "Acción alternativa sobre hoja blanca con borde fuerte.",
+      "html": "<button class=\"ds-btn ds-btn-secundario\">Corregir <kbd class=\"ds-kbd\">E</kbd></button>",
+      "css": ".ds-btn { font-family: var(--font-sans, 'Libre Franklin', ui-sans-serif, system-ui, sans-serif); display:inline-flex; align-items:center; gap:8px; height:34px; padding:0 14px; font-size:0.8125rem; font-weight:600; border-radius:5px; border:1px solid transparent; cursor:pointer; transition: background-color 150ms, border-color 150ms, color 150ms; } .ds-btn:focus-visible { outline:2px solid var(--color-sello, #5a4a9c); outline-offset:2px; } .ds-btn:disabled { opacity:.45; pointer-events:none; } .ds-kbd { display:inline-flex; align-items:center; justify-content:center; height:18px; min-width:18px; padding:0 4px; font-size:0.625rem; font-weight:600; line-height:1; border-radius:3px; border:1px solid #a9b5ae; background:#fff; color:#46524d; box-shadow:0 1px 0 #a9b5ae; } .ds-kbd-oscuro { border-color:rgba(255,255,255,.25); background:rgba(255,255,255,.1); color:currentColor; box-shadow:none; } .ds-btn-secundario { background:#fff; color:#18211e; border-color:#a9b5ae; } .ds-btn-secundario:hover { background:#f3f5f2; border-color:#5c6863; } .ds-btn-secundario:active { background:#e9ede9; }"
+    },
+    {
+      "name": "Botón fantasma",
+      "kind": "button",
+      "refersTo": "boton-fantasma",
+      "description": "Acción terciaria sin fondo.",
+      "html": "<button class=\"ds-btn ds-btn-fantasma\">No está en el documento <kbd class=\"ds-kbd\">N</kbd></button>",
+      "css": ".ds-btn { font-family: var(--font-sans, 'Libre Franklin', ui-sans-serif, system-ui, sans-serif); display:inline-flex; align-items:center; gap:8px; height:34px; padding:0 14px; font-size:0.8125rem; font-weight:600; border-radius:5px; border:1px solid transparent; cursor:pointer; transition: background-color 150ms, border-color 150ms, color 150ms; } .ds-btn:focus-visible { outline:2px solid var(--color-sello, #5a4a9c); outline-offset:2px; } .ds-btn:disabled { opacity:.45; pointer-events:none; } .ds-kbd { display:inline-flex; align-items:center; justify-content:center; height:18px; min-width:18px; padding:0 4px; font-size:0.625rem; font-weight:600; line-height:1; border-radius:3px; border:1px solid #a9b5ae; background:#fff; color:#46524d; box-shadow:0 1px 0 #a9b5ae; } .ds-kbd-oscuro { border-color:rgba(255,255,255,.25); background:rgba(255,255,255,.1); color:currentColor; box-shadow:none; } .ds-btn-fantasma { background:transparent; color:#46524d; } .ds-btn-fantasma:hover { background:#e9ede9; color:#18211e; }"
+    },
+    {
+      "name": "Botón de peligro",
+      "kind": "button",
+      "refersTo": "boton-peligro",
+      "description": "Acción destructiva: texto y borde rojos sobre hoja.",
+      "html": "<button class=\"ds-btn ds-btn-peligro\">Descartar carga</button>",
+      "css": ".ds-btn { font-family: var(--font-sans, 'Libre Franklin', ui-sans-serif, system-ui, sans-serif); display:inline-flex; align-items:center; gap:8px; height:34px; padding:0 14px; font-size:0.8125rem; font-weight:600; border-radius:5px; border:1px solid transparent; cursor:pointer; transition: background-color 150ms, border-color 150ms, color 150ms; } .ds-btn:focus-visible { outline:2px solid var(--color-sello, #5a4a9c); outline-offset:2px; } .ds-btn:disabled { opacity:.45; pointer-events:none; } .ds-kbd { display:inline-flex; align-items:center; justify-content:center; height:18px; min-width:18px; padding:0 4px; font-size:0.625rem; font-weight:600; line-height:1; border-radius:3px; border:1px solid #a9b5ae; background:#fff; color:#46524d; box-shadow:0 1px 0 #a9b5ae; } .ds-kbd-oscuro { border-color:rgba(255,255,255,.25); background:rgba(255,255,255,.1); color:currentColor; box-shadow:none; } .ds-btn-peligro { background:#fff; color:#a8322a; border-color:#e3a49e; } .ds-btn-peligro:hover { background:#f9e3e0; }"
+    },
+    {
+      "name": "Campo de folio",
+      "kind": "input",
+      "refersTo": null,
+      "description": "Campo numérico de la barra del visor, precedido de «f.» en violeta.",
+      "html": "<label class=\"ds-folio\"><span class=\"ds-folio-f\">f.</span><input class=\"ds-input\" value=\"13\" inputmode=\"numeric\"><span>de 18</span></label>",
+      "css": ".ds-folio { font-family: var(--font-sans, 'Libre Franklin', ui-sans-serif, system-ui, sans-serif); display:inline-flex; align-items:center; gap:6px; font-size:0.75rem; color:#46524d; font-variant-numeric:tabular-nums lining-nums; } .ds-folio-f { font-weight:600; color:#5a4a9c; } .ds-input { height:28px; width:44px; text-align:center; font:inherit; font-weight:600; color:#18211e; background:#fff; border:1px solid #a9b5ae; border-radius:5px; caret-color:#5a4a9c; } .ds-input:focus-visible { outline:2px solid #5a4a9c; outline-offset:2px; }"
+    },
+    {
+      "name": "Riel",
+      "kind": "nav",
+      "refersTo": "riel",
+      "description": "Shell verde botella de 84px; icono sobre palabra.",
+      "html": "<nav class=\"ds-riel\"><div class=\"ds-riel-marca\">Folio</div><a class=\"ds-riel-item ds-on\" href=\"#\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"22 12 16 12 14 15 10 15 8 12 2 12\"/><path d=\"M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z\"/></svg>Mi cola</a><a class=\"ds-riel-item\" href=\"#\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.85\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"/><path d=\"M3 3v5h5\"/><path d=\"M12 7v5l4 2\"/></svg>Enviados</a></nav>",
+      "css": ".ds-riel { font-family: var(--font-sans, 'Libre Franklin', ui-sans-serif, system-ui, sans-serif); width:84px; height:260px; background:#1f3d36; color:#e6efeb; display:flex; flex-direction:column; gap:2px; padding:16px 8px; } .ds-riel-marca { text-align:center; font-size:1.0625rem; font-weight:800; letter-spacing:-0.02em; margin-bottom:12px; } .ds-riel-item { display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 4px; border-radius:5px; font-size:0.6875rem; font-weight:600; line-height:1; color:#a9c2b9; text-decoration:none; transition:background-color 150ms, color 150ms; } .ds-riel-item:hover { background:rgba(255,255,255,.06); color:#e6efeb; } .ds-riel-item.ds-on { background:#2a5047; color:#fff; } .ds-riel-item:focus-visible { outline:2px solid #5a4a9c; outline-offset:2px; }"
+    },
+    {
+      "name": "Marcas de semáforo",
+      "kind": "chip",
+      "refersTo": "marca-semaforo-rojo",
+      "description": "Glifo + palabra; nunca color solo.",
+      "html": "<span class=\"ds-sem ds-rojo\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M2.586 16.726A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2h6.624a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586z\"/><path d=\"m15 9-6 6\"/><path d=\"m9 9 6 6\"/></svg>Rojo</span> <span class=\"ds-sem ds-amarillo\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/></svg>Amarillo</span> <span class=\"ds-sem ds-verde\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg>Verde</span>",
+      "css": ".ds-sem { font-family: var(--font-sans, 'Libre Franklin', ui-sans-serif, system-ui, sans-serif); display:inline-flex; align-items:center; gap:4px; padding:2px 6px; border-radius:3px; font-size:0.6875rem; line-height:1rem; font-weight:600; } .ds-rojo { background:#f9e3e0; color:#a8322a; } .ds-amarillo { background:#fbefd3; color:#865800; } .ds-verde { background:#e2f0e7; color:#23704a; }"
+    },
+    {
+      "name": "Fila de variable con llamada de folio",
+      "kind": "custom",
+      "refersTo": "llamada-folio",
+      "description": "Etiqueta · valor tabular · «f. N»; la fila activa despliega la cita literal.",
+      "html": "<div class=\"ds-hoja\"><div class=\"ds-fila ds-activa\"><span class=\"ds-g ds-rojo-t\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M2.586 16.726A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2h6.624a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586z\"/><path d=\"m15 9-6 6\"/><path d=\"m9 9 6 6\"/></svg></span><span class=\"ds-nombre\">Obligaciones</span><span class=\"ds-cifra\">60.441.908.115</span><button class=\"ds-folio-ll ds-on\">f. 13</button></div><figure class=\"ds-cita\"><blockquote>«Obligaciones 60.441.908.115»</blockquote><figcaption>Cita literal · folio 13 · OCR 0,74</figcaption></figure><div class=\"ds-fila\"><span class=\"ds-g ds-ambar-t\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/></svg></span><span class=\"ds-nombre ds-in\">Compromisos</span><span class=\"ds-cifra\">63.008.114.772</span><button class=\"ds-folio-ll\">f. 13</button></div></div>",
+      "css": ".ds-hoja { font-family: var(--font-sans, 'Libre Franklin', ui-sans-serif, system-ui, sans-serif); width:440px; background:#fff; border:1px solid #d6ddd8; border-radius:5px; color:#18211e; } .ds-fila { position:relative; display:flex; align-items:center; gap:10px; padding:8px 12px 8px 16px; border-bottom:1px solid #d6ddd8; font-size:0.8125rem; } .ds-activa { border-bottom:0; } .ds-activa::before { content:''; position:absolute; left:0; top:0; bottom:0; width:1px; background:#5a4a9c; } .ds-g { display:inline-flex; } .ds-rojo-t { color:#a8322a; } .ds-ambar-t { color:#865800; } .ds-nombre { flex:1; font-weight:600; } .ds-in { font-weight:400; color:#46524d; } .ds-cifra { font-weight:600; font-variant-numeric:tabular-nums lining-nums; letter-spacing:-0.005em; text-align:right; } .ds-folio-ll { width:44px; text-align:right; padding:2px 4px; border:0; border-radius:3px; background:transparent; color:#5a4a9c; font:inherit; font-size:0.6875rem; font-weight:700; cursor:pointer; font-variant-numeric:tabular-nums; transition:background-color 150ms; } .ds-folio-ll:hover { background:#ebe8f5; } .ds-folio-ll.ds-on { background:#5a4a9c; color:#fff; } .ds-folio-ll:focus-visible { outline:2px solid #5a4a9c; outline-offset:2px; } .ds-cita { margin:0 12px 12px 40px; padding:6px 10px; border:1px solid #b7aedb; border-radius:3px; background:rgba(235,232,245,.5); } .ds-cita blockquote { margin:0; font-size:0.8125rem; line-height:1.35; } .ds-cita figcaption { margin-top:2px; font-size:0.6875rem; font-weight:600; color:#43367a; }"
+    },
+    {
+      "name": "Marco de cita en el PDF",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Firma: llamada «f. N» en el margen y marco violeta que entra como pasada de lápiz.",
+      "html": "<div class=\"ds-pagina\"><span class=\"ds-renglon\">Compromisos <b>63.008.114.772</b></span><span class=\"ds-renglon ds-marcado\"><span class=\"ds-llamada\">f. 13</span><span class=\"ds-marco\"></span>Obligaciones <b>60.441.903.115</b></span><span class=\"ds-renglon\">Pagos <b>58.772.018.660</b></span></div>",
+      "css": ".ds-pagina { font-family: var(--font-sans, 'Libre Franklin', ui-sans-serif, system-ui, sans-serif); width:380px; padding:24px 24px 24px 48px; background:#fff; box-shadow:0 1px 2px rgb(24 33 30 / .08), 0 4px 16px -8px rgb(24 33 30 / .16); font-size:0.6875rem; color:#18211e; display:flex; flex-direction:column; gap:6px; } .ds-renglon { position:relative; display:flex; justify-content:space-between; padding:1px 2px; } .ds-renglon b { font-weight:400; font-variant-numeric:tabular-nums; } .ds-marco { position:absolute; inset:0; border:1.5px solid #5a4a9c; border-radius:2px; background:color-mix(in srgb, #5a4a9c 11%, transparent); animation:ds-marco 480ms cubic-bezier(0.16,1,0.3,1) both; } .ds-llamada { position:absolute; right:calc(100% + 6px); top:50%; transform:translateY(-50%); background:#5a4a9c; color:#fff; font-size:0.625rem; font-weight:700; line-height:1; padding:2px 4px; border-radius:3px; white-space:nowrap; animation:ds-aparece 180ms cubic-bezier(0.16,1,0.3,1) both; } @keyframes ds-marco { from { clip-path:inset(-14px 100% -14px -14px); box-shadow:0 0 0 0 rgb(90 74 156 / .35); } 55% { clip-path:inset(-14px); box-shadow:0 0 0 7px rgb(90 74 156 / .16); } to { clip-path:inset(-14px); box-shadow:0 0 0 12px rgb(90 74 156 / 0); } } @keyframes ds-aparece { from { opacity:0; margin-top:-2px; } } @media (prefers-reduced-motion: reduce) { .ds-marco, .ds-llamada { animation-duration:.01ms; } }"
+    },
+    {
+      "name": "Prueba contable",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Ecuación en vivo con regla simple sobre la diferencia y doble regla bajo el resultado.",
+      "html": "<section class=\"ds-prueba\"><h3>Recaudo − Obligaciones = Superávit</h3><dl><dt><i></i>Recaudo</dt><dd>64.315.772.408</dd><dt><i>−</i>Obligaciones</dt><dd class=\"ds-sel\">60.441.908.115</dd><dt><i>−</i>Superávit</dt><dd>3.873.869.293</dd><dt class=\"ds-regla\">Diferencia</dt><dd class=\"ds-regla\"><span class=\"ds-doble\">(5.000)</span></dd></dl></section>",
+      "css": ".ds-prueba { font-family: var(--font-sans, 'Libre Franklin', ui-sans-serif, system-ui, sans-serif); width:280px; padding:12px 16px; background:#f3f5f2; border-top:1px solid #d6ddd8; color:#18211e; } .ds-prueba h3 { margin:0 0 4px; font-size:0.6875rem; line-height:1rem; font-weight:600; color:#5c6863; } .ds-prueba dl { margin:0; display:grid; grid-template-columns:auto 1fr; column-gap:12px; font-size:0.75rem; font-variant-numeric:tabular-nums lining-nums; } .ds-prueba dt { color:#46524d; } .ds-prueba dt i { display:inline-block; width:10px; font-style:normal; color:#5c6863; } .ds-prueba dd { margin:0; text-align:right; font-weight:600; } .ds-sel { color:#5a4a9c; } .ds-regla { border-top:1px solid #18211e; margin-top:2px; padding-top:2px; font-weight:600; color:#18211e; } .ds-doble { border-bottom:3px double #18211e; padding-bottom:1px; font-weight:700; color:#a8322a; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El estado financiero publicado",
+    "overview": "Cada cifra se lee como en un estado financiero impreso y auditado: alineada a la derecha en cifras tabulares, con su nota y su folio de origen al lado. La interfaz es una herramienta de trabajo de escritorio para sesiones largas: densa pero no apretada, tipográfica antes que cromática, con un único riel verde botella como cuerpo comprometido de la aplicación y todo lo demás en papel frío y tinta verdosa casi negra.\n\nEl color no decora: el verde, el ámbar y el rojo son el semáforo de verificación y siempre viajan con glifo y palabra; el violeta de sello es la tinta de la evidencia y solo aparece donde hay una cita, un folio o el foco. La jerarquía la dan el peso, las reglas contables (regla simple sobre la diferencia, doble regla bajo el total) y el orden de atención rojo > amarillo > verde, no tarjetas, insignias de colores sueltos ni métricas gigantes.\n\nLa firma del sistema es la llamada de folio: la marca «f. N» que vive en cada fila de variable, salta al folio del PDF y aparece en el margen de la página mientras un marco violeta entra sobre la cita literal como una pasada de lápiz.",
+    "keyCharacteristics": [
+      "Una sola familia (Libre Franklin) para todo; cifras tabulares y alineadas a la derecha.",
+      "Riel verde botella de 84px como shell; lienzo papel frío; superficies blancas planas con borde fino.",
+      "Semáforo verde / ámbar / rojo siempre con glifo + palabra, ordenado por atención.",
+      "Violeta de sello reservado para cita, folio, foco, selección y estado «corregido».",
+      "Reglas contables (simple y doble) como recurso de jerarquía para totales y diferencias.",
+      "Plano por defecto; la sombra existe solo en la página del PDF y en lo que flota."
+    ],
+    "rules": [
+      {
+        "name": "The Sello Rule",
+        "body": "El violeta solo marca evidencia y foco: cita, folio, marco, selección, foco de teclado y lo que el usuario corrigió. Nunca un botón genérico, un enlace de navegación o un adorno.",
+        "section": "colors"
+      },
+      {
+        "name": "The Glifo y Palabra Rule",
+        "body": "Un color de semáforo nunca aparece solo: lo acompañan su glifo (visto, triángulo, octágono o círculo tachado) y su nombre. Los conteos se ordenan rojo · amarillo · verde y los ceros se atenúan al 35 %, no se ocultan.",
+        "section": "colors"
+      },
+      {
+        "name": "The Columna Rule",
+        "body": "Toda cifra comparable lleva la clase de cifra tabular y se alinea a la derecha, en tablas, filas de variables y pruebas contables por igual.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sin Versalitas Rule",
+        "body": "Encabezados y rótulos van en tipo oración, 0.6875rem semibold; el sistema no usa mayúsculas sostenidas con tracking.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Sheet Rule",
+        "body": "Hojas, filas y tablas no proyectan sombra; se separan por borde de línea y por tono. Una hoja nunca se anida dentro de otra.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do acompañar cada color de semáforo con su glifo y su palabra, y ordenar por atención rojo > amarillo > verde.",
+      "Do poner cada cifra comparable en cifras tabulares alineadas a la derecha y cerrar totales con regla simple y doble regla.",
+      "Do llevar toda cifra extraída junto a su llamada «f. N» en violeta de sello.",
+      "Do separar superficies con borde de línea de 1px y con tono papel / hoja / panel.",
+      "Do mostrar el atajo de teclado dentro del botón que lo ejecuta.",
+      "Do respetar la reducción de movimiento: las animaciones de la cita y del folio colapsan a 0.01ms."
+    ],
+    "donts": [
+      "Don't usar el violeta de sello para navegación, botones genéricos o decoración.",
+      "Don't usar color de semáforo sin glifo y palabra, ni insignias de colores sueltas.",
+      "Don't construir paneles de tarjetas con métricas gigantes; las cifras viven en tablas y estados con su folio.",
+      "Don't poner sombra a hojas, filas o tablas; la sombra es solo de la página del PDF y de lo emergente.",
+      "Don't usar mayúsculas sostenidas con tracking para rótulos o encabezados.",
+      "Don't anidar una hoja dentro de otra."
+    ]
+  }
+}

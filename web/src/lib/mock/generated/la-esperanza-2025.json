@@ -1,0 +1,515 @@
+{
+  "slug": "la-esperanza-2025",
+  "synthetic": true,
+  "entidad": "Municipio de La Esperanza del Llano",
+  "departamento": "Meta",
+  "nit": "892.099.614-4",
+  "vigencia": 2025,
+  "pageSize": {
+    "w": 612,
+    "h": 792
+  },
+  "pageCount": 18,
+  "pages": [
+    {
+      "n": 1,
+      "kind": "digital",
+      "title": ""
+    },
+    {
+      "n": 2,
+      "kind": "digital",
+      "title": "Contenido"
+    },
+    {
+      "n": 3,
+      "kind": "digital",
+      "title": "Certificación de los estados financieros"
+    },
+    {
+      "n": 4,
+      "kind": "digital",
+      "title": "Dictamen sobre los estados financieros"
+    },
+    {
+      "n": 5,
+      "kind": "digital",
+      "title": "Bases de preparación y políticas contables"
+    },
+    {
+      "n": 6,
+      "kind": "escaneada",
+      "title": "Estado de situación financiera · Activo"
+    },
+    {
+      "n": 7,
+      "kind": "escaneada",
+      "title": "Estado de situación financiera · Pasivo y patrimonio"
+    },
+    {
+      "n": 8,
+      "kind": "escaneada",
+      "title": "Estado de resultados"
+    },
+    {
+      "n": 9,
+      "kind": "digital",
+      "title": "Estado de cambios en el patrimonio"
+    },
+    {
+      "n": 10,
+      "kind": "digital",
+      "title": "Notas a los estados financieros"
+    },
+    {
+      "n": 11,
+      "kind": "digital",
+      "title": "Notas a los estados financieros (continuación)"
+    },
+    {
+      "n": 12,
+      "kind": "digital",
+      "title": "Ejecución presupuestal de ingresos"
+    },
+    {
+      "n": 13,
+      "kind": "escaneada",
+      "title": "Ejecución presupuestal de gastos"
+    },
+    {
+      "n": 14,
+      "kind": "escaneada",
+      "title": "Deuda pública"
+    },
+    {
+      "n": 15,
+      "kind": "escaneada",
+      "title": "Indicadores de ley"
+    },
+    {
+      "n": 16,
+      "kind": "digital",
+      "title": "Anexo 1 · Relación de bienes inmuebles"
+    },
+    {
+      "n": 17,
+      "kind": "digital",
+      "title": "Anexo 2 · Relación de cuentas bancarias"
+    },
+    {
+      "n": 18,
+      "kind": "digital",
+      "title": "Anexo 3 · Actas"
+    }
+  ],
+  "fields": {
+    "entidad": {
+      "page": 1,
+      "valueText": "Municipio de La Esperanza del Llano",
+      "cita": "Municipio de La Esperanza del Llano",
+      "bbox": {
+        "x": 53,
+        "y": 297,
+        "w": 286.08,
+        "h": 22
+      },
+      "scanned": false
+    },
+    "departamento": {
+      "page": 1,
+      "valueText": "Meta",
+      "cita": "Departamento de Meta",
+      "bbox": {
+        "x": 53,
+        "y": 321,
+        "w": 118.937,
+        "h": 17
+      },
+      "scanned": false
+    },
+    "nit": {
+      "page": 1,
+      "valueText": "892.099.614-4",
+      "cita": "NIT 892.099.614-4",
+      "bbox": {
+        "x": 53,
+        "y": 341,
+        "w": 97.71799999999999,
+        "h": 17
+      },
+      "scanned": false
+    },
+    "categoria": {
+      "page": 1,
+      "valueText": "Sexta",
+      "cita": "Categoría Sexta",
+      "bbox": {
+        "x": 53,
+        "y": 361,
+        "w": 177.435,
+        "h": 17
+      },
+      "scanned": false
+    },
+    "fecha_corte": {
+      "page": 3,
+      "valueText": "31 de diciembre de 2025",
+      "cita": "Fecha de corte: 31 de diciembre de 2025",
+      "bbox": {
+        "x": 53,
+        "y": 189,
+        "w": 187.92000000000002,
+        "h": 16
+      },
+      "scanned": false
+    },
+    "vigencia": {
+      "page": 3,
+      "valueText": "2025",
+      "cita": "Vigencia: 2025",
+      "bbox": {
+        "x": 53,
+        "y": 207,
+        "w": 71.65,
+        "h": 16
+      },
+      "scanned": false
+    },
+    "fecha_firma": {
+      "page": 3,
+      "valueText": "3 de marzo de 2026",
+      "cita": "Se firma en la fecha: 3 de marzo de 2026",
+      "bbox": {
+        "x": 53,
+        "y": 225,
+        "w": 188.73,
+        "h": 16
+      },
+      "scanned": false
+    },
+    "representante_legal": {
+      "page": 3,
+      "valueText": "Wilson Arley Guevara Rojas",
+      "cita": "Wilson Arley Guevara Rojas",
+      "bbox": {
+        "x": 53,
+        "y": 467,
+        "w": 138.88,
+        "h": 16
+      },
+      "scanned": false
+    },
+    "contador": {
+      "page": 3,
+      "valueText": "Paola Andrea Lozano Cruz · T.P. 176904-T",
+      "cita": "Paola Andrea Lozano Cruz Contador público · T.P. 176904-T",
+      "bbox": {
+        "x": 327,
+        "y": 467,
+        "w": 135.195,
+        "h": 31
+      },
+      "scanned": false
+    },
+    "opinion": {
+      "page": 4,
+      "valueText": "Abstención",
+      "cita": "Opinión: Abstención.",
+      "bbox": {
+        "x": 53,
+        "y": 177,
+        "w": 111.756,
+        "h": 16.5
+      },
+      "scanned": false
+    },
+    "efectivo": {
+      "page": 6,
+      "valueText": "2.918.604.337",
+      "cita": "Efectivo y equivalentes al efectivo 2.918.604.337",
+      "bbox": {
+        "x": 69,
+        "y": 167,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "cxc_impuestos": {
+      "page": 6,
+      "valueText": "1.740.225.918",
+      "cita": "Cuentas por cobrar · impuestos 1.740.225.918",
+      "bbox": {
+        "x": 69,
+        "y": 185,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "activo_corriente": {
+      "page": 6,
+      "valueText": "5.884.102.655",
+      "cita": "Total activo corriente 5.884.102.655",
+      "bbox": {
+        "x": 53,
+        "y": 225,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "ppe": {
+      "page": 6,
+      "valueText": "46.115.380.204",
+      "cita": "Propiedades, planta y equipo 46.115.380.204",
+      "bbox": {
+        "x": 69,
+        "y": 279,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "activo_no_corriente": {
+      "page": 6,
+      "valueText": "61.402.918.336",
+      "cita": "Total activo no corriente 61.402.918.336",
+      "bbox": {
+        "x": 53,
+        "y": 319,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "activo_total": {
+      "page": 6,
+      "valueText": "67.287.020.991",
+      "cita": "TOTAL ACTIVO 67.287.020.991",
+      "bbox": {
+        "x": 53,
+        "y": 353,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "pasivo_corriente": {
+      "page": 7,
+      "valueText": "4.906.311.872",
+      "cita": "Total pasivo corriente 4.906.311.872",
+      "bbox": {
+        "x": 69,
+        "y": 167,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "pasivo_no_corriente": {
+      "page": 7,
+      "valueText": "8.115.442.019",
+      "cita": "Total pasivo no corriente 8.115.442.019",
+      "bbox": {
+        "x": 69,
+        "y": 185,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "pasivo_total": {
+      "page": 7,
+      "valueText": "13.021.753.891",
+      "cita": "TOTAL PASIVO 13.021.753.891",
+      "bbox": {
+        "x": 53,
+        "y": 207,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "patrimonio": {
+      "page": 7,
+      "valueText": "54.265.267.100",
+      "cita": "TOTAL PATRIMONIO 54.265.267.100",
+      "bbox": {
+        "x": 53,
+        "y": 321,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "ingresos_fiscales": {
+      "page": 8,
+      "valueText": "5.118.604.227",
+      "cita": "Ingresos fiscales 5.118.604.227",
+      "bbox": {
+        "x": 53,
+        "y": 147,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "transferencias": {
+      "page": 8,
+      "valueText": "14.772.903.118",
+      "cita": "Transferencias y subvenciones 14.772.903.118",
+      "bbox": {
+        "x": 53,
+        "y": 165,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "gastos_admin": {
+      "page": 8,
+      "valueText": "4.206.115.903",
+      "cita": "Gastos de administración y operación 4.206.115.903",
+      "bbox": {
+        "x": 53,
+        "y": 191,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "gasto_social": {
+      "page": 8,
+      "valueText": "12.884.906.441",
+      "cita": "Gasto público social 12.884.906.441",
+      "bbox": {
+        "x": 53,
+        "y": 209,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "resultado": {
+      "page": 8,
+      "valueText": "2.800.485.001",
+      "cita": "RESULTADO DEL EJERCICIO 2.800.485.001",
+      "bbox": {
+        "x": 53,
+        "y": 243,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "ppto_ingresos": {
+      "page": 12,
+      "valueText": "22.150.000.000",
+      "cita": "Presupuesto definitivo de ingresos 22.150.000.000",
+      "bbox": {
+        "x": 53,
+        "y": 147,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "recaudo": {
+      "page": 12,
+      "valueText": "19.884.331.207",
+      "cita": "Recaudo total 19.884.331.207",
+      "bbox": {
+        "x": 53,
+        "y": 165,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "ppto_gastos": {
+      "page": 13,
+      "valueText": "22.150.000.000",
+      "cita": "Presupuesto definitivo de gastos 22.150.000.000",
+      "bbox": {
+        "x": 53,
+        "y": 147,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "compromisos": {
+      "page": 13,
+      "valueText": "20.117.904.336",
+      "cita": "Compromisos 20.117.904.336",
+      "bbox": {
+        "x": 53,
+        "y": 165,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "obligaciones": {
+      "page": 13,
+      "valueText": "18.906.225.418",
+      "cita": "Obligaciones 18.906.225.418",
+      "bbox": {
+        "x": 53,
+        "y": 183,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "pagos": {
+      "page": 13,
+      "valueText": "17.441.008.925",
+      "cita": "Pagos 17.441.008.925",
+      "bbox": {
+        "x": 53,
+        "y": 201,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "superavit": {
+      "page": 13,
+      "valueText": "978.105.789",
+      "cita": "Superávit (déficit) presupuestal 978.105.789",
+      "bbox": {
+        "x": 53,
+        "y": 227,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "ley617": {
+      "page": 15,
+      "valueText": "79,2 %",
+      "cita": "Indicador de gastos de funcionamiento (Ley 617 de 2000): 79,2 %",
+      "bbox": {
+        "x": 53,
+        "y": 147,
+        "w": 297.69,
+        "h": 16
+      },
+      "scanned": true
+    },
+    "chip": {
+      "page": 15,
+      "valueText": "No presentado",
+      "cita": "Reporte CHIP a la Contaduría General de la Nación: No presentado",
+      "bbox": {
+        "x": 53,
+        "y": 169,
+        "w": 307.2,
+        "h": 16
+      },
+      "scanned": true
+    }
+  }
+}

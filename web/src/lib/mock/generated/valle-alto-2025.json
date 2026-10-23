@@ -1,0 +1,527 @@
+{
+  "slug": "valle-alto-2025",
+  "synthetic": true,
+  "entidad": "Municipio de Valle Alto",
+  "departamento": "Boyacá",
+  "nit": "891.801.457-2",
+  "vigencia": 2025,
+  "pageSize": {
+    "w": 612,
+    "h": 792
+  },
+  "pageCount": 18,
+  "pages": [
+    {
+      "n": 1,
+      "kind": "digital",
+      "title": ""
+    },
+    {
+      "n": 2,
+      "kind": "digital",
+      "title": "Contenido"
+    },
+    {
+      "n": 3,
+      "kind": "digital",
+      "title": "Certificación de los estados financieros"
+    },
+    {
+      "n": 4,
+      "kind": "digital",
+      "title": "Dictamen sobre los estados financieros"
+    },
+    {
+      "n": 5,
+      "kind": "digital",
+      "title": "Bases de preparación y políticas contables"
+    },
+    {
+      "n": 6,
+      "kind": "digital",
+      "title": "Estado de situación financiera · Activo"
+    },
+    {
+      "n": 7,
+      "kind": "digital",
+      "title": "Estado de situación financiera · Pasivo y patrimonio"
+    },
+    {
+      "n": 8,
+      "kind": "digital",
+      "title": "Estado de resultados"
+    },
+    {
+      "n": 9,
+      "kind": "digital",
+      "title": "Estado de cambios en el patrimonio"
+    },
+    {
+      "n": 10,
+      "kind": "digital",
+      "title": "Notas a los estados financieros"
+    },
+    {
+      "n": 11,
+      "kind": "digital",
+      "title": "Notas a los estados financieros (continuación)"
+    },
+    {
+      "n": 12,
+      "kind": "digital",
+      "title": "Ejecución presupuestal de ingresos"
+    },
+    {
+      "n": 13,
+      "kind": "escaneada",
+      "title": "Ejecución presupuestal de gastos"
+    },
+    {
+      "n": 14,
+      "kind": "digital",
+      "title": "Deuda pública"
+    },
+    {
+      "n": 15,
+      "kind": "digital",
+      "title": "Indicadores de ley"
+    },
+    {
+      "n": 16,
+      "kind": "digital",
+      "title": "Anexo 1 · Relación de bienes inmuebles"
+    },
+    {
+      "n": 17,
+      "kind": "digital",
+      "title": "Anexo 2 · Relación de cuentas bancarias"
+    },
+    {
+      "n": 18,
+      "kind": "digital",
+      "title": "Anexo 3 · Actas"
+    }
+  ],
+  "fields": {
+    "entidad": {
+      "page": 1,
+      "valueText": "Municipio de Valle Alto",
+      "cita": "Municipio de Valle Alto",
+      "bbox": {
+        "x": 53,
+        "y": 297,
+        "w": 178.912,
+        "h": 22
+      },
+      "scanned": false
+    },
+    "departamento": {
+      "page": 1,
+      "valueText": "Boyacá",
+      "cita": "Departamento de Boyacá",
+      "bbox": {
+        "x": 53,
+        "y": 321,
+        "w": 130.619,
+        "h": 17
+      },
+      "scanned": false
+    },
+    "nit": {
+      "page": 1,
+      "valueText": "891.801.457-2",
+      "cita": "NIT 891.801.457-2",
+      "bbox": {
+        "x": 53,
+        "y": 341,
+        "w": 97.71799999999999,
+        "h": 17
+      },
+      "scanned": false
+    },
+    "categoria": {
+      "page": 1,
+      "valueText": "Sexta",
+      "cita": "Categoría Sexta",
+      "bbox": {
+        "x": 53,
+        "y": 361,
+        "w": 177.435,
+        "h": 17
+      },
+      "scanned": false
+    },
+    "fecha_corte": {
+      "page": 3,
+      "valueText": "31 de diciembre de 2025",
+      "cita": "Fecha de corte: 31 de diciembre de 2025",
+      "bbox": {
+        "x": 53,
+        "y": 189,
+        "w": 187.92000000000002,
+        "h": 16
+      },
+      "scanned": false
+    },
+    "vigencia": {
+      "page": 3,
+      "valueText": "2025",
+      "cita": "Vigencia: 2025",
+      "bbox": {
+        "x": 53,
+        "y": 207,
+        "w": 71.65,
+        "h": 16
+      },
+      "scanned": false
+    },
+    "fecha_firma": {
+      "page": 3,
+      "valueText": "14 de febrero de 2026",
+      "cita": "Se firma en la fecha: 14 de febrero de 2026",
+      "bbox": {
+        "x": 53,
+        "y": 225,
+        "w": 198.04,
+        "h": 16
+      },
+      "scanned": false
+    },
+    "representante_legal": {
+      "page": 3,
+      "valueText": "Laura Milena Castañeda Ruiz",
+      "cita": "Laura Milena Castañeda Ruiz",
+      "bbox": {
+        "x": 53,
+        "y": 467,
+        "w": 144.37,
+        "h": 16
+      },
+      "scanned": false
+    },
+    "contador": {
+      "page": 3,
+      "valueText": "Jorge Andrés Peña Villamil · T.P. 184562-T",
+      "cita": "Jorge Andrés Peña Villamil Contador público · T.P. 184562-T",
+      "bbox": {
+        "x": 327,
+        "y": 467,
+        "w": 135.195,
+        "h": 31
+      },
+      "scanned": false
+    },
+    "opinion": {
+      "page": 4,
+      "valueText": "Limpia",
+      "cita": "Opinión: Limpia.",
+      "bbox": {
+        "x": 53,
+        "y": 177,
+        "w": 88.42500000000001,
+        "h": 16.5
+      },
+      "scanned": false
+    },
+    "efectivo": {
+      "page": 6,
+      "valueText": "6.842.115.402",
+      "cita": "Efectivo y equivalentes al efectivo 6.842.115.402",
+      "bbox": {
+        "x": 69,
+        "y": 167,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "cxc_impuestos": {
+      "page": 6,
+      "valueText": "3.118.904.250",
+      "cita": "Cuentas por cobrar · impuestos 3.118.904.250",
+      "bbox": {
+        "x": 69,
+        "y": 185,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "activo_corriente": {
+      "page": 6,
+      "valueText": "12.906.441.873",
+      "cita": "Total activo corriente 12.906.441.873",
+      "bbox": {
+        "x": 53,
+        "y": 225,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "ppe": {
+      "page": 6,
+      "valueText": "98.412.773.190",
+      "cita": "Propiedades, planta y equipo 98.412.773.190",
+      "bbox": {
+        "x": 69,
+        "y": 279,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "activo_no_corriente": {
+      "page": 6,
+      "valueText": "135.625.977.033",
+      "cita": "Total activo no corriente 135.625.977.033",
+      "bbox": {
+        "x": 53,
+        "y": 319,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "activo_total": {
+      "page": 6,
+      "valueText": "148.532.418.906",
+      "cita": "TOTAL ACTIVO 148.532.418.906",
+      "bbox": {
+        "x": 53,
+        "y": 353,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "pasivo_corriente": {
+      "page": 7,
+      "valueText": "9.481.206.314",
+      "cita": "Total pasivo corriente 9.481.206.314",
+      "bbox": {
+        "x": 69,
+        "y": 167,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "pasivo_no_corriente": {
+      "page": 7,
+      "valueText": "21.723.568.806",
+      "cita": "Total pasivo no corriente 21.723.568.806",
+      "bbox": {
+        "x": 69,
+        "y": 185,
+        "w": 490,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "pasivo_total": {
+      "page": 7,
+      "valueText": "31.204.775.120",
+      "cita": "TOTAL PASIVO 31.204.775.120",
+      "bbox": {
+        "x": 53,
+        "y": 207,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "patrimonio": {
+      "page": 7,
+      "valueText": "117.327.643.786",
+      "cita": "TOTAL PATRIMONIO 117.327.643.786",
+      "bbox": {
+        "x": 53,
+        "y": 321,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "ingresos_fiscales": {
+      "page": 8,
+      "valueText": "14.271.390.118",
+      "cita": "Ingresos fiscales 14.271.390.118",
+      "bbox": {
+        "x": 53,
+        "y": 147,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "transferencias": {
+      "page": 8,
+      "valueText": "22.905.617.440",
+      "cita": "Transferencias y subvenciones 22.905.617.440",
+      "bbox": {
+        "x": 53,
+        "y": 165,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "gastos_admin": {
+      "page": 8,
+      "valueText": "8.114.502.967",
+      "cita": "Gastos de administración y operación 8.114.502.967",
+      "bbox": {
+        "x": 53,
+        "y": 191,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "gasto_social": {
+      "page": 8,
+      "valueText": "21.640.118.305",
+      "cita": "Gasto público social 21.640.118.305",
+      "bbox": {
+        "x": 53,
+        "y": 209,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "resultado": {
+      "page": 8,
+      "valueText": "7.422.386.286",
+      "cita": "RESULTADO DEL EJERCICIO 7.422.386.286",
+      "bbox": {
+        "x": 53,
+        "y": 243,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "ppto_ingresos": {
+      "page": 12,
+      "valueText": "41.380.000.000",
+      "cita": "Presupuesto definitivo de ingresos 41.380.000.000",
+      "bbox": {
+        "x": 53,
+        "y": 147,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "recaudo": {
+      "page": 12,
+      "valueText": "38.917.442.615",
+      "cita": "Recaudo total 38.917.442.615",
+      "bbox": {
+        "x": 53,
+        "y": 165,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "ppto_gastos": {
+      "page": 13,
+      "valueText": "41.380.000.000",
+      "cita": "Presupuesto definitivo de gastos 41.380.000.000",
+      "bbox": {
+        "x": 53,
+        "y": 147,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "compromisos": {
+      "page": 13,
+      "valueText": "37.206.118.904",
+      "cita": "Compromisos 37.206.118.904",
+      "bbox": {
+        "x": 53,
+        "y": 165,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "obligaciones": {
+      "page": 13,
+      "valueText": "35.884.920.117",
+      "cita": "Obligaciones 35.884.920.117",
+      "bbox": {
+        "x": 53,
+        "y": 183,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "pagos": {
+      "page": 13,
+      "valueText": "34.102.665.380",
+      "cita": "Pagos 34.102.665.380",
+      "bbox": {
+        "x": 53,
+        "y": 201,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "superavit": {
+      "page": 13,
+      "valueText": "3.032.522.498",
+      "cita": "Superávit (déficit) presupuestal 3.032.522.498",
+      "bbox": {
+        "x": 53,
+        "y": 227,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": true
+    },
+    "deuda": {
+      "page": 14,
+      "valueText": "4.250.000.000",
+      "cita": "Saldo de la deuda pública a 31 de diciembre 4.250.000.000",
+      "bbox": {
+        "x": 53,
+        "y": 147,
+        "w": 506,
+        "h": 15.5
+      },
+      "scanned": false
+    },
+    "ley617": {
+      "page": 15,
+      "valueText": "61,4 %",
+      "cita": "Indicador de gastos de funcionamiento (Ley 617 de 2000): 61,4 %",
+      "bbox": {
+        "x": 53,
+        "y": 147,
+        "w": 297.69,
+        "h": 16
+      },
+      "scanned": false
+    },
+    "chip": {
+      "page": 15,
+      "valueText": "Presentado",
+      "cita": "Reporte CHIP a la Contaduría General de la Nación: Presentado",
+      "bbox": {
+        "x": 53,
+        "y": 169,
+        "w": 292.75,
+        "h": 16
+      },
+      "scanned": false
+    }
+  }
+}

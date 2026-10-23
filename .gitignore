@@ -1,0 +1,17 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+.env*
+.DS_Store
+npm-debug.log*
+
+# Generado por scripts/copy-pdf-worker.mjs en predev/prebuild
+web/public/pdf.worker.min.mjs
+
+# Artefactos locales de impeccable y del harness
+.impeccable/review/
+.impeccable/live/
+.impeccable/config.local.json
+.claude/settings.local.json
+.impeccable/questions/

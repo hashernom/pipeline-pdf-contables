@@ -1,0 +1,172 @@
+                                               Ficha técnica
+       Pipeline de extracción verificable de PDFs contables
+
+    Versión 4 · Octubre de 2026 · Responsables: Santiago Afanador Aguello y Mariana Acero
+
+
+
+
+   1. Problema
+   Un proyecto de contaduría necesita extraer 30-40 variables (cifras, fechas, estados, conceptos)
+   de ~1.200 PDFs estatales de ~200 páginas cada uno. Hasta ahora lo hacían estudiantes a
+   mano, con tres problemas:
+   • Errores humanos: valores mal copiados o en el campo equivocado.
+   • Alucinaciones: muchos usaron chatbots que inventaban datos cuando no los encontraban, sin
+      verificación.
+   • Escaneos: parte de los PDFs son imágenes sin texto seleccionable.
+
+
+   2. Solución
+   Un sistema que procesa los PDFs automáticamente y en lote, extrae las variables y verifica por
+   código que cada dato exista en el documento. Los estudiantes pasan de digitar a solo revisar
+   y validar.
+   Principio central: ningún dato llega al estudiante sin la cita exacta y la página de donde salió. Si
+   no se encuentra, se marca NO_ENCONTRADO; nunca se inventa.
+
+
+   3. Pipeline
+     Etapa                  Qué hace                                                Herramienta
+
+     1. Ingesta             El equipo sube los PDFs; se guardan y entran a una      Next.js, NestJS, Supabase
+                            cola de trabajo                                         Storage, BullMQ
+
+     2. Texto y OCR         Detecta páginas digitales y escaneadas; extrae texto PyMuPDF + PaddleOCR en GPU
+                            directo o aplica OCR, guardando cada palabra con su L4 (Modal)
+                            posición y confianza
+
+     3. Localización        Encuentra las ~10-20 páginas donde están las            Palabras clave y regex
+                            variables
+
+     4. Extracción          Reglas para datos estructurados (NIT, fechas,           Python + DeepSeek V4.1 Flash
+                            totales); LLM para el resto, siempre con cita literal
+
+     5. Verificación        Comprueba cada dato y le asigna un color                Pydantic + rapidfuzz + reglas
+                                                                                    contables
+
+     6. Revisión            Los estudiantes validan con el PDF al lado y el dato    Next.js + PDF.js
+                            resaltado
+
+
+
+
+Ficha técnica · Pipeline de extracción verificable de PDFs contables                                            Página 1
+     Etapa                  Qué hace                                                          Herramienta
+
+     7. Dataset final       Valores aprobados y registro de todas las                         Postgres (Supabase)
+                            correcciones
+
+
+
+   4. Cómo se garantiza la veracidad
+   El LLM devuelve por cada variable: valor, cita literal, página y estado (ENCONTRADO /
+   NO_ENCONTRADO). Luego el sistema verifica:
+
+     Verificación                                                                    Qué detecta
+
+     La cita existe en esa página                                                    Alucinaciones
+
+     El valor sale de la cita                                                        Datos que no corresponden
+
+     Formato válido (fechas, NIT con dígito de verificación, cifras                  Errores de lectura
+     normalizadas)
+
+     Coherencia contable: Activo = Pasivo + Patrimonio; subtotales                   Cifras mal leídas por el OCR
+     suman
+
+     Doble pasada en campos críticos y confianza del OCR                             Datos dudosos
+
+     Color                Condición                                    Acción del estudiante
+
+     ■ Verde              Pasa todo                                    Confirmación rápida (auditoría aleatoria 5-10%)
+
+     ■ Amarillo           Pasa pero con alertas                        Revisión obligatoria
+
+     ■ Rojo               Falla o no encontrado                        Corrección manual con el PDF a la vista
+
+
+
+   5. Stack
+     Capa                       Tecnología                                 Justificación
+
+     Frontend                   Next.js + PDF.js                           Visor de PDF con resaltado del dato
+
+     API y cola                 NestJS + BullMQ/Redis (Railway)            Procesamiento en lote, automático y
+                                                                           reintentable
+
+     Base de datos y            Supabase Pro                               Postgres + almacenamiento para los 1.200
+     archivos                                                              PDFs
+
+     OCR                        PaddleOCR en Modal, GPU L4                 Gratis y preciso en español; la GPU se cobra por
+                                                                           segundo y se apaga sola
+
+     Extracción                 DeepSeek V4.1 Flash                        Muy barato; temperatura 0, sin razonamiento,
+                                                                           horario valle
+
+     Desarrollo                 Claude Pro                                 Asistente para construir y depurar el sistema
+
+
+
+   6. Fases
+     Fase                          Entregable                                                  Criterio de salida
+
+     0. Definición                 Variables con tipo y regla; set de oro con los              Variables aprobadas
+                                   ejemplos correctos existentes
+
+     1. Piloto OCR                 OCR en Modal sobre 100 páginas escaneadas                   Tiempo y costo por página
+                                   reales                                                      medidos
+
+     2. Ingesta y localización     Cola, almacenamiento y detección de páginas                 ≥95% de páginas correctas
+                                   relevantes
+
+
+
+
+Ficha técnica · Pipeline de extracción verificable de PDFs contables                                                       Página 2
+     Fase                          Entregable                                             Criterio de salida
+
+     3. Extracción y               Reglas + DeepSeek + verificaciones                     Precisión medida contra el set
+     verificación                                                                         de oro
+
+     4. Interfaz de revisión       Visor, formulario, semáforo y registro                 Piloto con estudiantes en
+                                                                                          20-30 PDFs
+
+     5. Lote completo              1.200 PDFs procesados y asignados                      Todo en revisión
+
+
+
+   7. Presupuesto (1 mes de operación)
+   Tasa: COP 3.220 por dólar.
+
+     Concepto                     USD          COP              Justificación
+
+     DeepSeek V4.1 Flash          65           209.300          Extracción con LLM; lote estimado USD 4-20, el resto
+     (API)                                                      para pruebas y reprocesos. Saldo prepagado
+
+     Modal, GPU L4                50           161.000          OCR de escaneos; presupuesto con colchón, costo real
+                                                                probable menor a USD 10
+
+     Supabase Pro                 25           80.500           Base de datos y almacenamiento de PDFs
+
+     Railway                      15           48.300           API, worker, Redis y frontend
+
+     Claude Pro                   20           64.400           Asistente de desarrollo
+
+     Subtotal                     175          563.500
+
+     Contingencia (15%)           26,25        84.525           IVA, comisión bancaria y tasa de cambio
+
+     Total                        201,25       648.025
+
+
+   Salvedades
+   • El costo de OCR y de DeepSeek depende del piloto: tiempo real por página y tokens reales por
+      documento. Se confirma con 50-100 documentos antes del lote.
+   • Cada mes adicional de operación suma ~USD 60 (COP 193.200) por Supabase, Railway y Claude
+      Pro.
+   • Precios de octubre de 2026; confirmar en páginas oficiales antes de pagar.
+
+
+
+
+Ficha técnica · Pipeline de extracción verificable de PDFs contables                                                   Página 3
+
