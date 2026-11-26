@@ -7,7 +7,7 @@ from typing import Literal
 
 from rapidfuzz import fuzz
 
-from motor.config import MIN_CHARS_CITA, UMBRAL_CITA
+from motor.config import MIN_CHARS_CITA, MIN_CHARS_CITA_PAR, UMBRAL_CITA
 from motor.normalizar import texto_busqueda
 
 Estado = Literal[
@@ -49,17 +49,19 @@ def _par(cita_n: str, a_n: str, b_n: str) -> float:
     las mitades): la mitad inicial de la cita debe alinear al final de a y la
     final al comienzo de b. Se asume que la cita no cabe entera en una sola página.
     """
-    if not a_n or not b_n:
-        return 0.0
+    if not a_n or not b_n or len(cita_n) < MIN_CHARS_CITA_PAR:
+        return 0.0  # una cita corta repartida entre folios es demasiado fácil de falsear
     mejor = _score(cita_n, a_n + " " + b_n)
     # El salto de página rara vez cae justo en la mitad de la cita: se prueban varios
-    # cortes (30 %..70 %) en límite de palabra.
-    for fr in (0.5, 0.4, 0.6, 0.3, 0.7):
-        corte = cita_n.rfind(" ", 0, int(len(cita_n) * fr) + 1)
+    # cortes en límite de palabra; cada mitad debe ser >= 40 % de la cita.
+    n = len(cita_n)
+    cortes = (cita_n.rfind(" ", 0, n // 2 + 1), cita_n.find(" ", int(n * 0.4)),
+              cita_n.rfind(" ", 0, int(n * 0.6) + 1))
+    for corte in cortes:
         if corte < 0:
             continue
         cabeza, cola = cita_n[:corte].strip(), cita_n[corte:].strip()
-        if len(cabeza) < MIN_CHARS_CITA or len(cola) < MIN_CHARS_CITA:
+        if min(len(cabeza), len(cola)) < max(MIN_CHARS_CITA, 0.4 * n):
             continue
         if len(a_n) < len(cabeza) or len(b_n) < len(cola):
             continue

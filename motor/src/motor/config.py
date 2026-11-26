@@ -29,3 +29,4 @@ HOJA_IDENTIDAD: str = "Principios"
 
 UMBRAL_CITA: float = 90.0
 MIN_CHARS_CITA: int = 30
+MIN_CHARS_CITA_PAR: int = 120  # largo mínimo de la cita para aceptar coincidencia repartida entre dos folios

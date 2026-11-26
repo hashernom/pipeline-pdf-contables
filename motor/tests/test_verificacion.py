@@ -110,6 +110,17 @@ def test_cola_ausente_no_pasa():
     assert r.estado == "no_encontrada"
 
 
+def test_cita_corta_generica_no_pasa_por_pares():
+    cita = "el impuesto de industria y comercio de conformidad con lo establecido en la ley"
+    paginas = {
+        1: "portada",
+        2: "TITULO I Disposiciones generales sobre rentas. el impuesto de industria y comercio",
+        3: "de conformidad con lo establecido en la ley. ARTICULO 2 Otro tema distinto de la norma",
+    }
+    for pag in "123":
+        assert verificar_cita(cita, pag, paginas).estado == "no_encontrada"
+
+
 def test_inventada_sigue_fallando_con_pares():
     assert verificar_cita(INVENTADA_LARGA, "2", PARTIDA).check["resultado"] == "falla"
 
