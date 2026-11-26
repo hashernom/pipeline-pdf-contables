@@ -38,22 +38,35 @@ def _contiene(a: str, b: str) -> bool:
     return bool(a) and bool(b) and (a in b or b in a)
 
 
+def _dep_ok(d: str, m: str, dep: str, mun: str) -> bool:
+    """Departamento igual; si alguno queda vacío (Bogotá D.C.) basta el municipio igual."""
+    if not d or not dep:
+        return m == mun
+    return re.sub(r"^(?:la|el) ", "", d) == re.sub(r"^(?:la|el) ", "", dep)
+
+
 def resolver_dane(ident: Identidad, divipola: Divipola) -> tuple[str | None, str]:
     """(código, motivo) con motivo ok, corregido_nombre, corregido_sufijo o sin_resolver."""
     dep = nombre_lugar(ident.departamento)
     mun = nombre_lugar(ident.municipio)
     mun_ns = mun.replace(" ", "")
     cod = ident.dane_original.strip().zfill(5)
-    if cod in divipola and _contiene(divipola[cod][1], mun):
+    if (
+        cod in divipola
+        and _contiene(divipola[cod][1], mun)
+        and _dep_ok(divipola[cod][0], divipola[cod][1], dep, mun)
+    ):
         return cod, "ok"
     sufijo = cod[-3:]
     por_sufijo = [
-        c for c, (d, _) in divipola.items() if c[-3:] == sufijo and _contiene(d, dep)
+        c
+        for c, (d, m) in divipola.items()
+        if c[-3:] == sufijo and _dep_ok(d, m, dep, mun)
     ]
     por_nombre = [
         c
         for c, (d, m) in divipola.items()
-        if (m == mun or m.replace(" ", "") == mun_ns) and _contiene(d, dep)
+        if (m == mun or m.replace(" ", "") == mun_ns) and _dep_ok(d, m, dep, mun)
     ]
     # Un código sin prefijo de departamento (menos de 5 dígitos) se explica por el sufijo.
     if len(ident.dane_original.strip()) < 5 and len(por_sufijo) == 1:
@@ -81,7 +94,7 @@ def acuerdos_citados(texto: str, anio_respaldo: str) -> list[tuple[int, int]]:
         if par not in out:
             out.append(par)
     anio = str(anio_respaldo).strip()
-    if anio.isdigit():
+    if not out and anio.isdigit():
         for m in _NUMERO.finditer(t):
             par = (int(m.group(1)), int(anio))
             if par not in out:

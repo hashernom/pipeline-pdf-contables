@@ -76,6 +76,28 @@ def test_sin_pdf_y_sin_numero():
     assert r["estado"] == "sin_numero_legible"
 
 
+def test_fallback_no_sustituye_anio_del_texto():
+    r = emparejar(
+        ident(acuerdo="Acuerdo 22 de 2011", anio="2022"), "05631",
+        [fila("05631", "22", "2022")], set(),
+    )
+    assert r["estado"] != "coincide"
+    assert acuerdos_citados("Acuerdo 22 de 2011", "2022") == [(22, 2011)]
+
+
+def test_departamento_por_igualdad():
+    div = {
+        "54001": ("norte de santander", "florida"),
+        "68001": ("santander", "otro"),
+    }
+    assert resolver_dane(ident("99999", "Santander", "Florida"), div)[0] is None
+
+
+def test_ok_exige_departamento():
+    div = {"54001": ("norte de santander", "florida")}
+    assert resolver_dane(ident("54001", "Santander", "Florida"), div)[1] != "ok"
+
+
 @pytest.mark.datos
 def test_datos_reales(tmp_path):
     ruta = escribir_documentos(tmp_path)
