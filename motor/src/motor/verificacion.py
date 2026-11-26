@@ -55,9 +55,23 @@ def verificar_cita(cita: str | None, pag: str | None,
     anotada = validas[0] if validas else (nums[0] if nums else None)
     invalida = not validas
 
+    def score_anotada(n: int) -> float | None:
+        """Mejor score en la página n sola o unida con la anterior / la siguiente."""
+        if paginas[n] is None:
+            return None
+        mejor = _score(cita_n, _norm(paginas[n]))
+        if mejor >= UMBRAL_CITA:
+            return mejor
+        for otra in (n - 1, n + 1):
+            if paginas.get(otra) is not None and                     _score(cita_n, _norm(paginas[otra])) < UMBRAL_CITA:
+                # Par válido solo si la cita no cabe entera en la otra página.
+                par = (_norm(paginas[otra]) + " " + _norm(paginas[n])
+                       if otra < n else _norm(paginas[n]) + " " + _norm(paginas[otra]))
+                mejor = max(mejor, _score(cita_n, par))
+        return mejor
+
     if validas:
-        scores = {n: (_score(cita_n, _norm(paginas[n])) if paginas[n] is not None else None)
-                  for n in validas}
+        scores = {n: score_anotada(n) for n in validas}
         pasan = [n for n in validas if scores[n] is not None and scores[n] >= UMBRAL_CITA]
         if pasan and len(nums) > 1:
             n = pasan[0]
@@ -75,6 +89,10 @@ def verificar_cita(cita: str | None, pag: str | None,
         s = _score(cita_n, _norm(texto))
         if s > mejor_s:
             mejor_n, mejor_s = n, s
+        if s < UMBRAL_CITA and paginas.get(n + 1) is not None and                 _score(cita_n, _norm(paginas[n + 1])) < UMBRAL_CITA:
+            s = _score(cita_n, _norm(texto) + " " + _norm(paginas[n + 1]))
+            if s > mejor_s:
+                mejor_n, mejor_s = n, s
     if mejor_n is not None and mejor_s >= UMBRAL_CITA:
         return ResultadoCita(
             "pagina_desplazada", anotada, mejor_n, mejor_s,
@@ -100,7 +118,7 @@ def verificar_valor_en_pagina(valor: str, pagina_texto: str | None) -> dict:
         return {"tipo": "valor_de_cita", "resultado": "no_aplica",
                 "detalle": "El folio citado no tiene texto"}
     tok = _norm(valor).strip()
-    ok = bool(tok) and re.search(rf"(?<![a-z0-9]){re.escape(tok)}(?![a-z0-9])",
+    ok = bool(tok) and re.search(rf"(?<![a-z0-9])(?<!\d ){re.escape(tok)}(?![a-z0-9])(?! \d)",
                                  _norm(pagina_texto)) is not None
     if ok:
         return {"tipo": "valor_de_cita", "resultado": "pasa",

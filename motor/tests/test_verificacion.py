@@ -59,6 +59,33 @@ def test_valor():
     assert verificar_valor_en_pagina("4.5", None)["resultado"] == "no_aplica"
 
 
+PARTIDA = {
+    1: "portada",
+    2: "El hecho generador del impuesto de industria y comercio esta constituido por el ejercicio",
+    3: "Acuerdo 013 de actividades industriales comerciales o de servicio",
+}
+CITA_PARTIDA = ("El hecho generador del impuesto de industria y comercio esta constituido por el "
+                "ejercicio de actividades industriales comerciales o de servicio")
+
+
+def test_cita_partida_pasa():
+    r = verificar_cita(CITA_PARTIDA, "2", PARTIDA)
+    assert (r.estado, r.pagina_encontrada) == ("pasa", 2)
+
+
+def test_cita_partida_desplazada():
+    r = verificar_cita(CITA_PARTIDA, "1", PARTIDA)
+    assert (r.estado, r.pagina_encontrada) == ("pagina_desplazada", 2)
+
+
+def test_inventada_sigue_fallando_con_pares():
+    assert verificar_cita(INVENTADA_LARGA, "2", PARTIDA).check["resultado"] == "falla"
+
+
+def test_valor_no_dentro_de_numeracion():
+    assert verificar_valor_en_pagina("4.5", "articulo 1.4.5 del estatuto")["resultado"] == "alerta"
+
+
 def _verificaciones_elementos(wb):
     """Una verificación por (fila, bloque) de Elementos en PDFs digitales con estado coincide."""
     import csv
