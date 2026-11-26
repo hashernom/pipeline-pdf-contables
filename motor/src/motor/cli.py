@@ -40,6 +40,16 @@ def main(argv: list[str] | None = None) -> int:
         from motor import identidad
 
         identidad.escribir_documentos(config.ORO)
+    elif args.comando == "catalogo":
+        import openpyxl
+
+        from motor import catalogo
+
+        wb = openpyxl.load_workbook(config.MATRIZ, data_only=True)
+        cat = catalogo.generar(wb, config.HOJAS_ALCANCE)
+        catalogo.guardar_yaml(cat, config.CATALOGO)
+        catalogo.cargar_yaml(config.CATALOGO)
+        catalogo.exportar_excel(cat, config.INFORMES / "catalogo-borrador.xlsx")
     return 0
 
 
