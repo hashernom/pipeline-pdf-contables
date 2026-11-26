@@ -41,3 +41,30 @@ def matriz_sintetica(path: Path, fila_enc: int = 11) -> Path:
     hoja_tarifas(wb, "Territorialidad", 10)
     wb.save(path)
     return path
+
+
+def matriz_con_filas(path: Path, limpieza: bool = True) -> Path:
+    """Principios + Tarifas (+ copia `Tarifas Limpieza`) con filas reales y ruido."""
+    wb = openpyxl.Workbook()
+    wb.remove(wb.active)
+    pr = wb.create_sheet("Principios")
+    for i, t in enumerate(ID_COLS):
+        pr.cell(11, 2 + i, t)
+    filas = [
+        (1, 23807, "Córdoba", "Tierralta", "Acuerdo 6", 2023),
+        (2, 5001, "Antioquia", "Medellín", "Acuerdo 1", 2022),
+        (3, 8001, "Atlántico", "Barranquilla", "Acuerdo 2", 2021),
+        (4, 0, "x", "x", "x", None),
+        (None, "Total Si", None, None, None, None),
+    ]
+    for k, f in enumerate(filas):
+        for c, v in enumerate(f):
+            pr.cell(12 + k, 1 + c, v)
+    for nombre in ["Tarifas"] + (["Tarifas Limpieza"] if limpieza else []):
+        ws = hoja_tarifas(wb, nombre, 11)
+        for k, f in enumerate(filas):
+            ws.cell(12 + k, 1, f[0])
+            ws.cell(12 + k, 7, "No" if nombre == "Tarifas" else "Si")
+            ws.cell(12 + k, 8, "\xa0")
+    wb.save(path)
+    return path

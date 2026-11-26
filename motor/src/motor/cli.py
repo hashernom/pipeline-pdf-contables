@@ -32,6 +32,10 @@ def main(argv: list[str] | None = None) -> int:
         from motor import corpus
 
         corpus.construir(config.INVENTARIO / "pdfs.csv", config.CORPUS)
+    elif args.comando == "matriz":
+        from motor import matriz
+
+        matriz.escribir_larga(config.ORO)
     return 0
 
 
