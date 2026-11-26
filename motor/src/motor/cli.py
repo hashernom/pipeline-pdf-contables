@@ -36,6 +36,10 @@ def main(argv: list[str] | None = None) -> int:
         from motor import matriz
 
         matriz.escribir_larga(config.ORO)
+    elif args.comando == "identidad":
+        from motor import identidad
+
+        identidad.escribir_documentos(config.ORO)
     return 0
 
 
