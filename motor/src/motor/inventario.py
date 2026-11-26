@@ -1,6 +1,6 @@
 """Inventario de los PDFs fuente: solo lectura, no modifica ningún archivo.
 
-Recorre datos/fuente/**.pdf y escribe en datos/inventario/:
+Recorre la fuente (**.pdf) y escribe en la salida:
   - pdfs.csv     una fila por PDF (carpeta, nombre, hash, páginas, mezcla de tipos de página)
   - paginas.csv  una fila por página (tipo, caracteres, cobertura de imagen)
 
@@ -11,17 +11,11 @@ Tipo de página (heurística de la FAQ de PyMuPDF 1.28 + cobertura de imagen):
                 al que alguien ya le pasó OCR; la calidad de ese texto es desconocida
   - escaneada   sin texto (o casi): necesita OCR
   - vacia       sin texto ni imágenes
-
-Uso:  python scripts/inventario_pdfs.py [--fuente datos/fuente] [--salida datos/inventario]
 """
 
-from __future__ import annotations
-
-import argparse
 import csv
 import hashlib
 import re
-import sys
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
@@ -44,6 +38,13 @@ PATRON_NOMBRE = re.compile(
     r"^(?P<dane>\d{5})_(?P<tipo>[A-Za-z]+)_(?P<numero>[^_]+)_(?P<anio>\d{4}|SINANIO)_(?P<resto>.+)\.pdf$",
     re.IGNORECASE,
 )
+
+
+COLUMNAS_PAGINAS = ["sha256", "pagina", "tipo", "chars", "cobertura_imagen",
+                    "ratio_letras", "palabras_comunes"]
+COLUMNAS_PDFS = ["ruta", "categoria", "archivo", "bytes", "sha256", "dane", "tipo_doc", "numero",
+                 "anio", "municipio", "nombre_estandar", "paginas", "digital", "capa_ocr",
+                 "texto_corrupto", "escaneada", "vacia", "titulo_meta", "error"]
 
 
 def categoria(rel: Path) -> str:
@@ -130,12 +131,9 @@ def analizar(path_str: str, raiz_str: str) -> tuple[dict, list[dict]]:
     return fila, paginas
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--fuente", default="datos/fuente")
-    ap.add_argument("--salida", default="datos/inventario")
-    args = ap.parse_args()
-    raiz, salida = Path(args.fuente), Path(args.salida)
+def generar(fuente: Path, salida: Path) -> tuple[Path, Path]:
+    """Escribe pdfs.csv y paginas.csv en `salida`; devuelve ambas rutas."""
+    raiz, salida = Path(fuente), Path(salida)
     salida.mkdir(parents=True, exist_ok=True)
     pdfs = sorted(p for p in raiz.rglob("*") if p.suffix.lower() == ".pdf")
     print(f"{len(pdfs)} PDFs en {raiz}", flush=True)
@@ -152,18 +150,15 @@ def main() -> int:
                 print(f"  {i}/{len(pdfs)}", flush=True)
 
     filas.sort(key=lambda r: r["ruta"])
-    with open(salida / "pdfs.csv", "w", newline="", encoding="utf-8-sig") as fh:
-        w = csv.DictWriter(fh, fieldnames=list(filas[0]))
+    ruta_pdfs, ruta_paginas = salida / "pdfs.csv", salida / "paginas.csv"
+    with open(ruta_pdfs, "w", newline="", encoding="utf-8-sig") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(filas[0]) if filas else COLUMNAS_PDFS)
         w.writeheader()
         w.writerows(filas)
-    with open(salida / "paginas.csv", "w", newline="", encoding="utf-8-sig") as fh:
-        w = csv.DictWriter(fh, fieldnames=["sha256", "pagina", "tipo", "chars", "cobertura_imagen",
-                                           "ratio_letras", "palabras_comunes"])
+    with open(ruta_paginas, "w", newline="", encoding="utf-8-sig") as fh:
+        w = csv.DictWriter(fh, fieldnames=COLUMNAS_PAGINAS)
         w.writeheader()
         w.writerows(sorted(paginas, key=lambda r: (r["sha256"], r["pagina"])))
+    (salida / "fuente.txt").write_text(str(raiz.resolve()), encoding="utf-8")
     print(f"listo: {len(filas)} PDFs, {len(paginas)} páginas -> {salida}")
-    return 0
-
-
-if __name__ == "__main__":
-    sys.exit(main())
+    return ruta_pdfs, ruta_paginas

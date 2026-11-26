@@ -5,6 +5,8 @@ Cada subcomando se conecta en su tarea; por ahora no hace nada y devuelve 0.
 
 import argparse
 
+from motor import config
+
 SUBCOMANDOS = {
     "inventario": "Construye el inventario de fuentes.",
     "corpus": "Extrae el corpus de texto de los PDF.",
@@ -22,6 +24,14 @@ def main(argv: list[str] | None = None) -> int:
     for nombre, ayuda in SUBCOMANDOS.items():
         sub.add_parser(nombre, help=ayuda)
     args = parser.parse_args(argv)
+    if args.comando == "inventario":
+        from motor import inventario
+
+        inventario.generar(config.FUENTE, config.INVENTARIO)
+    elif args.comando == "corpus":
+        from motor import corpus
+
+        corpus.construir(config.INVENTARIO / "pdfs.csv", config.CORPUS)
     return 0
 
 

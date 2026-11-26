@@ -2,7 +2,7 @@
 
 Verificación de solo lectura de `infoEjemplo/OneDrive_2026-11-26.zip` (8,8 GB), extraído en `datos/fuente/` (ignorado por git). No se movió, renombró ni borró ningún archivo del material.
 
-- Inventario reproducible: `python scripts/inventario_pdfs.py` → `datos/inventario/pdfs.csv` (1 fila por PDF) y `paginas.csv` (1 fila por página, 105.818 en total).
+- Inventario reproducible: `cd motor && uv run motor inventario` → `datos/inventario/pdfs.csv` (1 fila por PDF) y `paginas.csv` (1 fila por página, 105.818 en total).
 - Clasificación de página según la FAQ de PyMuPDF 1.28.2 (consultada en context7) + cobertura de imagen + calidad de texto.
 
 ## Qué contiene el zip
