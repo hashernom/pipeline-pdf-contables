@@ -1,0 +1,28 @@
+[project]
+name = "motor"
+version = "0.1.0"
+description = "Motor del set de oro: extracción verificable de acuerdos municipales"
+requires-python = ">=3.12"
+dependencies = [
+    "openpyxl>=3.1.5",
+    "pydantic>=2.14.4",
+    "pymupdf>=2.2",
+    "pyyaml>=6.0.4",
+    "rapidfuzz>=3.14.6",
+]
+
+[project.scripts]
+motor = "motor.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.10.9,<0.11.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["datos: requiere datos reales en datos/fuente"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
