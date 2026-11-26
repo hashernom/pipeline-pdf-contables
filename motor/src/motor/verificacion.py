@@ -26,6 +26,7 @@ class ResultadoCita:
     pagina_encontrada: int | None
     score: float
     check: dict
+    entre_paginas: bool = False  # la coincidencia salió del camino de pares de folios
 
 
 def _check(resultado: str, detalle: str) -> dict:
@@ -90,6 +91,8 @@ def verificar_cita(cita: str | None, pag: str | None,
     def sola(n: int) -> float:
         return _score(cita_n, _norm(paginas[n])) if paginas.get(n) is not None else 0.0
 
+    entre: dict[int, bool] = {}
+
     def score_anotada(n: int) -> float | None:
         """Mejor score en la página n sola o repartida con la anterior / la siguiente."""
         if paginas[n] is None:
@@ -100,7 +103,10 @@ def verificar_cita(cita: str | None, pag: str | None,
         for otra in (n - 1, n + 1):
             if paginas.get(otra) is not None and sola(otra) < UMBRAL_CITA:
                 a, b = (otra, n) if otra < n else (n, otra)
-                mejor = max(mejor, _par(cita_n, _norm(paginas[a]), _norm(paginas[b])))
+                sc = _par(cita_n, _norm(paginas[a]), _norm(paginas[b]))
+                if sc > mejor:
+                    mejor = sc
+                    entre[n] = True
         return mejor
 
     if validas:
@@ -110,13 +116,15 @@ def verificar_cita(cita: str | None, pag: str | None,
             n = pasan[0]
             return ResultadoCita("pagina_ambigua", anotada, n, scores[n],
                                  _check("alerta", f"La cita aparece en el folio {n}, "
-                                                  f"uno de los anotados («{anotada_txt}»)"))
+                                                  f"uno de los anotados («{anotada_txt}»)"),
+                                 entre.get(n, False))
         if pasan:
             return ResultadoCita("pasa", anotada, pasan[0], scores[pasan[0]],
-                                 _check("pasa", f"La cita aparece en el folio {pasan[0]}"))
+                                 _check("pasa", f"La cita aparece en el folio {pasan[0]}"),
+                                 entre.get(pasan[0], False))
 
     singles = {n: sola(n) for n, t in paginas.items() if t is not None}
-    mejor_n, mejor_s = None, 0.0
+    mejor_n, mejor_s, por_par = None, 0.0, False
     for n, sc in singles.items():
         if sc > mejor_s:
             mejor_n, mejor_s = n, sc
@@ -125,12 +133,13 @@ def verificar_cita(cita: str | None, pag: str | None,
             if n + 1 in singles:
                 sc = _par(cita_n, _norm(paginas[n]), _norm(paginas[n + 1]))
                 if sc > mejor_s:
-                    mejor_n, mejor_s = n, sc
+                    mejor_n, mejor_s, por_par = n, sc, True
     if mejor_n is not None and mejor_s >= UMBRAL_CITA:
         return ResultadoCita(
             "pagina_desplazada", anotada, mejor_n, mejor_s,
             _check("alerta", f"La cita aparece en el folio {mejor_n}, no en el folio "
-                             f"{anotada_txt or 'vacío'} anotado"))
+                             f"{anotada_txt or 'vacío'} anotado"),
+            por_par)
 
     if invalida:
         return ResultadoCita("pagina_invalida", anotada, None, mejor_s,

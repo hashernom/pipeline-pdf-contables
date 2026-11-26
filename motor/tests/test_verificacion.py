@@ -206,3 +206,12 @@ def test_tasa_elementos_digitales(wb):
 def cfg_umbral():
     from motor.config import UMBRAL_CITA
     return UMBRAL_CITA
+
+
+def test_entre_paginas_marca():
+    r = verificar_cita(CITA_LARGA, "2", LARGA)
+    assert r.estado == "pasa" and r.entre_paginas is True
+    r = verificar_cita(CITA_LARGA, "1", LARGA)
+    assert r.estado == "pagina_desplazada" and r.entre_paginas is True
+    r = verificar_cita(CITA2, "2", P)
+    assert r.estado == "pasa" and r.entre_paginas is False
