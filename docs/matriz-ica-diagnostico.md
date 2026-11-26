@@ -26,7 +26,7 @@ Temas: Principios, Elementos del tributo, Actividades no sujetas, Deducciones y 
 - Las filas 1 a 6 son un encabezado institucional, los títulos ocupan 2 o 3 filas con celdas combinadas, y `Territorialidad` empieza una fila antes que las demás.
 - Dentro del área de datos hay **filas de totales y promedios** ("Total Si", "Media") y **bloques de firmas** ("Elaboró", "Fecha y hora").
 - **140 filas vacías** que solo tienen el consecutivo: la fórmula de identificación devuelve 0. Las filas reales son **508**.
-- **Las copias `_Limpieza` son casi idénticas a las originales.** Solo se limpió una fila (Tierralta): 83 celdas cambiadas en Elementos y 1 en otras dos hojas. Esas correcciones muestran el tipo de error: casillas Sí↔No invertidas y citas incompletas.
+- **Las copias `_Limpieza` son casi idénticas a las originales.** Solo se limpió una fila (Tierralta): 27 celdas cambiadas en Elementos y 1 en otras dos hojas (las demás diferencias de la copia son filas de totales recalculadas). Esas correcciones muestran el tipo de error: casillas Sí↔No invertidas y citas incompletas.
 
 **Identificación**
 - **DANE:** 426 de 508 son válidos. 80 se pueden corregir con nombre y departamento: códigos sin prefijo de departamento (`209` → `68209`) y códigos de otro municipio (Santiago de Tolú con 70823 = Toluviejo; Buenavista con 63130 = Calarcá). Quedan 2 sin resolver (Bogotá D.C., "Guacamayo").
