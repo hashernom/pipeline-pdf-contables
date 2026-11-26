@@ -78,6 +78,38 @@ def test_cita_partida_desplazada():
     assert (r.estado, r.pagina_encontrada) == ("pagina_desplazada", 2)
 
 
+MEMBRETE = ("NIT 890.000.123-4 Alcaldia Municipal Direccion Calle 16 No 7-45 Telefono 7712345 "
+            "correo electronico contactenos@municipio.gov.co Acuerdo 013 de 2022 Pagina")
+LARGA = {
+    1: "portada",
+    2: "ARTICULO 5 Algunas cosas previas. El hecho generador del impuesto de industria y "
+       "comercio esta constituido por el ejercicio",
+    3: MEMBRETE + " de actividades industriales comerciales o de servicio en la jurisdiccion "
+       "del municipio, sea que se cumplan de forma permanente u ocasional. ARTICULO 6 Otro. " + "El contribuyente debera presentar la declaracion anual dentro de los plazos fijados "
+       "por la administracion tributaria municipal mediante resolucion. " * 3,
+}
+CITA_LARGA = ("El hecho generador del impuesto de industria y comercio esta constituido por el "
+              "ejercicio de actividades industriales comerciales o de servicio en la jurisdiccion "
+              "del municipio, sea que se cumplan de forma permanente u ocasional")
+
+
+def test_cita_partida_membrete_largo_pasa():
+    assert len(MEMBRETE) >= 120
+    r = verificar_cita(CITA_LARGA, "2", LARGA)
+    assert (r.estado, r.pagina_encontrada) == ("pasa", 2)
+    r = verificar_cita(CITA_LARGA, "3", LARGA)
+    assert (r.estado, r.pagina_encontrada) == ("pasa", 3)
+    r = verificar_cita(CITA_LARGA, "1", LARGA)
+    assert (r.estado, r.pagina_encontrada) == ("pagina_desplazada", 2)
+
+
+def test_cola_ausente_no_pasa():
+    paginas = dict(LARGA)
+    paginas[3] = MEMBRETE + " texto completamente distinto sobre tarifas de avisos y tableros del municipio"
+    r = verificar_cita(CITA_LARGA, "2", paginas)
+    assert r.estado == "no_encontrada"
+
+
 def test_inventada_sigue_fallando_con_pares():
     assert verificar_cita(INVENTADA_LARGA, "2", PARTIDA).check["resultado"] == "falla"
 
@@ -147,6 +179,9 @@ def test_tasa_elementos_digitales(wb):
         "fallos_score_85_90": sum(1 for x in fallos if 85 <= x[4].score < 90),
         "no_encontrada_score_80_90": sum(1 for x in noenc if 80 <= x[4].score < 90),
         "no_encontrada_score_85_90": sum(1 for x in noenc if 85 <= x[4].score < 90),
+        "fila_35_hecho_generador": [
+            {"estado": x[4].estado, "score": round(x[4].score, 1), "pag": x[3]}
+            for x in res if x[0] == 35 and x[1].endswith("hecho_generador")],
         "ejemplos_no_encontrada": [
             {"fila": f, "bloque": b, "score": round(r.score, 1), "cita": c[:120].replace("\n", " ")}
             for f, b, c, _, r in noenc[:3]],

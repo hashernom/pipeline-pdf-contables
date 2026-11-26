@@ -42,6 +42,36 @@ def _score(cita_n: str, pagina_n: str) -> float:
     return float(fuzz.partial_ratio_alignment(cita_n, pagina_n).score)
 
 
+def _par(cita_n: str, a_n: str, b_n: str) -> float:
+    """Score de la cita repartida entre el final de la página a y el inicio de b.
+
+    Camino 1: unión de ambas páginas. Camino 2 (tolerante a membretes largos entre
+    las mitades): la mitad inicial de la cita debe alinear al final de a y la
+    final al comienzo de b. Se asume que la cita no cabe entera en una sola página.
+    """
+    if not a_n or not b_n:
+        return 0.0
+    mejor = _score(cita_n, a_n + " " + b_n)
+    # El salto de página rara vez cae justo en la mitad de la cita: se prueban varios
+    # cortes (30 %..70 %) en límite de palabra.
+    for fr in (0.5, 0.4, 0.6, 0.3, 0.7):
+        corte = cita_n.rfind(" ", 0, int(len(cita_n) * fr) + 1)
+        if corte < 0:
+            continue
+        cabeza, cola = cita_n[:corte].strip(), cita_n[corte:].strip()
+        if len(cabeza) < MIN_CHARS_CITA or len(cola) < MIN_CHARS_CITA:
+            continue
+        if len(a_n) < len(cabeza) or len(b_n) < len(cola):
+            continue
+        ah = fuzz.partial_ratio_alignment(cabeza, a_n)
+        if ah.score < UMBRAL_CITA or ah.dest_end < 0.6 * len(a_n):
+            continue
+        bc = fuzz.partial_ratio_alignment(cola, b_n)
+        if bc.score >= UMBRAL_CITA and bc.dest_start <= 0.4 * len(b_n):
+            return max(mejor, min(ah.score, bc.score))
+    return mejor
+
+
 def verificar_cita(cita: str | None, pag: str | None,
                    paginas: dict[int, str | None]) -> ResultadoCita:
     cita_n = _norm(cita or "")[:MAX_CHARS_CITA].strip()
@@ -55,19 +85,20 @@ def verificar_cita(cita: str | None, pag: str | None,
     anotada = validas[0] if validas else (nums[0] if nums else None)
     invalida = not validas
 
+    def sola(n: int) -> float:
+        return _score(cita_n, _norm(paginas[n])) if paginas.get(n) is not None else 0.0
+
     def score_anotada(n: int) -> float | None:
-        """Mejor score en la página n sola o unida con la anterior / la siguiente."""
+        """Mejor score en la página n sola o repartida con la anterior / la siguiente."""
         if paginas[n] is None:
             return None
-        mejor = _score(cita_n, _norm(paginas[n]))
+        mejor = sola(n)
         if mejor >= UMBRAL_CITA:
             return mejor
         for otra in (n - 1, n + 1):
-            if paginas.get(otra) is not None and                     _score(cita_n, _norm(paginas[otra])) < UMBRAL_CITA:
-                # Par válido solo si la cita no cabe entera en la otra página.
-                par = (_norm(paginas[otra]) + " " + _norm(paginas[n])
-                       if otra < n else _norm(paginas[n]) + " " + _norm(paginas[otra]))
-                mejor = max(mejor, _score(cita_n, par))
+            if paginas.get(otra) is not None and sola(otra) < UMBRAL_CITA:
+                a, b = (otra, n) if otra < n else (n, otra)
+                mejor = max(mejor, _par(cita_n, _norm(paginas[a]), _norm(paginas[b])))
         return mejor
 
     if validas:
@@ -82,17 +113,17 @@ def verificar_cita(cita: str | None, pag: str | None,
             return ResultadoCita("pasa", anotada, pasan[0], scores[pasan[0]],
                                  _check("pasa", f"La cita aparece en el folio {pasan[0]}"))
 
+    singles = {n: sola(n) for n, t in paginas.items() if t is not None}
     mejor_n, mejor_s = None, 0.0
-    for n, texto in paginas.items():
-        if texto is None:
-            continue
-        s = _score(cita_n, _norm(texto))
-        if s > mejor_s:
-            mejor_n, mejor_s = n, s
-        if s < UMBRAL_CITA and paginas.get(n + 1) is not None and                 _score(cita_n, _norm(paginas[n + 1])) < UMBRAL_CITA:
-            s = _score(cita_n, _norm(texto) + " " + _norm(paginas[n + 1]))
-            if s > mejor_s:
-                mejor_n, mejor_s = n, s
+    for n, sc in singles.items():
+        if sc > mejor_s:
+            mejor_n, mejor_s = n, sc
+    if mejor_s < UMBRAL_CITA:
+        for n in singles:
+            if n + 1 in singles:
+                sc = _par(cita_n, _norm(paginas[n]), _norm(paginas[n + 1]))
+                if sc > mejor_s:
+                    mejor_n, mejor_s = n, sc
     if mejor_n is not None and mejor_s >= UMBRAL_CITA:
         return ResultadoCita(
             "pagina_desplazada", anotada, mejor_n, mejor_s,
