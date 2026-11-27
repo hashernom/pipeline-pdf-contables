@@ -74,7 +74,7 @@ Campos con documento emparejado; el denominador cuenta campos, no bloques.
 
 ### Por hoja, solo citas verificables en folios digitales
 
-Excluye `sin_texto`, `sin_cita` y folios de capa OCR.
+Excluye `sin_texto`, `sin_cita` y folios de capa OCR. Cuenta campos (un bloque con muchos campos pesa más) e incluye folios ambiguos o inválidos, por eso queda por debajo de la calibración de la verificación, que cuenta citas con un único folio entero.
 
 | hoja | campos | pasa | tasa |
 |---|---|---|---|

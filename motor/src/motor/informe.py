@@ -78,7 +78,10 @@ def escribir(set_csv: Path, destino_md: Path) -> Path:
           "### Por hoja", ""]
     L += _tabla(["hoja", "campos", "pasa", "tasa"], _tasas(filas, lambda f: f["hoja"]))
     L += ["### Por hoja, solo citas verificables en folios digitales", "",
-          "Excluye `sin_texto`, `sin_cita` y folios de capa OCR.", ""]
+          "Excluye `sin_texto`, `sin_cita` y folios de capa OCR. Cuenta campos (un bloque con "
+          "muchos campos pesa más) e incluye folios ambiguos o inválidos, por eso queda por "
+          "debajo de la calibración de la verificación, que cuenta citas con un único folio "
+          "entero.", ""]
     L += _tabla(["hoja", "campos", "pasa", "tasa"],
                 _tasas(filas, lambda f: f["hoja"], solo_digital=True))
     L += ["### Por bloque", ""]
