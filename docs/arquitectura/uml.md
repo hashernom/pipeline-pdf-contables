@@ -1,6 +1,6 @@
 # Diagramas UML
 
-Todos los diagramas están en [Mermaid](https://mermaid.js.org/). GitHub y VS Code (con la extensión de vista previa de Markdown) los dibujan. Reflejan el código de `main` al cierre del hito 0. Si cambias un módulo, actualiza aquí su diagrama.
+Todos los diagramas están en [Mermaid](https://mermaid.js.org/). GitHub y VS Code (con la extensión de vista previa de Markdown) los dibujan. Reflejan el código al cierre del hito 1 (motor de extracción). Si cambias un módulo, actualiza aquí su diagrama.
 
 1. [Componentes del sistema](#1-componentes-del-sistema)
 2. [Flujo del motor](#2-flujo-del-motor)
@@ -11,10 +11,11 @@ Todos los diagramas están en [Mermaid](https://mermaid.js.org/). GitHub y VS Co
 7. [Decisión del veredicto](#7-decisión-del-veredicto)
 8. [Emparejamiento fila → PDF](#8-emparejamiento-fila--pdf)
 9. [Capas del frontend](#9-capas-del-frontend)
+10. [Secuencia de `extraer_bloque`](#10-secuencia-de-extraer_bloque)
 
 ## 1. Componentes del sistema
 
-Las cajas punteadas todavía no existen.
+Las cajas punteadas todavía no existen. El extractor ya existe desde el hito 1.
 
 ```mermaid
 flowchart TB
@@ -30,7 +31,8 @@ flowchart TB
         INF[(docs/informes/)]
         WEB[web/<br/>Next.js, datos simulados]
     end
-    EXT[Extractor · hito 1]:::futuro
+    EXT[Extractor · hito 1<br/>extraer y evaluar]
+    DS[DeepSeek API]
     OCR[OCR · hito aparte]:::futuro
     API[API y base de datos]:::futuro
 
@@ -42,6 +44,7 @@ flowchart TB
     MOT --> INF
     G --> EXT
     CAT --> EXT
+    EXT <--> DS
     OCR -.-> G
     EXT -.-> API
     API -.-> WEB
@@ -80,11 +83,19 @@ flowchart LR
     PAG --> V
     V --> SO[(set_de_oro.csv)]
     V --> RS[(set-de-oro-resumen.md)]
+
+    SO --> X[7 · extraer]
+    COR --> X
+    Y --> X
+    X --> EXC[(extracciones_grupo_estrategia.csv<br/>resumen_*.json · cache/)]
+    EXC --> EV[8 · evaluar]
+    SO --> EV
+    EV --> IP[(extraccion-piloto.md)]
 ```
 
 ## 3. Dependencias entre módulos
 
-Una flecha `A --> B` significa que A importa B. `config` y `normalizar` son la base. `verificacion` no depende de la matriz, y por eso el hito 1 lo puede reutilizar tal cual.
+Una flecha `A --> B` significa que A importa B. `config` y `normalizar` son la base. `verificacion` no depende de la matriz, y por eso el extractor del hito 1 lo reutiliza tal cual. `extractor` es el único módulo que junta el modelo (`llm`), la selección de páginas (`localizar`) y la verificación de citas.
 
 ```mermaid
 flowchart TD
@@ -95,6 +106,30 @@ flowchart TD
     cli --> catalogo
     cli --> oro
     cli --> informe
+    cli --> corrida
+    cli --> evaluacion
+    cli --> informe_extraccion
+    cli --> muestras
+    cli --> llm
+    corrida --> extractor
+    corrida --> muestras
+    corrida --> llm
+    corrida --> corpus
+    extractor --> llm
+    extractor --> localizar
+    extractor --> verificacion
+    extractor --> muestras
+    extractor --> catalogo
+    extractor --> normalizar
+    catalogo --> llm
+    catalogo --> localizar
+    catalogo --> muestras
+    evaluacion --> muestras
+    evaluacion --> catalogo
+    evaluacion --> normalizar
+    informe_extraccion --> evaluacion
+    informe_extraccion --> catalogo
+    localizar --> normalizar
     oro --> matriz
     oro --> corpus
     oro --> verificacion
@@ -111,6 +146,11 @@ flowchart TD
     oro --> config
     informe --> config
     verificacion --> config
+    llm --> config
+    localizar --> config
+    muestras --> config
+    corrida --> config
+    evaluacion --> config
 ```
 
 ## 4. Clases
@@ -419,4 +459,46 @@ flowchart TD
     DATA -.-> API
     DATA --> TYPES
     RV --> TYPES
+```
+
+## 10. Secuencia de `extraer_bloque`
+
+Así procesa `extractor.extraer_bloque` un bloque de un documento. Ningún bloque `ENCONTRADO` sale con una cita que el verificador no halló en el documento.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant CO as corrida
+    participant EX as extractor.extraer_bloque
+    participant LO as localizar
+    participant LL as llm.Cliente
+    participant VE as verificacion
+
+    CO->>EX: bloque, páginas del PDF, ejemplos, citas de referencia
+    EX->>LO: ESTRATEGIAS[estrategia](páginas, citas_ref, palabras_clave)
+    LO-->>EX: números de página de contexto
+    EX->>EX: armar_mensajes(bloque, contexto, ejemplos)
+    loop hasta 2 intentos
+        EX->>LL: completar(mensajes)
+        Note right of LL: caché en disco; si hay respuesta guardada no cuesta
+        LL-->>EX: texto JSON y uso de tokens
+        alt JSON inválido o cortado
+            EX->>EX: pide de nuevo un JSON válido y más corto
+        else NO_ENCONTRADO
+            EX-->>CO: rojo, sin valores
+        else ENCONTRADO
+            EX->>VE: verificar_cita(cita, página, páginas)
+            VE-->>EX: ResultadoCita
+            opt la cita no aparece
+                EX->>EX: pide copiarla literal o responder NO_ENCONTRADO
+            end
+        end
+    end
+    alt cita no hallada tras 2 intentos
+        EX-->>CO: rojo, NO_ENCONTRADO
+    else cita hallada
+        EX->>VE: verificar_valor_en_pagina(valor, texto) por cada campo numérico
+        VE-->>EX: pasa, alerta o falla
+        EX-->>CO: Extraccion con semáforo verde o amarillo
+    end
 ```
