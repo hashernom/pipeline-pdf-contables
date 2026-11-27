@@ -108,3 +108,11 @@ def test_cli_corre_con_confirmacion(monkeypatch, entorno):
     monkeypatch.setattr("builtins.input", lambda *_: "s")
     assert main(["extraer", "--grupo", "ajuste", "--estrategia", "localizada", "--limite", "1"]) == 0
     assert (entorno / "extraccion" / "extracciones_ajuste_localizada.csv").exists()
+
+
+def test_corrida_escribe_resumen_de_costo(entorno):
+    correr("ajuste", "localizada", None, cliente(entorno), entorno / "a")
+    resumen = json.loads((entorno / "a" / "resumen_ajuste_localizada.json").read_text(encoding="utf-8"))
+    assert set(resumen) == {"documentos", "costo_usd_real", "segundos_total"}
+    assert resumen["documentos"] >= 1 and resumen["costo_usd_real"] > 0
+    assert resumen["segundos_total"] >= 0

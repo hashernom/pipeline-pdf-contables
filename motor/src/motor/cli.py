@@ -14,6 +14,7 @@ SUBCOMANDOS = {
     "identidad": "Resuelve la identidad de municipios y departamentos.",
     "catalogo": "Valida el catálogo de variables.",
     "extraer": "Extrae los bloques de la matriz con el modelo.",
+    "evaluar": "Evalúa las extracciones contra el set de oro y escribe el informe.",
     "verificar": "Verifica citas y valores contra la fuente.",
     "todo": "Ejecuta el pipeline completo.",
 }
@@ -94,6 +95,32 @@ def _extraer(grupo: str, estrategia: str, limite: int | None, si: bool) -> int:
     return 0
 
 
+def _evaluar() -> None:
+    import json
+
+    from motor import catalogo, evaluacion, informe_extraccion, muestras
+
+    cat = catalogo.cargar_yaml(config.CATALOGO)
+    csv_oro = config.ORO / "set_de_oro.csv"
+    resultados, costo = {}, {}
+    for ruta in sorted(config.EXTRACCION.glob("extracciones_*.csv")):
+        nombre = ruta.stem.removeprefix("extracciones_")
+        resultados[nombre] = evaluacion.evaluar(ruta, csv_oro, None, cat)
+        resumen = config.EXTRACCION / f"resumen_{nombre}.json"
+        if resumen.exists():
+            costo[nombre] = json.loads(resumen.read_text(encoding="utf-8"))
+    ruta_part = config.EXTRACCION / "particion.csv"
+    sin_ejemplos: list[str] = []
+    if ruta_part.exists():
+        part = muestras.leer_particion(ruta_part)
+        refs, _ = muestras.referencias(csv_oro)
+        sin_ejemplos = [b.key for b in cat.bloques if not muestras.ejemplos(refs, part, b.key)]
+    destino = informe_extraccion.escribir(
+        resultados, costo, informe_extraccion.criterios_catalogo(cat),
+        config.INFORMES / "extraccion-piloto.md", sin_ejemplos)
+    print(f"Informe: {destino}")
+
+
 def _verificar() -> None:
     from motor import informe, oro
 
@@ -130,6 +157,8 @@ def main(argv: list[str] | None = None) -> int:
             paso()
     elif args.comando == "extraer":
         return _extraer(args.grupo, args.estrategia, args.limite, args.si)
+    elif args.comando == "evaluar":
+        _evaluar()
     elif args.comando == "catalogo":
         _catalogo(enriquecer=args.enriquecer)
     else:

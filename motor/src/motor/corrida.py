@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import csv
+import json
 import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -115,11 +116,12 @@ def correr(grupo: str, estrategia: str, limite: int | None, cliente: llm.Cliente
             filas += _filas(e, archivos.get(sha, ""), gr)
         return sha, filas, costo, time.monotonic() - t0
 
-    filas, costo = [], 0.0
+    filas, costo, segundos = [], 0.0, 0.0
     with ThreadPoolExecutor(config.CONCURRENCIA) as pool:
         for sha, fs, c, seg in pool.map(procesar, shas):
             filas += fs
             costo += c
+            segundos += seg
             print(f"{sha[:12]}: {seg:.1f} s")
     filas.sort(key=lambda f: (f["sha256"], f["hoja"], f["bloque_key"], f["campo_key"]))
     destino = Path(destino)
@@ -129,5 +131,9 @@ def correr(grupo: str, estrategia: str, limite: int | None, cliente: llm.Cliente
         w = csv.DictWriter(fh, fieldnames=COLUMNAS_EXTRACCION)
         w.writeheader()
         w.writerows(filas)
+    resumen = {"documentos": len(shas), "costo_usd_real": round(costo, 6),
+               "segundos_total": round(segundos, 1)}
+    (destino / f"resumen_{grupo}_{estrategia}.json").write_text(
+        json.dumps(resumen, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(f"costo real: {costo:.4f} USD ({len(shas)} documentos) -> {ruta}")
     return ruta
