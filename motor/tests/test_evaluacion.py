@@ -97,11 +97,21 @@ def test_citas_reales_dos_de_tres(tmp_path, cat):
     assert m.hallazgos_sin_referencia == 2
 
 
-def test_cero_de_matriz_es_no_aplica(tmp_path, cat):
+@pytest.mark.parametrize("extraido", ["no_aplica", "6", "0"])
+def test_cero_de_matriz_no_es_dato_de_referencia(tmp_path, cat, extraido):
     oro = oro_csv(tmp_path / "oro.csv", [ref(B1, B1 + ".tasa", "0")])
-    ext = ext_csv(tmp_path / "ext.csv", [fila(B1, B1 + ".tasa", "no_aplica")])
-    m = evaluar(ext, oro, None)["total"]
-    assert m.valores_comparables == 1 and m.valores_ok == 1
+    ext = ext_csv(tmp_path / "ext.csv", [fila(B1, B1 + ".tasa", extraido)])
+    r = evaluar(ext, oro, None)
+    m = r["total"]
+    assert m.valores_comparables == 0 and m.valores_ok == 0
+    assert m.revisar_comparables == 0 and m.desacuerdos == []
+    assert r.get("campo:" + B1 + ".tasa", Metricas()).valores_comparables == 0
+
+
+def test_cero_de_matriz_no_aplica_solo_a_numeros(tmp_path, cat):
+    oro = oro_csv(tmp_path / "oro.csv", [ref(B1, B1 + ".nota", "0")])
+    ext = ext_csv(tmp_path / "ext.csv", [fila(B1, B1 + ".nota", "6")])
+    assert evaluar(ext, oro, None)["total"].texto_libre_comparables == 1
 
 
 def test_numeros_con_tolerancia(tmp_path, cat):

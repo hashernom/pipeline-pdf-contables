@@ -165,6 +165,9 @@ def evaluar(extracciones_csv: Path, set_csv: Path, solo_grupo: str | None,
             if ref is None or ref.veredicto not in ("confiable", "revisar"):
                 continue
             tipo = tipos.get(f["campo_key"], "si_no")
+            # §6.5: el 0 de la matriz es "no aplica" y no sirve de dato de referencia
+            if tipo == "numero" and _a_float(valor_canonico(ref.valor)) == 0:
+                continue
             # §6.8.3: un bloque de presencia que el motor no encontró cuenta como "no"
             extraido = "no" if f["rol"] == "presencia" and not encontrado else f["valor"]
             ok = _igual(tipo, ref.valor, extraido)
