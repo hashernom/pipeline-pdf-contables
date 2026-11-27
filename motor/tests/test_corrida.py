@@ -113,6 +113,47 @@ def test_cli_corre_con_confirmacion(monkeypatch, entorno):
 def test_corrida_escribe_resumen_de_costo(entorno):
     correr("ajuste", "localizada", None, cliente(entorno), entorno / "a")
     resumen = json.loads((entorno / "a" / "resumen_ajuste_localizada.json").read_text(encoding="utf-8"))
-    assert set(resumen) == {"documentos", "costo_usd_real", "segundos_total"}
+    assert set(resumen) == {"documentos", "documentos_fallidos", "costo_usd_real", "segundos_total"}
     assert resumen["documentos"] >= 1 and resumen["costo_usd_real"] > 0
     assert resumen["segundos_total"] >= 0
+
+
+class Error402(Exception):
+    pass
+
+
+def _cliente_que_falla(tmp_path):
+    def t(req):
+        raise Error402("Insufficient Balance")
+    return llm.Cliente(tmp_path / "cache", transporte=t)
+
+
+def test_un_documento_fallido_no_detiene_la_corrida(entorno, monkeypatch, capsys):
+    from motor import corpus, corrida
+    sha = next(iter(leer(entorno / "corpus" / "corpus.csv")))["sha256"]
+    malo = "f" * 64
+    monkeypatch.setattr(corrida, "documentos_objetivo", lambda g, p: [sha, malo])
+    real = corrida.extraer_bloque
+
+    def extraer(b, paginas, cl, ej, citas, est, s):
+        if s == malo:
+            raise Error402("Insufficient Balance")
+        return real(b, paginas, cl, ej, citas, est, s)
+    monkeypatch.setattr(corrida, "extraer_bloque", extraer)
+    paginas = corpus.paginas_con_texto(sha)
+    monkeypatch.setattr(corrida.corpus, "paginas_con_texto", lambda s: paginas)
+    ruta = correr("ajuste", "localizada", None, cliente(entorno), entorno / "a")
+    assert {f["sha256"] for f in leer(ruta)} == {sha}
+    resumen = json.loads((entorno / "a" / "resumen_ajuste_localizada.json").read_text(encoding="utf-8"))
+    assert resumen["documentos"] == 1
+    assert resumen["documentos_fallidos"] == [{"sha256": malo, "error": "Error402: Insufficient Balance"}]
+    assert "1 documento" in capsys.readouterr().out
+
+
+def test_todos_fallan_sale_con_codigo_3_sin_csv(entorno, monkeypatch, capsys):
+    falso = _cliente_que_falla(entorno)
+    monkeypatch.setattr(llm, "Cliente", lambda cache_dir: falso)
+    assert main(["extraer", "--grupo", "ajuste", "--estrategia", "localizada", "--si"]) == 3
+    assert not list((entorno / "extraccion").glob("extracciones_*"))
+    salida = capsys.readouterr()
+    assert "Insufficient Balance" in salida.out + salida.err

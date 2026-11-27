@@ -90,8 +90,12 @@ def _extraer(grupo: str, estrategia: str, limite: int | None, si: bool) -> int:
     if not si and input("¿Continuar? [s/N] ").strip().lower() not in ("s", "si", "sí"):
         print("Corrida cancelada.")
         return 1
-    corrida.correr(grupo, estrategia, limite, llm.Cliente(config.EXTRACCION / "cache"),
-                   config.EXTRACCION)
+    try:
+        corrida.correr(grupo, estrategia, limite, llm.Cliente(config.EXTRACCION / "cache"),
+                       config.EXTRACCION)
+    except corrida.CorridaFallida as exc:
+        print(f"{exc} No se escribió el CSV.", file=sys.stderr)
+        return 3
     return 0
 
 

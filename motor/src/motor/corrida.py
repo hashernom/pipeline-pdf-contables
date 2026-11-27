@@ -94,6 +94,16 @@ def _filas(e: Extraccion, archivo: str, grupo: str) -> list[dict]:
     return filas
 
 
+class CorridaFallida(RuntimeError):
+    """Todos los documentos de la corrida fallaron."""
+
+
+def _describir_error(exc: Exception) -> str:
+    """Tipo y mensaje corto de la excepción (sin headers ni el pedido)."""
+    msg = " ".join(str(getattr(exc, "message", None) or exc).split())
+    return f"{type(exc).__name__}: {msg[:200]}"
+
+
 def correr(grupo: str, estrategia: str, limite: int | None, cliente: llm.Cliente,
            destino: Path) -> Path:
     cat = cargar_yaml(config.CATALOGO)
@@ -116,13 +126,35 @@ def correr(grupo: str, estrategia: str, limite: int | None, cliente: llm.Cliente
             filas += _filas(e, archivos.get(sha, ""), gr)
         return sha, filas, costo, time.monotonic() - t0
 
+    def seguro(sha: str):
+        try:
+            return procesar(sha)
+        except Exception as exc:  # un documento fallido no detiene la corrida
+            return sha, exc
+
     filas, costo, segundos = [], 0.0, 0.0
+    fallidos: list[dict] = []
+    terminados = 0
     with ThreadPoolExecutor(config.CONCURRENCIA) as pool:
-        for sha, fs, c, seg in pool.map(procesar, shas):
+        for res in pool.map(seguro, shas):
+            if len(res) == 2:
+                sha, exc = res
+                fallidos.append({"sha256": sha, "error": _describir_error(exc)})
+                print(f"{sha[:12]}: FALLÓ ({fallidos[-1]['error']})")
+                continue
+            sha, fs, c, seg = res
             filas += fs
             costo += c
             segundos += seg
+            terminados += 1
             print(f"{sha[:12]}: {seg:.1f} s")
+    fallidos.sort(key=lambda f: f["sha256"])
+    if fallidos:
+        causas = sorted({f["error"] for f in fallidos})
+        print(f"{len(fallidos)} documento(s) fallaron y se omitieron. Causa: {'; '.join(causas)}")
+    if shas and not terminados:
+        raise CorridaFallida(f"Fallaron los {len(shas)} documentos. Causa: "
+                             f"{'; '.join(sorted({f['error'] for f in fallidos}))}")
     filas.sort(key=lambda f: (f["sha256"], f["hoja"], f["bloque_key"], f["campo_key"]))
     destino = Path(destino)
     destino.mkdir(parents=True, exist_ok=True)
@@ -131,9 +163,9 @@ def correr(grupo: str, estrategia: str, limite: int | None, cliente: llm.Cliente
         w = csv.DictWriter(fh, fieldnames=COLUMNAS_EXTRACCION)
         w.writeheader()
         w.writerows(filas)
-    resumen = {"documentos": len(shas), "costo_usd_real": round(costo, 6),
-               "segundos_total": round(segundos, 1)}
+    resumen = {"documentos": terminados, "documentos_fallidos": fallidos,
+               "costo_usd_real": round(costo, 6), "segundos_total": round(segundos, 1)}
     (destino / f"resumen_{grupo}_{estrategia}.json").write_text(
         json.dumps(resumen, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    print(f"costo real: {costo:.4f} USD ({len(shas)} documentos) -> {ruta}")
+    print(f"costo real: {costo:.4f} USD ({terminados} documentos) -> {ruta}")
     return ruta
