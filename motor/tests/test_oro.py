@@ -95,3 +95,32 @@ def test_sin_texto_coherente():
         pytest.skip("falta set_de_oro.csv; corre `motor verificar`")
     assert not any(f["veredicto"] == "confiable" and f["fuente_texto"] != "digital"
                    for f in leer(ruta))
+
+
+from motor.oro import _veredicto, _verificacion
+from motor.verificacion import ResultadoCita
+
+
+def _r(estado, encontrada=2, entre=False):
+    return ResultadoCita(estado, 2, encontrada, 95.0, {"resultado": "", "detalle": ""}, entre)
+
+
+@pytest.mark.parametrize("res, fuente, borrador, esperado", [
+    (_r("pasa"), "digital", False, "confiable"),
+    (_r("pasa", entre=True), "digital", False, "revisar"),
+    (_r("pasa"), "capa_ocr", False, "revisar"),
+    (_r("pasa"), "digital", True, "revisar"),
+    (_r("pagina_ambigua"), "digital", False, "revisar"),
+    (_r("pagina_desplazada"), "digital", False, "revisar"),
+    (_r("pagina_invalida", encontrada=None), "digital", False, "dudosa"),
+    (_r("no_encontrada", encontrada=None), "digital", False, "dudosa"),
+    (_r("sin_texto", encontrada=None), "ninguna", False, "sin_texto"),
+    (_r("no_verificable", encontrada=None), "digital", False, "sin_cita"),
+])
+def test_veredicto(res, fuente, borrador, esperado):
+    assert _veredicto(res, fuente, borrador) == esperado
+
+
+def test_verificacion_no_encontrada():
+    assert _verificacion(_r("no_encontrada", encontrada=None)) == "no_verificado"
+    assert _verificacion(_r("pasa")) == "verificado"

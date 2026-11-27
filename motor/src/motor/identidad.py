@@ -2,6 +2,7 @@
 
 import csv
 import re
+import sys
 import unicodedata
 from pathlib import Path
 
@@ -152,6 +153,8 @@ def emparejar(
 
 def _cargar_borradores(path: Path) -> set[str]:
     if not path.exists():
+        print(f"AVISO: no existe {path}; ningún documento se marcará como posible borrador",
+              file=sys.stderr)
         return set()
     ws = openpyxl.load_workbook(path, read_only=True, data_only=True)["Candidatos"]
     filas = list(ws.iter_rows(min_row=3, values_only=True))
