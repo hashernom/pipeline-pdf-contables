@@ -9,9 +9,21 @@ bloques:
     pag: H
     cita: I
     presencia: J
-  palabras_clave: []
+  palabras_clave:
+  - sujeto
+  - activo
+  - devolucion
+  - discusion
+  - potestades
+  - radican
+  - cause
+  - genere
+  - investigacion
+  - actuaciones
+  - administrativo
+  - necesarias
   presencia_key: elementos_del_tributo.sujeto_activo.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Se asigna 'si' cuando el acuerdo municipal identifica expresamente al municipio o distrito como sujeto activo del impuesto de industria y comercio dentro de su jurisdicción, o le atribuye las potestades tributarias de administración, control, fiscalización, determinación, discusión, liquidación, cobro, recaudo, devolución e imposición de sanciones. Si el texto no menciona ni atribuye dicha titularidad o potestades al ente territorial, se asigna 'no'.
   campos: []
 - key: elementos_del_tributo.sujeto_pasivos
   nombre: Sujeto Pasivos
@@ -21,9 +33,21 @@ bloques:
     pag: M
     cita: N
     presencia: O
-  palabras_clave: []
+  palabras_clave:
+  - sujeto
+  - pasivos
+  - consorcios
+  - uniones
+  - consistente
+  - mixta
+  - beneficiarios
+  - fideicomitentes
+  - gestor
+  - socio
+  - departamental
+  - consorciados
   presencia_key: elementos_del_tributo.sujeto_pasivos.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Marque 'si' cuando el acuerdo municipal defina o describa expresamente quiénes son los sujetos pasivos del tributo (personas naturales, jurídicas, sociedades de hecho, consorcios, uniones temporales, patrimonios autónomos, etc.) indicando que son quienes realizan el hecho generador. Marque 'no' si el texto no contiene dicha definición y 'no_aplica' si el acuerdo no regula la materia del tributo correspondiente.
   campos:
   - key: elementos_del_tributo.sujeto_pasivos.persona_natural
     nombre: Persona Natural
@@ -34,7 +58,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya expresamente a las personas naturales dentro de la definición de sujetos pasivos del tributo, ya sea de forma individual o junto con otras categorías de sujetos. Si el texto no las menciona como sujetos pasivos, evalúe 'no' o 'no_aplica' según corresponda.
     critica: null
     metodo: null
     estado: borrador
@@ -47,7 +71,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya expresamente a las personas jurídicas (sociedades, empresas unipersonales, entidades públicas o privadas, consorcios, uniones temporales, patrimonios autónomos, etc.) dentro de la definición de sujetos pasivos del tributo; marque 'no' si la norma excluye o no contempla a las personas jurídicas como sujetos pasivos, y 'no_aplica' si el texto no regula la determinación de sujetos pasivos.
     critica: null
     metodo: null
     estado: borrador
@@ -60,7 +84,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Seleccione 'si' cuando el acuerdo municipal incluya expresamente a las sociedades de hecho dentro de la enumeración de sujetos pasivos del impuesto; seleccione 'no' cuando el texto no las mencione o las excluya de dicha enumeración.
     critica: null
     metodo: null
     estado: borrador
@@ -73,7 +97,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' si el acuerdo municipal incluye expresamente a las comunidades organizadas como sujetos pasivos del impuesto; marque 'no' si la enumeración de sujetos pasivos no las menciona y se limita a personas naturales, jurídicas, sociedades de hecho, consorcios, uniones temporales o patrimonios autónomos; use 'no_aplica' si el texto no regula sujetos pasivos.
     critica: null
     metodo: null
     estado: borrador
@@ -86,7 +110,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' si el acuerdo municipal incluye expresamente a las sucesiones ilíquidas dentro de la enumeración de sujetos pasivos del impuesto; marque 'no' si la lista de sujetos pasivos omite mencionarlas, y 'no_aplica' si el texto no regula la materia de sujetos pasivos.
     critica: null
     metodo: null
     estado: borrador
@@ -99,7 +123,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Selecciona 'si' cuando el acuerdo municipal mencione expresamente a los consorcios (junto con uniones temporales o patrimonios autónomos) como sujetos pasivos del impuesto; selecciona 'no' cuando la definición de sujeto pasivo no los incluya y 'no_aplica' cuando el texto no regule la materia de sujetos pasivos.
     critica: null
     metodo: null
     estado: borrador
@@ -112,7 +136,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' si el acuerdo municipal incluye expresamente a las empresas unipersonales dentro de la enumeración de sujetos pasivos del impuesto; marque 'no' si la lista de sujetos pasivos no las menciona, y 'no_aplica' si el texto no regula la determinación de sujetos pasivos.
     critica: null
     metodo: null
     estado: borrador
@@ -125,7 +149,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya expresamente a las uniones temporales dentro de la enumeración de sujetos pasivos del impuesto, y marque 'no' cuando la norma no las mencione o solo se refiera a personas naturales, jurídicas, sociedades de hecho y patrimonios autónomos sin incluirlas.
     critica: null
     metodo: null
     estado: borrador
@@ -138,7 +162,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya expresamente a los patrimonios autónomos dentro de la enumeración de sujetos pasivos del impuesto; marque 'no' cuando la norma defina los sujetos pasivos sin mencionarlos o los excluya, y use 'no_aplica' si el texto no regula la materia de sujetos pasivos.
     critica: null
     metodo: null
     estado: borrador
@@ -151,7 +175,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' únicamente si el acuerdo municipal menciona expresamente a las fiducias o a los patrimonios autónomos derivados de contratos de fiducia como sujetos pasivos del impuesto; en caso contrario, marque 'no'. Si el texto no regula la materia de sujetos pasivos o no permite determinar la inclusión de las fiducias, marque 'no_aplica'.
     critica: null
     metodo: null
     estado: borrador
@@ -164,7 +188,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya expresamente las cuentas de participación (o figuras contractuales asimiladas) dentro de la enumeración de sujetos pasivos del impuesto; marque 'no' cuando la norma solo mencione consorcios, uniones temporales y patrimonios autónomos sin referirse a cuentas de participación; y use 'no_aplica' si el texto no regula la determinación de sujetos pasivos.
     critica: null
     metodo: null
     estado: borrador
@@ -177,7 +201,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Seleccione 'si' si el acuerdo municipal incluye expresamente a las entidades sin ánimo de lucro dentro de la definición de sujetos pasivos del impuesto; seleccione 'no' si la definición de sujetos pasivos solo menciona personas naturales, jurídicas, sociedades de hecho, consorcios, uniones temporales, patrimonios autónomos u otras entidades sin referirse a las entidades sin ánimo de lucro; y seleccione 'no_aplica' si el texto no aborda la determinación de sujetos pasivos.
     critica: null
     metodo: null
     estado: borrador
@@ -190,7 +214,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya expresamente a la propiedad horizontal (o a las personas jurídicas que la conforman) dentro de la enumeración de sujetos pasivos del impuesto; marque 'no' cuando la lista de sujetos pasivos no la mencione y se limite a personas naturales, jurídicas, sociedades de hecho, consorcios, uniones temporales y patrimonios autónomos; use 'no_aplica' si el texto no regula sujetos pasivos.
     critica: null
     metodo: null
     estado: borrador
@@ -203,7 +227,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya expresamente a los establecimientos públicos dentro de la enumeración de sujetos pasivos del impuesto; marque 'no' cuando la norma solo mencione personas naturales, jurídicas, sociedades de hecho, consorcios, uniones temporales o patrimonios autónomos sin referirse a los establecimientos públicos, y use 'no_aplica' si el texto no regula la materia de sujetos pasivos.
     critica: null
     metodo: null
     estado: borrador
@@ -216,7 +240,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: 'Se asigna ''si'' cuando el acuerdo municipal incluye expresamente a las Empresas Industriales y Comerciales del Estado (de cualquier orden: nacional, departamental o municipal) dentro de la enumeración de sujetos pasivos del impuesto; se asigna ''no'' cuando la norma no las menciona o solo alude a entidades públicas o privadas en términos genéricos sin referirlas de manera expresa.'
     critica: null
     metodo: null
     estado: borrador
@@ -229,7 +253,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' si el acuerdo municipal menciona expresamente a las sociedades de economía mixta como sujetos pasivos del impuesto; marque 'no' si la enumeración de sujetos pasivos no las incluye o solo se refiere a otras entidades; use 'no_aplica' si el texto no regula sujetos pasivos.
     critica: null
     metodo: null
     estado: borrador
@@ -242,7 +266,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Selecciona 'si' únicamente si el acuerdo municipal menciona de forma expresa que ciertas unidades administrativas (por ejemplo, establecimientos públicos, empresas industriales y comerciales del Estado o entidades descentralizadas) están sujetas a un régimen tributario especial como sujetos pasivos del ICA; en caso contrario, selecciona 'no' cuando la definición de sujeto pasivo no contemple dicho régimen especial, y 'no_aplica' si el texto no aborda el tema de sujetos pasivos.
     critica: null
     metodo: null
     estado: borrador
@@ -255,7 +279,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal defina expresamente como sujeto pasivo del impuesto a las entidades del orden departamental (o incluya entidades públicas departamentales entre los sujetos pasivos); marque 'no' cuando la definición de sujeto pasivo se limite a personas naturales, jurídicas, sociedades de hecho, consorcios, uniones temporales y patrimonios autónomos sin mencionar entidades departamentales, y 'no_aplica' si el texto no regula sujetos pasivos.
     critica: null
     metodo: null
     estado: borrador
@@ -268,7 +292,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya expresamente a las entidades públicas del orden nacional (como empresas industriales y comerciales del Estado nacionales) dentro de la enumeración de sujetos pasivos del impuesto; marque 'no' cuando la definición de sujetos pasivos se limite a personas naturales, jurídicas, sociedades de hecho, consorcios, uniones temporales o patrimonios autónomos sin mencionar entidades del orden nacional, y 'no_aplica' si el texto no aborda la determinación de sujetos pasivos.
     critica: null
     metodo: null
     estado: borrador
@@ -281,7 +305,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya como sujetos pasivos del impuesto a otros sujetos distintos de los enumerados en los demás campos del bloque; marque 'no' si no hay otros.
     critica: null
     metodo: null
     estado: borrador
@@ -291,7 +315,7 @@ bloques:
     tipo: texto_libre
     unidad: null
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identifique en el texto del acuerdo municipal las personas naturales o jurídicas, o las actividades económicas, señaladas expresamente como sujetos pasivos del impuesto; si la norma remite a una definición general, transcriba o resuma esa descripción tal como aparece en el articulado.
     critica: null
     metodo: null
     estado: borrador
@@ -303,9 +327,21 @@ bloques:
     pag: AM
     cita: AN
     presencia: AO
-  palabras_clave: []
+  palabras_clave:
+  - hecho
+  - generador
+  - indirecta
+  - inmueble
+  - genera
+  - nacimiento
+  - origina
+  - equipamiento
+  - presupuesto
+  - tipificar
+  - constituido
+  - directa
   presencia_key: elementos_del_tributo.hecho_generador.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Se asigna 'si' cuando el acuerdo municipal define o describe expresamente el hecho generador del impuesto (presupuesto o causa que origina la obligación tributaria, o la realización de actividades industriales, comerciales o de servicios en la jurisdicción). Se asigna 'no' cuando el texto no contiene dicha definición ni descripción del hecho generador, y 'no_aplica' cuando el campo no resulta pertinente para el bloque analizado.
   campos:
   - key: elementos_del_tributo.hecho_generador.realizacion_directa
     nombre: Realización Directa
@@ -316,7 +352,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el texto del acuerdo describa la realización efectiva de actividades industriales, comerciales, de servicios o financieras en la jurisdicción del municipio, ya sea de forma directa o indirecta, permanente u ocasional, con o sin establecimiento de comercio. Marque 'no' cuando la cita se limite a definir el hecho generador en abstracto como presupuesto jurídico del tributo, sin referirse a la realización concreta de dichas actividades.
     critica: null
     metodo: null
     estado: borrador
@@ -329,7 +365,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el texto del acuerdo establezca expresamente que el hecho generador del impuesto se realiza de forma directa o indirecta; marque 'no' cuando la definición del hecho generador no contemple la realización indirecta, y 'no_aplica' si el acuerdo no regula el hecho generador del ICA.
     critica: null
     metodo: null
     estado: borrador
@@ -342,7 +378,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Se asigna 'si' cuando el texto del acuerdo menciona expresamente que las actividades gravadas pueden realizarse de forma permanente u ocasional (o solo permanente) como parte de la descripción del hecho generador; se asigna 'no' cuando la norma se limita a definir el hecho generador de manera genérica sin referirse a la permanencia de la actividad, y 'no_aplica' si el apartado no aborda el hecho generador.
     critica: null
     metodo: null
     estado: borrador
@@ -355,7 +391,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el texto del acuerdo incluya expresamente la realización ocasional de las actividades gravadas dentro de la descripción del hecho generador (por ejemplo, 'en forma permanente u ocasional'); marque 'no' cuando el hecho generador se defina de manera general sin mencionar la forma ocasional; y use 'no_aplica' si el acuerdo no regula el hecho generador del ICA.
     critica: null
     metodo: null
     estado: borrador
@@ -368,7 +404,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Asigne 'si' cuando el texto del acuerdo mencione expresamente que las actividades gravadas se realizan con establecimiento de comercio (o en inmuebles destinados como tal), y 'no' cuando el hecho generador se describa sin referencia a establecimientos de comercio o se limite a la definición genérica del presupuesto del tributo.
     critica: null
     metodo: null
     estado: borrador
@@ -381,7 +417,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el texto del acuerdo mencione explícitamente que el hecho generador del impuesto se causa con o sin establecimiento de comercio (o expresiones equivalentes como 'con establecimientos de comercio o sin ellos'); marque 'no' cuando la definición del hecho generador no haga referencia alguna a la existencia o ausencia de establecimiento de comercio.
     critica: null
     metodo: null
     estado: borrador
@@ -394,7 +430,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el texto del acuerdo incluya explícitamente el uso de tecnologías de la información y la comunicación (TIC) como parte del hecho generador del impuesto de industria y comercio; en caso contrario, marque 'no'.
     critica: null
     metodo: null
     estado: borrador
@@ -407,7 +443,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal describa el hecho generador con una modalidad distinta de las enumeradas en los demás campos del bloque; marque 'no' si no hay otras.
     critica: null
     metodo: null
     estado: borrador
@@ -417,7 +453,7 @@ bloques:
     tipo: texto_libre
     unidad: null
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identifique en el texto del acuerdo municipal el aparte que define el hecho generador del ICA; si se limita a señalar que es el presupuesto o causa que tipifica el tributo y origina la obligación tributaria, registre 'Presupuesto'; si el aparte describe las actividades gravadas sin definir el presupuesto, registre 'no_aplica'.
     critica: null
     metodo: null
     estado: borrador
@@ -429,9 +465,21 @@ bloques:
     pag: AZ
     cita: BA
     presencia: BB
-  palabras_clave: []
+  palabras_clave:
+  - hecho
+  - imponible
+  - materia
+  - recaera
+  - obligatorio
+  - santander
+  - ejerzan
+  - todas
+  - cuanto
+  - cumplan
+  - caracter
+  - financieras
   presencia_key: elementos_del_tributo.hecho_imponible.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Marque 'si' cuando el acuerdo municipal defina expresamente el hecho imponible del ICA, señalando que el gravamen recae sobre las actividades comerciales, industriales, de servicios y/o financieras que se ejerzan o realicen en la jurisdicción del municipio; use 'no' si el texto no contiene dicha definición y 'no_aplica' si el bloque no resulta pertinente para el acuerdo analizado.
   campos: []
 - key: elementos_del_tributo.periodo_gravable
   nombre: Periodo Gravable
@@ -441,9 +489,21 @@ bloques:
     pag: BE
     cita: BF
     presencia: BG
-  palabras_clave: []
+  palabras_clave:
+  - periodo
+  - gravable
+  - dependiendo
+  - disenado
+  - perciben
+  - diciembre
+  - deber
+  - declarados
+  - formulario
+  - lapso
+  - pueden
+  - existir
   presencia_key: elementos_del_tributo.periodo_gravable.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Marque 'si' cuando el acuerdo municipal defina o regule expresamente el período gravable del impuesto (por ejemplo, indicando que es anual, bimestral o que corresponde al año calendario o a una fracción de año); marque 'no' si el texto no menciona ni determina el período gravable, y 'no_aplica' si la disposición no regula el impuesto de Industria y Comercio.
   campos:
   - key: elementos_del_tributo.periodo_gravable.anual
     nombre: Anual
@@ -454,7 +514,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Se asigna 'si' cuando el acuerdo municipal establece expresamente que el período gravable del impuesto de Industria y Comercio es anual, comprendido entre el 1 de enero y el 31 de diciembre del respectivo año calendario. Se asigna 'no' cuando el texto define un período gravable distinto al anual, como el bimestral u otra periodicidad inferior.
     critica: null
     metodo: null
     estado: borrador
@@ -467,7 +527,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Selecciona 'si' únicamente si el acuerdo municipal establece expresamente que el período gravable del impuesto de Industria y Comercio es semestral; si define el período como anual, bimestral u otra periodicidad distinta, selecciona 'no', y si el texto no menciona la periodicidad del período gravable, selecciona 'no_aplica'.
     critica: null
     metodo: null
     estado: borrador
@@ -480,7 +540,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Selecciona 'si' únicamente si el acuerdo municipal establece expresamente que el período gravable del impuesto de Industria y Comercio es cuatrimestral; si define el período como anual, bimestral u otra periodicidad distinta, selecciona 'no', y usa 'no_aplica' cuando el texto no regule el período gravable.
     critica: null
     metodo: null
     estado: borrador
@@ -493,7 +553,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Seleccione 'si' únicamente si el acuerdo municipal establece expresamente que el período gravable del impuesto de Industria y Comercio es trimestral; si define el período como anual, bimestral u otra periodicidad distinta, seleccione 'no', y use 'no_aplica' cuando el texto no regule el período gravable.
     critica: null
     metodo: null
     estado: borrador
@@ -506,7 +566,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Se asigna 'si' cuando el acuerdo municipal establece expresamente que el período gravable del impuesto de Industria y Comercio es bimestral; se asigna 'no' cuando define el período gravable como anual o como el año calendario (1 de enero a 31 de diciembre), y 'no_aplica' cuando el texto no menciona ni define el período gravable del impuesto.
     critica: null
     metodo: null
     estado: borrador
@@ -519,7 +579,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' solo si el acuerdo municipal establece expresamente que el período gravable del impuesto de Industria y Comercio es mensual; si define el período como anual, bimestral u otra periodicidad distinta, o no lo determina, marque 'no' o 'no_aplica' según corresponda.
     critica: null
     metodo: null
     estado: borrador
@@ -532,7 +592,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca que el periodo gravable comprende o se compone de más de un periodo (por ejemplo, periodos bimestrales, semestrales o anuales con fracciones internas); marque 'no' cuando el periodo gravable sea único y no se subdivida en varios periodos, y 'no_aplica' cuando el texto no regule periodos gravables o no permita determinar su periodicidad.
     critica: null
     metodo: null
     estado: borrador
@@ -544,9 +604,21 @@ bloques:
     pag: BQ
     cita: BR
     presencia: BS
-  palabras_clave: []
+  palabras_clave:
+  - causacion
+  - ingreso
+  - para
+  - confluyan
+  - esenciales
+  - causarse
+  - comenzara
+  - hasta
+  - ultimo
+  - primer
+  - desde
+  - iniciacion
   presencia_key: elementos_del_tributo.causacion_del_ingreso_para_el_ica.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Asigne 'si' cuando el texto del acuerdo municipal establezca de forma expresa el momento o hecho a partir del cual se causa el Impuesto de Industria y Comercio (por ejemplo, el inicio de la actividad gravada, la confluencia de los elementos esenciales del tributo, la fecha de iniciación de actividades o el último día del año o período gravable). Asigne 'no' si el acuerdo no menciona ni regula la causación del ingreso para el ICA, y 'no_aplica' si la disposición no guarda relación con este impuesto.
   campos:
   - key: elementos_del_tributo.causacion_del_ingreso_para_el_ica.fecha_de_generacion_del_primer_ingreso_gravable
     nombre: "Fecha de Generación del \nPrimer Ingreso Gravable"
@@ -557,7 +629,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Asigne 'si' únicamente cuando el texto del acuerdo fije de manera expresa una fecha o momento cierto de generación del primer ingreso gravable del ICA (por ejemplo, la fecha de inicio de actividades o el momento de la compra o adquisición); asigne 'no' cuando la norma se limite a señalar la causación general del impuesto o su período gravable sin precisar dicha fecha, y 'no_aplica' cuando el acuerdo no trate el tema.
     critica: null
     metodo: null
     estado: borrador
@@ -570,7 +642,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el texto del acuerdo municipal indique expresamente que el ICA se causa desde la fecha de inicio de la actividad gravada o desde el inicio del período gravable; marque 'no' cuando la cita se refiera a otros aspectos de la causación (elementos esenciales del tributo, reteica, causación al final del año) sin señalar el inicio como hecho generador, y 'no_aplica' si el acuerdo no aborda la causación del ingreso.
     critica: null
     metodo: null
     estado: borrador
@@ -583,7 +655,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Asigna 'si' únicamente si el acuerdo municipal remite expresamente al artículo 28 del Estatuto Tributario o adopta la realización del ingreso como base para determinar la causación del ICA; asigna 'no' si la causación se regula con otros criterios (inicio de actividad, elementos esenciales del gravamen, período gravable, compra o adquisición del bien o servicio) sin mencionar dicha norma; asigna 'no_aplica' si el texto no aborda la causación del ingreso.
     critica: null
     metodo: null
     estado: borrador
@@ -596,7 +668,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal fije un momento de causación distinto de los enumerados en los demás campos del bloque; marque 'no' si no hay otro.
     critica: null
     metodo: null
     estado: borrador
@@ -606,7 +678,7 @@ bloques:
     tipo: texto_libre
     unidad: null
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identifique en el texto del acuerdo municipal el hecho o momento a partir del cual se entiende causado el Impuesto de Industria y Comercio (por ejemplo, el inicio de la actividad gravada), verificando que se mencionen los elementos esenciales del gravamen, y transcriba ese hecho generador como valor del campo.
     critica: null
     metodo: null
     estado: borrador
@@ -618,9 +690,21 @@ bloques:
     pag: CA
     cita: CB
     presencia: CC
-  palabras_clave: []
+  palabras_clave:
+  - causacion
+  - servicios
+  - publicos
+  - domiciliarios
+  - para
+  - liquida
+  - indica
+  - presta
+  - final
+  - usuario
+  - continuacion
+  - ciudad
   presencia_key: elementos_del_tributo.causacion_de_los_servicios_publicos_domiciliarios_para_el_ica.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Marque 'si' cuando el acuerdo municipal establezca que el impuesto de industria y comercio por la prestación de servicios públicos domiciliarios se causa en el municipio donde se presta el servicio al usuario final sobre el valor promedio mensual facturado, o incluya reglas de causación para generación, transmisión/conexión de energía, transporte de gas o compraventa de energía; marque 'no' si el texto no contempla dicha causación y 'no_aplica' si el acuerdo no regula la materia.
   campos:
   - key: elementos_del_tributo.causacion_de_los_servicios_publicos_domiciliarios_para_el_ica.generacion_de_energia_ley_56_de_1981
     nombre: Generación de Energía Ley 56 de 1981
@@ -631,7 +715,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Seleccione 'si' cuando el acuerdo municipal disponga que la generación de energía eléctrica continúa gravada por el ICA conforme al artículo 7 de la Ley 56 de 1981; en caso contrario, o si el texto no regula este supuesto, seleccione 'no' o 'no_aplica' según corresponda.
     critica: null
     metodo: null
     estado: borrador
@@ -644,7 +728,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Selecciona 'si' cuando el acuerdo municipal establezca que, en las actividades de transmisión y conexión de energía eléctrica, el ICA se causa en el municipio donde se encuentre ubicada la subestación, sobre los ingresos promedio obtenidos en dicho municipio; en caso contrario, selecciona 'no'.
     critica: null
     metodo: null
     estado: borrador
@@ -657,7 +741,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: El campo se marca 'si' cuando el acuerdo municipal establece expresamente que, en las actividades de transporte de gas combustible, el impuesto de industria y comercio se causa sobre los ingresos promedio obtenidos por esa actividad, siempre que la puerta de ciudad esté ubicada en jurisdicción del respectivo municipio o distrito; en caso contrario, se marca 'no'.
     critica: null
     metodo: null
     estado: borrador
@@ -670,7 +754,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Selecciona 'si' cuando el acuerdo municipal establezca que la compraventa de energía eléctrica realizada por empresas no generadoras, cuyos destinatarios no sean usuarios finales, causa el ICA en el municipio del domicilio del vendedor sobre el valor promedio mensual facturado; selecciona 'no' si el texto no contempla esta regla específica para empresas no generadoras.
     critica: null
     metodo: null
     estado: borrador
@@ -683,7 +767,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal fije una regla de causación para servicios públicos domiciliarios distinta de las enumeradas en los demás campos del bloque; marque 'no' si no hay otra.
     critica: null
     metodo: null
     estado: borrador
@@ -693,7 +777,7 @@ bloques:
     tipo: texto_libre
     unidad: null
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar y transcribir las reglas específicas de causación del ICA para servicios públicos domiciliarios señaladas en el acuerdo municipal (generación de energía, subestaciones de transmisión, transporte de gas, compraventa de energía, entre otras), indicando en qué supuestos y condiciones se causa el impuesto en la jurisdicción.
     critica: null
     metodo: null
     estado: borrador
@@ -705,9 +789,21 @@ bloques:
     pag: CL
     cita: CM
     presencia: CN
-  palabras_clave: []
+  palabras_clave:
+  - base
+  - gravable
+  - exceptuados
+  - provengan
+  - expresamente
+  - financieros
+  - activos
+  - devoluciones
+  - exportaciones
+  - fijos
+  - descuentos
+  - incluidos
   presencia_key: elementos_del_tributo.base_gravable.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Marque 'si' cuando el acuerdo municipal defina o regule expresamente la base gravable del impuesto de industria y comercio, indicando los ingresos que la constituyen y las exclusiones aplicables; marque 'no' si el texto no contiene disposición alguna sobre la base gravable, y 'no_aplica' si la norma no regula el impuesto de industria y comercio.
   campos:
   - key: elementos_del_tributo.base_gravable.ley_14_de_1983
     nombre: Ley 14 de 1983
@@ -718,7 +814,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' si el acuerdo municipal fundamenta o desarrolla la base gravable del ICA citando expresamente la Ley 14 de 1983 (por ejemplo, su artículo 33) o su concordancia con el Decreto 1333 de 1986; marque 'no' si define la base gravable sin referirse a dicha ley.
     critica: null
     metodo: null
     estado: borrador
@@ -731,7 +827,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal defina la base gravable del ICA remitiéndose o aplicando expresamente la Ley 1819 de 2016 (por ejemplo, al incorporar las reglas del artículo 28 del Estatuto Tributario Nacional para determinar los ingresos); marque 'no' cuando la base gravable se sustente únicamente en normas anteriores o distintas (Ley 14 de 1983, Decreto 1333 de 1986 u otras) sin referencia a dicha ley.
     critica: null
     metodo: null
     estado: borrador
@@ -744,7 +840,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal fundamente la base gravable en una norma distinta de la Ley 14 de 1983 y la Ley 1819 de 2016; marque 'no' si no hay otra.
     critica: null
     metodo: null
     estado: borrador
@@ -754,7 +850,7 @@ bloques:
     tipo: texto_libre
     unidad: null
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar en el acuerdo municipal el artículo que define la base gravable del impuesto de Industria y Comercio y transcribir o resumir los conceptos que la conforman (ingresos ordinarios y extraordinarios, exclusiones, exenciones y no sujeciones); si el acuerdo no regula este elemento, asignar 'no_aplica'.
     critica: null
     metodo: null
     estado: borrador
@@ -766,9 +862,21 @@ bloques:
     pag: CU
     cita: CV
     presencia: CW
-  palabras_clave: []
+  palabras_clave:
+  - base
+  - gravable
+  - especial
+  - distribuidor
+  - distribuidores
+  - entendiendo
+  - agencias
+  - margen
+  - mayorista
+  - minorista
+  - petroleo
+  - adicionales
   presencia_key: elementos_del_tributo.base_gravable_especial.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Marque 'si' cuando el acuerdo municipal establezca reglas especiales para determinar la base gravable del ICA de ciertos contribuyentes o actividades (por ejemplo, margen bruto de comercialización de combustibles, honorarios y comisiones, AIU, ingresos propios de EPS/IPS, valor promedio facturado en servicios públicos domiciliarios), distintas de la regla general de ingresos brutos; marque 'no' si solo se remite a la base gravable general sin excepciones y 'no_aplica' si el texto no regula la base gravable del impuesto.
   campos:
   - key: elementos_del_tributo.base_gravable_especial.intermediacion_agencias_de_publicidad_administradoras_y_corredoras_de_bienes_inmuebles_y_corredores_de_seguros
     nombre: 'Intermediación: Agencias de Publicidad, Administradoras y Corredoras de Bienes Inmuebles y Corredores de Seguros'
@@ -779,7 +887,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca una base gravable especial para las agencias de publicidad, administradoras y corredoras de bienes inmuebles y corredores de seguros, determinada por los ingresos brutos ordinarios y extraordinarios entendidos como honorarios, comisiones y demás ingresos propios percibidos para sí; marque 'no' si el texto no contempla dicha regla especial para estas actividades de intermediación.
     critica: null
     metodo: null
     estado: borrador
@@ -792,7 +900,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Seleccione 'si' únicamente si el acuerdo municipal incluye expresamente las mercancías en consignación como un componente o regla especial para determinar la base gravable del ICA; en caso contrario, seleccione 'no'.
     critica: null
     metodo: null
     estado: borrador
@@ -805,7 +913,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Seleccione 'si' si el acuerdo municipal establece una base gravable especial para los distribuidores de gas propano (derivados del petróleo y demás combustibles), típicamente el margen bruto de comercialización; seleccione 'no' si solo regula otras bases especiales sin incluir el gas propano, y 'no_aplica' si el texto no aborda bases gravables especiales.
     critica: null
     metodo: null
     estado: borrador
@@ -818,7 +926,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Seleccione 'si' si el acuerdo municipal establece una base gravable especial para las cooperativas de trabajo asociado, determinándola sobre los ingresos netos una vez descontadas las compensaciones entregadas a los trabajadores asociados cooperados o sobre la parte correspondiente al AIU; en caso contrario, seleccione 'no'.
     critica: null
     metodo: null
     estado: borrador
@@ -831,7 +939,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya expresamente, dentro de las bases gravables especiales del ICA, a los servicios temporales o a los servicios integrales de aseo y vigilancia (y transporte de valores), señalando que su base gravable es la parte correspondiente al AIU del contrato; en caso contrario, marque 'no'.
     critica: null
     metodo: null
     estado: borrador
@@ -844,7 +952,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Selecciona 'si' cuando el acuerdo municipal establezca expresamente una base gravable especial para las EPS, IPS, ARL o ARS, determinando que su base está constituida por el total de ingresos propios no excluidos o precisando qué recursos del sistema de salud no forman parte de la base gravable; en caso contrario, selecciona 'no'.
     critica: null
     metodo: null
     estado: borrador
@@ -857,7 +965,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca reglas especiales para determinar la base gravable del impuesto de industria y comercio aplicables a actividades industriales (o a sujetos con base gravable especial dentro de la actividad industrial); marque 'no' cuando el texto solo contemple bases gravables especiales para otras actividades (comerciales, de servicios, financieras, etc.) sin referirse a industriales, y 'no_aplica' cuando el acuerdo no regule bases gravables especiales.
     critica: null
     metodo: null
     estado: borrador
@@ -870,7 +978,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca que los distribuidores mayoristas de derivados del petróleo y demás combustibles liquidan el ICA tomando como base gravable el margen bruto de comercialización, definido como la diferencia entre el precio de compra al productor o importador y el precio de venta al público o al distribuidor minorista; marque 'no' si el texto no contempla dicha base especial para el distribuidor mayorista y 'no_aplica' si la disposición no regula la base gravable de combustibles.
     critica: null
     metodo: null
     estado: borrador
@@ -883,7 +991,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca que los distribuidores minoristas de combustibles liquidan el impuesto de industria y comercio tomando como base gravable el margen bruto de comercialización, entendido como la diferencia entre el precio de compra al distribuidor mayorista o intermediario y el precio de venta al público, descontando sobretasas y demás gravámenes adicionales; en caso contrario, marque 'no' o 'no_aplica' según corresponda.
     critica: null
     metodo: null
     estado: borrador
@@ -896,7 +1004,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' si el acuerdo municipal establece una regla especial de base gravable que distribuya los ingresos del transporte terrestre entre la empresa y el propietario del vehículo; marque 'no' si el texto no contempla dicha distribución entre empresa y propietario; y 'no_aplica' si el acuerdo no regula el transporte terrestre ni bases gravables especiales.
     critica: null
     metodo: null
     estado: borrador
@@ -909,7 +1017,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Seleccione 'si' cuando el acuerdo municipal incluya, dentro de las bases gravables especiales del impuesto de industria y comercio, una regla específica para distribuidores de productos gravados con el impuesto al consumo cedido a los departamentos; en caso contrario, seleccione 'no'.
     critica: null
     metodo: null
     estado: borrador
@@ -922,7 +1030,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Seleccione 'si' si el acuerdo municipal incluye expresamente la venta de medios de pago como un supuesto de base gravable especial del ICA; seleccione 'no' si el texto no la contempla entre las bases gravables especiales; y 'no_aplica' si el acuerdo no regula bases gravables especiales o no menciona el tema.
     critica: null
     metodo: null
     estado: borrador
@@ -935,7 +1043,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' si el acuerdo municipal incluye expresamente a los patrimonios autónomos dentro de las reglas de base gravable especial del ICA; marque 'no' si la sección de bases gravables especiales no los menciona; y 'no_aplica' si el texto no regula bases gravables especiales.
     critica: null
     metodo: null
     estado: borrador
@@ -948,7 +1056,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca una base gravable especial distinta de las enumeradas en los demás campos del bloque; marque 'no' si no hay otra.
     critica: null
     metodo: null
     estado: borrador
@@ -961,7 +1069,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' únicamente si el acuerdo municipal establece expresamente una base gravable especial para los ingresos por arrendamientos; en caso contrario, marque 'no' si la norma no contempla dicha base especial para arrendamientos, y 'no_aplica' si el texto no regula la materia o no permite determinarlo.
     critica: null
     metodo: null
     estado: borrador
@@ -974,7 +1082,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca una base gravable especial distinta de las enumeradas en los demás campos del bloque; marque 'no' si no hay otra.
     critica: null
     metodo: null
     estado: borrador
@@ -987,7 +1095,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal enumere otros contribuyentes o actividades con reglas especiales de base gravable, distintos de los de los demás campos del bloque; marque 'no' si no los hay.
     critica: null
     metodo: null
     estado: borrador
@@ -997,7 +1105,7 @@ bloques:
     tipo: texto_libre
     unidad: null
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identifique en el texto del acuerdo municipal si se enuncian sujetos o actividades con base gravable especial (agencias de publicidad, corredores de seguros e inmuebles, distribuidores de combustibles, fondos mutuos de inversión, servicios integrales de aseo, cafetería, vigilancia y transporte de valores, servicios temporales y cooperativas de trabajo asociado, distribuidores de productos gravados con impuesto al consumo y servicios públicos domiciliarios) y determine a cuál de esos sectores o actividades corresponde la regla descrita, registrando su denominación.
     critica: null
     metodo: null
     estado: borrador
@@ -1009,9 +1117,15 @@ bloques:
     pag: DR
     cita: DS
     presencia: DT
-  palabras_clave: []
+  palabras_clave:
+  - base
+  - presunta
+  - minima
+  - dicha
+  - contribuyente
+  - impuesto
   presencia_key: elementos_del_tributo.base_presunta_minima.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Marque 'si' cuando el acuerdo municipal establezca una base presunta mínima o impuesto mínimo a liquidar (por ejemplo, en UVT o en pesos) para los contribuyentes del ICA cuyas bases declaradas sean inferiores a un umbral determinado; en caso contrario, o si no se contempla dicha figura, marque 'no' o 'no_aplica' según corresponda.
   campos:
   - key: elementos_del_tributo.base_presunta_minima.valor_expresado_uvt
     nombre: Valor expresado UVT
@@ -1022,7 +1136,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal exprese la base presunta mínima del impuesto en unidades de UVT (por ejemplo, 2.0 UVT o 3.0 UVT) o remita a la UVT fijada por la DIAN para determinar dicho valor mínimo; en caso contrario, marque 'no' o 'no_aplica' según corresponda.
     critica: null
     metodo: null
     estado: borrador
@@ -1032,7 +1146,7 @@ bloques:
     tipo: numero
     unidad: null
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identifique en el texto del acuerdo municipal el número de UVT que se asigna como base presunta mínima o impuesto mínimo a liquidar, tomando el valor numérico expresado (por ejemplo, 1, 2 o 3 UVT) según el sector o la condición del contribuyente.
     critica: null
     metodo: null
     estado: borrador
@@ -1042,7 +1156,7 @@ bloques:
     tipo: numero
     unidad: null
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar en el texto del acuerdo municipal el número de UVT que corresponde a la base presunta mínima (tarifa mínima del impuesto) y multiplicarlo por el valor de la UVT establecido por la DIAN para la vigencia respectiva, registrando el resultado en pesos como equivalente numérico.
     critica: null
     metodo: null
     estado: borrador
@@ -1055,7 +1169,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'no' si la base presunta mínima o el impuesto mínimo se expresa en UVT (unidades de valor tributario) o en pesos, y marque 'si' únicamente cuando el acuerdo municipal exprese dicho valor en salarios mínimos mensuales legales vigentes (SMMLV). Si el texto no menciona base presunta mínima, use 'no_aplica'.
     critica: null
     metodo: null
     estado: borrador
@@ -1065,7 +1179,7 @@ bloques:
     tipo: numero
     unidad: null
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identifique en el acuerdo municipal el número de salarios mínimos mensuales legales vigentes (SMMLV) que se fija como base presunta mínima para determinar la renta o ingreso gravable del contribuyente; si el texto remite a una tabla, anexo o artículo específico, extraiga allí la cifra exacta en SMMLV.
     critica: null
     metodo: null
     estado: borrador
@@ -1075,7 +1189,7 @@ bloques:
     tipo: numero
     unidad: null
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identifique en el acuerdo municipal el monto o equivalente en pesos de la base presunta mínima (o el valor en UVT que la determina) y registre ese valor numérico; si la norma remite a la UVT vigente de la DIAN o no fija un monto expreso en pesos, registre 0.
     critica: null
     metodo: null
     estado: borrador
@@ -1088,7 +1202,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca una base presunta mínima expresada en una unidad distinta de UVT y SMMLV; marque 'no' si no hay otra.
     critica: null
     metodo: null
     estado: borrador
@@ -1098,7 +1212,7 @@ bloques:
     tipo: texto_libre
     unidad: null
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar en el acuerdo municipal el monto de base gravable o ingresos que activa la base presunta mínima y la tarifa mínima expresada en UVT que debe pagar el contribuyente; si el texto distingue sector urbano y rural, aplicar el valor en UVT correspondiente al rango en que se ubica el contribuyente según su declaración privada.
     critica: null
     metodo: null
     estado: borrador
@@ -1110,9 +1224,21 @@ bloques:
     pag: EE
     cita: EF
     presencia: EG
-  palabras_clave: []
+  palabras_clave:
+  - evidencia
+  - disminucion
+  - base
+  - gravable
+  - conservar
+  - documentos
+  - exhibir
+  - fundamenten
+  - soportes
+  - sustentada
+  - desconocimiento
+  - detraccion
   presencia_key: elementos_del_tributo.evidencia_de_la_disminucion_de_la_base_gravable.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Se asigna 'si' cuando el acuerdo municipal exige que toda detracción o disminución de la base gravable del ICA esté sustentada en documentos y soportes contables que el contribuyente debe conservar y exhibir ante la autoridad tributaria, so pena de desconocimiento de dichos valores y sanciones. Se asigna 'no' cuando el texto no impone ni regula dicha exigencia de evidencia, y 'no_aplica' cuando el acuerdo no contempla detracciones o disminuciones de la base gravable.
   campos: []
 - key: elementos_del_tributo.actividades_ocasionales
   nombre: Actividades Ocasionales
@@ -1122,9 +1248,21 @@ bloques:
     pag: EJ
     cita: EK
     presencia: EL
-  palabras_clave: []
+  palabras_clave:
+  - actividades
+  - ocasionales
+  - defecto
+  - pasar
+  - duracion
+  - informar
+  - mecanismo
+  - pague
+  - previamente
+  - transitoria
+  - adicione
+  - causados
   presencia_key: elementos_del_tributo.actividades_ocasionales.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Marque 'si' cuando el acuerdo municipal defina, regule o mencione expresamente las actividades ocasionales o transitorias gravadas con ICA (incluyendo su período gravable, causación, declaración y pago); marque 'no' si el texto aborda el ICA pero no contempla ni alude a actividades ocasionales; y 'no_aplica' si el acuerdo no regula la materia del impuesto de industria y comercio.
   campos: []
 - key: elementos_del_tributo.anticipo
   nombre: Anticipo
@@ -1134,9 +1272,21 @@ bloques:
     pag: EO
     cita: EP
     presencia: EQ
-  palabras_clave: []
+  palabras_clave:
+  - anticipo
+  - cuarenta
+  - adelante
+  - liquidado
+  - tercer
+  - veinte
+  - descontable
+  - plazos
+  - cancelarse
+  - quince
+  - titulo
+  - establecidos
   presencia_key: elementos_del_tributo.anticipo.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Marque 'si' cuando el acuerdo municipal establezca expresamente un anticipo del impuesto de industria y comercio a cargo del contribuyente, indicando su porcentaje o forma de liquidación y su carácter descontable del impuesto del año o periodo gravable siguiente. Marque 'no' cuando el texto no contemple anticipo alguno y 'no_aplica' cuando la disposición no regule este aspecto.
   campos:
   - key: elementos_del_tributo.anticipo.tarifa_porcentual
     nombre: Tarifa Porcentual
@@ -1144,7 +1294,7 @@ bloques:
     tipo: texto_libre
     unidad: null
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar en el texto del acuerdo municipal el porcentaje o tarifa fijada para el anticipo del impuesto de Industria y Comercio (por ejemplo, 'veinte por ciento (20%)', 'cuarenta por ciento (40%)' o 'tres por mil (3 x 1000)') y extraer únicamente la cifra numérica que representa dicho porcentaje o tarifa.
     critica: null
     metodo: null
     estado: borrador
@@ -1154,7 +1304,7 @@ bloques:
     tipo: texto_libre
     unidad: null
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identifique en el texto del acuerdo municipal la base gravable o el monto sobre el cual se calcula el anticipo (por ejemplo, ingresos brutos, ingresos netos, ventas o el impuesto del periodo anterior) y transcriba esa base tal como la define la norma.
     critica: null
     metodo: null
     estado: borrador
@@ -1167,7 +1317,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca una modalidad de anticipo distinta de la descrita en los demás campos del bloque; marque 'no' si no hay otra.
     critica: null
     metodo: null
     estado: borrador
@@ -1180,7 +1330,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca expresamente un anticipo del ICA; marque 'no' si no lo establece.
     critica: null
     metodo: null
     estado: borrador
@@ -1192,9 +1342,21 @@ bloques:
     pag: H
     cita: I
     presencia: J
-  palabras_clave: []
+  palabras_clave:
+  - actividades
+  - sujetas
+  - incluyan
+  - contraidas
+  - fabricas
+  - horizontal
+  - internacionales
+  - prohibicion
+  - tratados
+  - virtud
+  - futuro
+  - propias
   presencia_key: actividades_no_sujetas.actividades_no_sujetas.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Marque 'si' cuando el acuerdo municipal enumere o describa expresamente actividades, ingresos o sujetos que no están gravados con el impuesto de industria y comercio (por ejemplo, producción primaria, exportaciones, establecimientos educativos, entidades sin ánimo de lucro, hospitales, minería con regalías, entre otras); marque 'no' si el texto no contempla ninguna exclusión o prohibición de gravamen, y 'no_aplica' si el acuerdo no regula la materia o no resulta pertinente para el análisis.
   campos:
   - key: actividades_no_sujetas.actividades_no_sujetas.produccion_primaria_agricola_ganadera_y_avicola_sin_proceso_industrial
     nombre: Producción Primaria Agrícola, Ganadera y Avícola; sin Proceso Industrial
@@ -1205,7 +1367,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca expresamente que la producción primaria agrícola, ganadera y avícola no está sujeta al impuesto de industria y comercio, siempre que no incluya fábricas de productos alimenticios ni industrias con proceso de transformación, por elemental que sea. Marque 'no' cuando el texto no contemple esta exclusión o sujete dicha actividad al gravamen, y 'no_aplica' si el acuerdo no regula la materia.
     critica: null
     metodo: null
     estado: borrador
@@ -1218,7 +1380,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Se marca 'si' cuando el acuerdo municipal establece expresamente que las actividades realizadas por establecimientos educativos públicos (de propiedad de la Nación, el departamento o el municipio) no son sujetas o no están gravadas con el impuesto de industria y comercio; se marca 'no' cuando el texto no contempla dicha exclusión o la condiciona a que no realicen actividades distintas de su objeto, y 'no_aplica' si el acuerdo no regula la materia.
     critica: null
     metodo: null
     estado: borrador
@@ -1231,7 +1393,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya expresamente a las entidades de beneficencia entre las actividades no sujetas o no gravadas con el impuesto de industria y comercio; marque 'no' cuando el texto trate de actividades gravadas o no contemple esta exclusión, y 'no_aplica' si el acuerdo no regula la materia de actividades no sujetas.
     critica: null
     metodo: null
     estado: borrador
@@ -1244,7 +1406,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Se marca 'si' cuando el acuerdo municipal establece expresamente que las entidades culturales (sin ánimo de lucro) no son sujetas del impuesto de industria y comercio por las actividades propias de su objeto; se marca 'no' cuando el texto no las exonera o las sujeta al gravamen; y 'no_aplica' cuando el acuerdo no regula la materia.
     critica: null
     metodo: null
     estado: borrador
@@ -1257,7 +1419,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca expresamente que las entidades deportivas (o las actividades realizadas por ellas) están dentro de las actividades no sujetas o prohibidas de gravar con el impuesto de industria y comercio; marque 'no' cuando el texto no las incluya como no sujetas y 'no_aplica' cuando el acuerdo no regule la materia o no mencione entidades deportivas.
     critica: null
     metodo: null
     estado: borrador
@@ -1270,7 +1432,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya expresamente a los sindicatos dentro de las actividades no sujetas o no gravadas con el impuesto de industria y comercio; marque 'no' cuando el texto no los contemple como actividad no sujeta y 'no_aplica' si el acuerdo no regula la materia o no menciona actividades no sujetas.
     critica: null
     metodo: null
     estado: borrador
@@ -1283,7 +1445,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal exima del impuesto de industria y comercio a las asociaciones de profesionales sin ánimo de lucro, siempre que no realicen actividades industriales, comerciales o de servicios distintas de su objeto; marque 'no' si el texto no contempla dicha exención o la excluye expresamente, y 'no_aplica' si el acuerdo no regula la materia.
     critica: null
     metodo: null
     estado: borrador
@@ -1296,7 +1458,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca expresamente que las asociaciones gremiales sin ánimo de lucro no son sujetas del impuesto de industria y comercio por las actividades propias de su objeto social; marque 'no' si el texto no las exonera o no las menciona como actividad no sujeta, y 'no_aplica' si el acuerdo no regula la materia o no contiene disposiciones sobre sujetos pasivos o actividades no gravadas.
     critica: null
     metodo: null
     estado: borrador
@@ -1309,7 +1471,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya expresamente a los partidos y movimientos políticos dentro de las actividades no sujetas o prohibidas de gravar con el impuesto de industria y comercio; marque 'no' cuando el texto no los mencione como actividad no sujeta y 'no_aplica' cuando el acuerdo no regule la materia de actividades no sujetas.
     critica: null
     metodo: null
     estado: borrador
@@ -1322,7 +1484,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca expresamente que los servicios prestados por hospitales adscritos o vinculados al Sistema Nacional de Salud no son sujetos del impuesto de industria y comercio; marque 'no' si el texto no contempla dicha exclusión o la limita a otros sujetos, y 'no_aplica' si el acuerdo no regula actividades no sujetas.
     critica: null
     metodo: null
     estado: borrador
@@ -1335,7 +1497,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca expresamente que la primera etapa de transformación realizada en predios rurales, tratándose de actividades de producción agropecuaria, no está sujeta al impuesto de industria y comercio; marque 'no' si no la excluye y 'no_aplica' si el texto no regula la materia.
     critica: null
     metodo: null
     estado: borrador
@@ -1348,7 +1510,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca que la explotación de canteras y minas diferentes a las de sal, esmeraldas y metales preciosos no está sujeta al impuesto de industria y comercio (por ejemplo, cuando las regalías o participaciones para el municipio sean iguales o superiores al impuesto); marque 'no' si el texto no contempla dicha exclusión o la condiciona de otra forma, y 'no_aplica' si el acuerdo no regula la materia.
     critica: null
     metodo: null
     estado: borrador
@@ -1361,7 +1523,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya expresamente la exportación de bienes y servicios (o la producción nacional de artículos destinados a la exportación) dentro del listado de actividades no sujetas o prohibidas para gravar con ICA; marque 'no' cuando el texto no contemple dicha exclusión entre las actividades no sujetas.
     critica: null
     metodo: null
     estado: borrador
@@ -1374,7 +1536,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca como actividad no sujeta al impuesto de industria y comercio el tránsito o cruce de mercancías por la jurisdicción, en aplicación de las prohibiciones de la Ley 26 de 1904; marque 'no' si el texto no contempla dicha exclusión y 'no_aplica' si el bloque no regula actividades no sujetas.
     critica: null
     metodo: null
     estado: borrador
@@ -1387,7 +1549,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca expresamente que las actividades de las propiedades horizontales (Ley 675 de 2001 y Decreto 1060 de 2019), en sus bienes o áreas comunes o las de uso residencial propias de su objeto social, no son sujetas o no se gravan con ICA; marque 'no' si el texto no contempla dicha exclusión o la limita a otros sujetos, y 'no_aplica' si el acuerdo no regula la materia.
     critica: null
     metodo: null
     estado: borrador
@@ -1400,7 +1562,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Determine si el acuerdo municipal establece expresamente que los ingresos de las IPS y EPS por concepto del POS (Plan Obligatorio de Salud) no están sujetos al impuesto de industria y comercio; si el texto los excluye o prohíbe gravarlos, marque 'si', si no los menciona o los considera gravados, marque 'no', y si el acuerdo no regula la materia, marque 'no_aplica'.
     critica: null
     metodo: null
     estado: borrador
@@ -1413,7 +1575,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca expresamente que los juegos de suerte y azar (incluidos los juegos localizados como bingos, video bingos, esferódromos y máquinas tragamonedas) están sujetos al impuesto de industria y comercio; marque 'no' cuando los excluya o prohíba gravarlos como actividad no sujeta, y 'no_aplica' si el texto no regula la materia.
     critica: null
     metodo: null
     estado: borrador
@@ -1426,7 +1588,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal incluya otras actividades no sujetas distintas de las enumeradas en los demás campos del bloque, o una cláusula residual que remita a ellas; marque 'no' si no hay otras.
     critica: null
     metodo: null
     estado: borrador
@@ -1436,7 +1598,7 @@ bloques:
     tipo: texto_libre
     unidad: null
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identifique en el texto del acuerdo municipal el listado o enunciado de las actividades, hechos o sujetos que la norma excluye expresamente del gravamen del impuesto de industria y comercio, y transcriba o describa la actividad no sujeta específica que corresponda al caso consultado, tal como aparece enunciada en el acuerdo.
     critica: null
     metodo: null
     estado: borrador
@@ -1447,9 +1609,21 @@ bloques:
     art: AE
     pag: AF
     cita: AG
-  palabras_clave: []
+  palabras_clave:
+  - contribuyentes
+  - realicen
+  - actividades
+  - sujetas
+  - estan
+  - obligados
+  - registrarse
+  - descritas
+  - estaran
+  - presentar
+  - relativo
+  - literal
   presencia_key: null
-  criterio_presencia: pendiente
+  criterio_presencia: Marque 'si' cuando el acuerdo municipal diga expresamente si quienes realizan actividades no sujetas están o no obligados a registrarse en el ICA o a presentar declaración; marque 'no' si el texto no regula esa obligación.
   campos:
   - key: actividades_no_sujetas.contribuyentes_que_realicen_actividades_no_sujetas_estan_obligados_a.registrarse_en_ica
     nombre: Registrarse en ICA
@@ -1460,7 +1634,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca que quienes realizan actividades no sujetas están obligados a registrarse en el ICA; marque 'no' cuando diga expresamente que no están obligados a registrarse.
     critica: null
     metodo: null
     estado: borrador
@@ -1473,7 +1647,7 @@ bloques:
     - si
     - 'no'
     - no_aplica
-    criterio: pendiente
+    criterio: Marque 'si' cuando el acuerdo municipal establezca que quienes realizan actividades no sujetas están obligados a presentar declaración del ICA; marque 'no' cuando diga expresamente que no están obligados a declarar.
     critica: null
     metodo: null
     estado: borrador
@@ -1485,9 +1659,21 @@ bloques:
     pag: H
     cita: I
     presencia: J
-  palabras_clave: []
+  palabras_clave:
+  - tarifas
+  - actividades
+  - economicas
+  - aplicada
+  - codigos
+  - cuatro
+  - internacional
+  - uniforme
+  - clasificacion
+  - informales
+  - ambulantes
+  - establecen
   presencia_key: tarifas.tarifas_actividades_economicas.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Marque 'si' cuando el acuerdo municipal contenga de forma expresa las tarifas del impuesto de industria y comercio aplicables a las actividades económicas (industriales, comerciales, de servicios, financieras o informales), ya sea mediante listados de códigos de actividad con sus respectivas tarifas por mil o mediante la descripción de los sectores y sus rangos tarifarios; en caso contrario, marque 'no' o 'no_aplica' según corresponda.
   campos:
   - key: tarifas.tarifas_actividades_economicas.agricultura_ganaderia_caza_silvicultura_y_pesca_minimo
     nombre: Agricultura, ganadería, caza, silvicultura y pesca · Mínimo
@@ -1495,7 +1681,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar en el acuerdo municipal la tarifa mínima (en por mil) aplicable a las actividades económicas de agricultura, ganadería, caza, silvicultura y pesca dentro del sector industrial o primario, y registrar ese valor numérico como el mínimo de la tarifa.
     critica: null
     metodo: null
     estado: borrador
@@ -1505,7 +1691,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a las actividades de agricultura, ganadería, caza, silvicultura y pesca dentro de la tabla de tarifas del acuerdo municipal, tomando el valor numérico expresado por mil (x1.000) que corresponda a dicha categoría o, en su defecto, el límite superior de la tarifa general para el sector industrial (siete por mil).
     critica: null
     metodo: null
     estado: borrador
@@ -1515,7 +1701,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa mínima aplicable a la actividad de explotación de minas y canteras dentro del bloque de tarifas de industria y comercio, tomando el valor numérico expresado en por mil (x1.000) que el acuerdo municipal asigne a dicha actividad extractiva.
     critica: null
     metodo: null
     estado: borrador
@@ -1525,7 +1711,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a la actividad de explotación de minas y canteras dentro del sector industrial o extractivo, tomando el valor numérico expresado por mil (x1.000) que la norma municipal asigne a dicha actividad o, en su defecto, el límite superior de la tabla de tarifas del sector correspondiente.
     critica: null
     metodo: null
     estado: borrador
@@ -1535,7 +1721,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa mínima aplicable a las industrias manufactureras dentro del rango establecido para el sector industrial (entre 2 y 7 por mil), tomando como referencia la tarifa más baja asignada a las actividades industriales listadas, como imprentas y editoriales (4x1.000) o fabricación de veladoras y parafinas (3x1.000).
     critica: null
     metodo: null
     estado: borrador
@@ -1545,7 +1731,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a las actividades del sector industrial (industrias manufactureras), tomando el límite superior del rango establecido para dicho sector (por ejemplo, entre 2 y 7 por mil) o la tarifa más alta asignada a las actividades industriales específicas dentro de la tabla de tarifas del acuerdo municipal.
     critica: null
     metodo: null
     estado: borrador
@@ -1555,7 +1741,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar en el acuerdo municipal la tarifa mínima (en por mil) aplicable a las actividades de suministro de electricidad, gas, vapor y aire acondicionado dentro del sector industrial o de servicios, tomando el valor numérico más bajo que la norma asigne a dicha actividad.
     critica: null
     metodo: null
     estado: borrador
@@ -1565,7 +1751,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar en el acuerdo municipal la tarifa máxima (en por mil) aplicable a las actividades de suministro de electricidad, gas, vapor y aire acondicionado dentro del sector industrial o de servicios, y registrar ese valor numérico como el máximo permitido para dicha actividad.
     critica: null
     metodo: null
     estado: borrador
@@ -1575,7 +1761,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar en el acuerdo municipal la tarifa mínima (en por mil) aplicable a las actividades de distribución de agua, evacuación y tratamiento de aguas residuales, gestión de desechos y actividades conexas, tomando el valor numérico que la norma fije como límite inferior para dicho código de actividad.
     critica: null
     metodo: null
     estado: borrador
@@ -1585,7 +1771,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a las actividades de distribución de agua, evacuación y tratamiento de aguas residuales, gestión de desechos y actividades conexas dentro del sector de servicios, tomando el valor más alto del rango tarifario (entre 2 y 10 por mil) que el acuerdo municipal asigne a dichas actividades.
     critica: null
     metodo: null
     estado: borrador
@@ -1595,7 +1781,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa mínima aplicable a las actividades de construcción según la clasificación del acuerdo municipal, tomando el menor valor expresado por mil (x1.000) entre las tarifas asignadas a construcción, oficinas de constructores y contratistas, o actividades industriales conexas.
     critica: null
     metodo: null
     estado: borrador
@@ -1605,7 +1791,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a las actividades de construcción (incluidas las oficinas de constructores y contratistas de la construcción) dentro del bloque de tarifas de industria y comercio, tomando el mayor valor expresado por mil que el acuerdo municipal asigne a dicha actividad.
     critica: null
     metodo: null
     estado: borrador
@@ -1615,7 +1801,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa mínima aplicable a las actividades de comercio al por mayor y al por menor y reparación de vehículos automotores y motocicletas, tomando el menor valor expresado por mil (x1.000) que el acuerdo municipal asigne a dichas actividades comerciales dentro del rango legal (2 a 10 por mil).
     critica: null
     metodo: null
     estado: borrador
@@ -1625,7 +1811,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a las actividades de comercio al por mayor y al por menor y reparación de vehículos automotores y motocicletas dentro del sector comercial, tomando el valor más alto expresado por mil (x1.000) entre las clasificaciones tarifarias de dicho sector, excluyendo las tarifas de otros sectores (industrial, servicios o financiero).
     critica: null
     metodo: null
     estado: borrador
@@ -1635,7 +1821,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Se debe identificar la tarifa mínima aplicable a las actividades de transporte y almacenamiento dentro del sector servicios, tomando el menor valor expresado en por mil (x1.000) que el acuerdo municipal asigne a dichas actividades, como en el caso de servicios relacionados con el transporte de pasajeros y carga.
     critica: null
     metodo: null
     estado: borrador
@@ -1645,7 +1831,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a las actividades de transporte y almacenamiento dentro del sector servicios, tomando el valor más alto expresado por mil (x1.000) que el acuerdo municipal asigne a los servicios relacionados con el transporte de pasajeros y carga u otras actividades de transporte y almacenamiento.
     critica: null
     metodo: null
     estado: borrador
@@ -1655,7 +1841,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa mínima aplicable a las actividades de alojamiento y servicios de comida (hoteles, hospedajes, restaurantes, cafeterías y similares) dentro del rango del sector servicios, tomando el límite inferior entre dos y diez por mil (2-10x1.000) según la clasificación de la actividad en el acuerdo municipal.
     critica: null
     metodo: null
     estado: borrador
@@ -1665,7 +1851,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Se debe identificar la tarifa máxima aplicable a las actividades de alojamiento y servicios de comida (hoteles, hospedajes, restaurantes, cafeterías, bares y similares) dentro del sector servicios, tomando el mayor valor expresado por mil que el acuerdo municipal asigne a dichas actividades, el cual no puede exceder el límite legal de diez por mil (10x1.000).
     critica: null
     metodo: null
     estado: borrador
@@ -1675,7 +1861,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa mínima aplicable a las actividades económicas del sector de información y comunicaciones (servicios), expresada como factor por mil (x1.000), tomando el valor numérico más bajo que el acuerdo municipal asigne a dichas actividades dentro del rango tarifario de servicios.
     critica: null
     metodo: null
     estado: borrador
@@ -1685,7 +1871,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a las actividades económicas del sector de información y comunicaciones dentro de la tabla de tarifas del acuerdo municipal, tomando el valor numérico expresado por mil (x1.000) que corresponda a la actividad de mayor tarifa de ese sector.
     critica: null
     metodo: null
     estado: borrador
@@ -1695,7 +1881,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa mínima aplicable a las actividades financieras y de seguros dentro del rango establecido para el sector financiero y asegurador (por ejemplo, cinco por mil), tomando como referencia el límite inferior de las tarifas señaladas para dicho sector en el acuerdo municipal.
     critica: null
     metodo: null
     estado: borrador
@@ -1705,7 +1891,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a las actividades financieras y de seguros dentro del sistema financiero y asegurador, tomando el mayor valor expresado por mil (x1.000) que el acuerdo municipal asigne a dicho sector.
     critica: null
     metodo: null
     estado: borrador
@@ -1715,7 +1901,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa mínima aplicable a las actividades inmobiliarias (compraventa y administración de bienes inmuebles) dentro del sector servicios, tomando el menor valor expresado en por mil (x1.000) que el acuerdo municipal asigne a dicha actividad.
     critica: null
     metodo: null
     estado: borrador
@@ -1725,7 +1911,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a las actividades inmobiliarias (compraventa y administración de bienes inmuebles) dentro del sector servicios, tomando el mayor valor expresado por mil en la escala tarifaria del acuerdo municipal.
     critica: null
     metodo: null
     estado: borrador
@@ -1735,7 +1921,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa mínima aplicable a las actividades profesionales, científicas y técnicas dentro del sector servicios, tomando el menor valor expresado por mil (x1.000) entre las tarifas asignadas a consultoría profesional, interventorías, oficinas de profesionales y afines; si el acuerdo no discrimina esta categoría, se toma el límite inferior del rango tarifario del sector servicios (2x1.000).
     critica: null
     metodo: null
     estado: borrador
@@ -1745,7 +1931,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a las actividades profesionales, científicas y técnicas dentro del sector servicios, tomando el mayor valor expresado por mil (x1.000) entre las tarifas asignadas a consultoría profesional, interventorías, oficinas de profesionales y demás servicios conexos, y registrarla como número decimal (por ejemplo, 10 para diez por mil).
     critica: null
     metodo: null
     estado: borrador
@@ -1755,7 +1941,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa mínima aplicable a las actividades de servicios administrativos y de apoyo dentro del rango establecido para el sector servicios (entre 2 y 10 por mil), tomando el límite inferior de dicho rango cuando la actividad no tenga una tarifa específica asignada.
     critica: null
     metodo: null
     estado: borrador
@@ -1765,7 +1951,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar en el acuerdo municipal la tarifa máxima aplicable a las actividades de servicios administrativos y de apoyo dentro del sector servicios, tomando el porcentaje por mil más alto que la norma asigne a dichas actividades o, en su defecto, la tarifa máxima general del sector servicios (10x1.000).
     critica: null
     metodo: null
     estado: borrador
@@ -1775,7 +1961,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa mínima aplicable a las actividades de administración pública y defensa; planes de seguridad social de afiliación obligatoria dentro de la tabla de tarifas del impuesto de industria y comercio, tomando el valor porcentual o por mil más bajo asignado a dicha actividad en el acuerdo municipal.
     critica: null
     metodo: null
     estado: borrador
@@ -1785,7 +1971,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar en el acuerdo municipal la tarifa máxima (por mil) aplicable a las actividades de administración pública y defensa; planes de seguridad social de afiliación obligatoria dentro de la tabla de tarifas del impuesto de industria y comercio, y registrar dicho valor numérico como máximo para esa categoría.
     critica: null
     metodo: null
     estado: borrador
@@ -1795,7 +1981,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa mínima aplicable a las actividades económicas del sector educación (educación privada, formal y no formal) dentro del bloque de tarifas de industria y comercio, tomando el valor numérico expresado por mil (x1.000) que corresponda a dicha actividad según el acuerdo municipal.
     critica: null
     metodo: null
     estado: borrador
@@ -1805,7 +1991,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a las actividades económicas del sector servicios, tomando el límite superior del rango tarifario (hasta 10x1.000) o la tarifa específica más alta asignada a dichas actividades, como la de servicios de educación privada formal y no formal (10x1.000).
     critica: null
     metodo: null
     estado: borrador
@@ -1815,7 +2001,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa mínima aplicable a las actividades de atención de la salud humana y de asistencia social dentro del sector servicios, tomando el menor valor expresado en por mil (x1.000) que el acuerdo municipal asigne a dichas actividades, como clínicas, consultorios o establecimientos para la salud.
     critica: null
     metodo: null
     estado: borrador
@@ -1825,7 +2011,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a las actividades de atención de la salud humana y de asistencia social dentro del sector servicios, tomando el mayor valor por mil (x1.000) que el acuerdo municipal asigne expresamente a clínicas, consultorios, establecimientos para la salud y actividades afines de asistencia social.
     critica: null
     metodo: null
     estado: borrador
@@ -1835,7 +2021,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa mínima aplicable a las actividades artísticas, de entretenimiento y recreación dentro del sector de servicios, tomando el límite inferior del rango tarifario (2x1.000) o la tarifa específica asignada a dicha actividad en el acuerdo municipal.
     critica: null
     metodo: null
     estado: borrador
@@ -1845,7 +2031,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a las actividades artísticas, de entretenimiento y recreación dentro del sector de servicios, tomando el mayor valor expresado por mil (x1.000) que el acuerdo municipal asigne a dichas actividades o, en su defecto, el límite superior del rango tarifario general para el sector servicios.
     critica: null
     metodo: null
     estado: borrador
@@ -1855,7 +2041,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identifique la tarifa mínima aplicable a las actividades de servicios no clasificadas expresamente, tomando el límite inferior del rango tarifario del sector servicios (2x1.000) o, si el acuerdo asigna una tarifa específica a 'otros servicios no clasificados', el valor numérico de esa tarifa expresado por mil.
     critica: null
     metodo: null
     estado: borrador
@@ -1865,7 +2051,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Identificar la tarifa máxima aplicable a las actividades de servicios, tomando el límite superior del rango establecido para el sector servicios (entre 2 y 10 por mil) y, en particular, la tarifa asignada a 'Otros servicios no clasificados' cuando corresponda a la categoría de otras actividades de servicios.
     critica: null
     metodo: null
     estado: borrador
@@ -1877,9 +2063,11 @@ bloques:
     pag: AX
     cita: AY
     presencia: AZ
-  palabras_clave: []
+  palabras_clave:
+  - tarifas
+  - commerce
   presencia_key: tarifas.tarifas_de_ica_e_commerce.presencia_ausencia
-  criterio_presencia: pendiente
+  criterio_presencia: Marque 'si' cuando el acuerdo municipal mencione o regule explícitamente tarifas de ICA aplicables a actividades de comercio electrónico o economía digital; 'no' si el texto no contempla dichas tarifas, y 'no_aplica' si el acuerdo no aborda la materia de ICA.
   campos:
   - key: tarifas.tarifas_de_ica_e_commerce.servicio_de_procesamiento
     nombre: Servicio de Procesamiento
@@ -1887,7 +2075,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Tarifa del ICA en por mil que el acuerdo municipal fije expresamente para la actividad de comercio electrónico 'servicio de procesamiento'; deje vacío si el acuerdo no establece una tarifa para ella.
     critica: null
     metodo: null
     estado: borrador
@@ -1897,7 +2085,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Tarifa del ICA en por mil que el acuerdo municipal fije expresamente para la actividad de comercio electrónico 'almacenamiento masivo de datos'; deje vacío si el acuerdo no establece una tarifa para ella.
     critica: null
     metodo: null
     estado: borrador
@@ -1907,7 +2095,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Tarifa del ICA en por mil que el acuerdo municipal fije expresamente para la actividad de comercio electrónico 'comercio de datos'; deje vacío si el acuerdo no establece una tarifa para ella.
     critica: null
     metodo: null
     estado: borrador
@@ -1917,7 +2105,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Tarifa del ICA en por mil que el acuerdo municipal fije expresamente para la actividad de comercio electrónico 'plataformas digitales de economía colaborativa'; deje vacío si el acuerdo no establece una tarifa para ella.
     critica: null
     metodo: null
     estado: borrador
@@ -1927,7 +2115,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Tarifa del ICA en por mil que el acuerdo municipal fije expresamente para la actividad de comercio electrónico 'descarga o consumo de contenidos digitales'; deje vacío si el acuerdo no establece una tarifa para ella.
     critica: null
     metodo: null
     estado: borrador
@@ -1937,7 +2125,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Tarifa del ICA en por mil que el acuerdo municipal fije expresamente para la actividad de comercio electrónico 'servicios de mensajería  de uso de plataformas'; deje vacío si el acuerdo no establece una tarifa para ella.
     critica: null
     metodo: null
     estado: borrador
@@ -1947,7 +2135,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Tarifa del ICA en por mil que el acuerdo municipal fije expresamente para la actividad de comercio electrónico 'venta de bienes y servicios  a través de plataformas de e-commerce'; deje vacío si el acuerdo no establece una tarifa para ella.
     critica: null
     metodo: null
     estado: borrador
@@ -1957,7 +2145,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Tarifa del ICA en por mil que el acuerdo municipal fije expresamente para la actividad de comercio electrónico 'publicidad online.'; deje vacío si el acuerdo no establece una tarifa para ella.
     critica: null
     metodo: null
     estado: borrador
@@ -1967,7 +2155,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Tarifa del ICA en por mil que el acuerdo municipal fije expresamente para la actividad de comercio electrónico 'servicios de transmisión libre'; deje vacío si el acuerdo no establece una tarifa para ella.
     critica: null
     metodo: null
     estado: borrador
@@ -1977,7 +2165,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Tarifa del ICA en por mil que el acuerdo municipal fije expresamente para la actividad de comercio electrónico 'las suscripciones digitales a medios audiovisuales'; deje vacío si el acuerdo no establece una tarifa para ella.
     critica: null
     metodo: null
     estado: borrador
@@ -1987,7 +2175,7 @@ bloques:
     tipo: numero
     unidad: por_mil
     valores_permitidos: null
-    criterio: pendiente
+    criterio: Tarifa en por mil que el acuerdo municipal fije para las actividades de comercio electrónico cuando no precisa los hechos sujetos al ICA; deje vacío si no se establece una tarifa para ese caso.
     critica: null
     metodo: null
     estado: borrador
