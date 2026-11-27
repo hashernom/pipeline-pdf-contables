@@ -10,6 +10,8 @@ bloques:
     cita: I
     presencia: J
   palabras_clave: []
+  presencia_key: elementos_del_tributo.sujeto_activo.presencia_ausencia
+  criterio_presencia: pendiente
   campos: []
 - key: elementos_del_tributo.sujeto_pasivos
   nombre: Sujeto Pasivos
@@ -20,6 +22,8 @@ bloques:
     cita: N
     presencia: O
   palabras_clave: []
+  presencia_key: elementos_del_tributo.sujeto_pasivos.presencia_ausencia
+  criterio_presencia: pendiente
   campos:
   - key: elementos_del_tributo.sujeto_pasivos.persona_natural
     nombre: Persona Natural
@@ -300,6 +304,8 @@ bloques:
     cita: AN
     presencia: AO
   palabras_clave: []
+  presencia_key: elementos_del_tributo.hecho_generador.presencia_ausencia
+  criterio_presencia: pendiente
   campos:
   - key: elementos_del_tributo.hecho_generador.realizacion_directa
     nombre: Realización Directa
@@ -424,6 +430,8 @@ bloques:
     cita: BA
     presencia: BB
   palabras_clave: []
+  presencia_key: elementos_del_tributo.hecho_imponible.presencia_ausencia
+  criterio_presencia: pendiente
   campos: []
 - key: elementos_del_tributo.periodo_gravable
   nombre: Periodo Gravable
@@ -434,6 +442,8 @@ bloques:
     cita: BF
     presencia: BG
   palabras_clave: []
+  presencia_key: elementos_del_tributo.periodo_gravable.presencia_ausencia
+  criterio_presencia: pendiente
   campos:
   - key: elementos_del_tributo.periodo_gravable.anual
     nombre: Anual
@@ -535,6 +545,8 @@ bloques:
     cita: BR
     presencia: BS
   palabras_clave: []
+  presencia_key: elementos_del_tributo.causacion_del_ingreso_para_el_ica.presencia_ausencia
+  criterio_presencia: pendiente
   campos:
   - key: elementos_del_tributo.causacion_del_ingreso_para_el_ica.fecha_de_generacion_del_primer_ingreso_gravable
     nombre: "Fecha de Generación del \nPrimer Ingreso Gravable"
@@ -607,6 +619,8 @@ bloques:
     cita: CB
     presencia: CC
   palabras_clave: []
+  presencia_key: elementos_del_tributo.causacion_de_los_servicios_publicos_domiciliarios_para_el_ica.presencia_ausencia
+  criterio_presencia: pendiente
   campos:
   - key: elementos_del_tributo.causacion_de_los_servicios_publicos_domiciliarios_para_el_ica.generacion_de_energia_ley_56_de_1981
     nombre: Generación de Energía Ley 56 de 1981
@@ -692,6 +706,8 @@ bloques:
     cita: CM
     presencia: CN
   palabras_clave: []
+  presencia_key: elementos_del_tributo.base_gravable.presencia_ausencia
+  criterio_presencia: pendiente
   campos:
   - key: elementos_del_tributo.base_gravable.ley_14_de_1983
     nombre: Ley 14 de 1983
@@ -751,6 +767,8 @@ bloques:
     cita: CV
     presencia: CW
   palabras_clave: []
+  presencia_key: elementos_del_tributo.base_gravable_especial.presencia_ausencia
+  criterio_presencia: pendiente
   campos:
   - key: elementos_del_tributo.base_gravable_especial.intermediacion_agencias_de_publicidad_administradoras_y_corredoras_de_bienes_inmuebles_y_corredores_de_seguros
     nombre: 'Intermediación: Agencias de Publicidad, Administradoras y Corredoras de Bienes Inmuebles y Corredores de Seguros'
@@ -992,6 +1010,8 @@ bloques:
     cita: DS
     presencia: DT
   palabras_clave: []
+  presencia_key: elementos_del_tributo.base_presunta_minima.presencia_ausencia
+  criterio_presencia: pendiente
   campos:
   - key: elementos_del_tributo.base_presunta_minima.valor_expresado_uvt
     nombre: Valor expresado UVT
@@ -1091,6 +1111,8 @@ bloques:
     cita: EF
     presencia: EG
   palabras_clave: []
+  presencia_key: elementos_del_tributo.evidencia_de_la_disminucion_de_la_base_gravable.presencia_ausencia
+  criterio_presencia: pendiente
   campos: []
 - key: elementos_del_tributo.actividades_ocasionales
   nombre: Actividades Ocasionales
@@ -1101,6 +1123,8 @@ bloques:
     cita: EK
     presencia: EL
   palabras_clave: []
+  presencia_key: elementos_del_tributo.actividades_ocasionales.presencia_ausencia
+  criterio_presencia: pendiente
   campos: []
 - key: elementos_del_tributo.anticipo
   nombre: Anticipo
@@ -1111,6 +1135,8 @@ bloques:
     cita: EP
     presencia: EQ
   palabras_clave: []
+  presencia_key: elementos_del_tributo.anticipo.presencia_ausencia
+  criterio_presencia: pendiente
   campos:
   - key: elementos_del_tributo.anticipo.tarifa_porcentual
     nombre: Tarifa Porcentual
@@ -1167,6 +1193,8 @@ bloques:
     cita: I
     presencia: J
   palabras_clave: []
+  presencia_key: actividades_no_sujetas.actividades_no_sujetas.presencia_ausencia
+  criterio_presencia: pendiente
   campos:
   - key: actividades_no_sujetas.actividades_no_sujetas.produccion_primaria_agricola_ganadera_y_avicola_sin_proceso_industrial
     nombre: Producción Primaria Agrícola, Ganadera y Avícola; sin Proceso Industrial
@@ -1420,6 +1448,8 @@ bloques:
     pag: AF
     cita: AG
   palabras_clave: []
+  presencia_key: null
+  criterio_presencia: pendiente
   campos:
   - key: actividades_no_sujetas.contribuyentes_que_realicen_actividades_no_sujetas_estan_obligados_a.registrarse_en_ica
     nombre: Registrarse en ICA
@@ -1456,12 +1486,14 @@ bloques:
     cita: I
     presencia: J
   palabras_clave: []
+  presencia_key: tarifas.tarifas_actividades_economicas.presencia_ausencia
+  criterio_presencia: pendiente
   campos:
   - key: tarifas.tarifas_actividades_economicas.agricultura_ganaderia_caza_silvicultura_y_pesca_minimo
     nombre: Agricultura, ganadería, caza, silvicultura y pesca · Mínimo
     columna: K
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1471,7 +1503,7 @@ bloques:
     nombre: Agricultura, ganadería, caza, silvicultura y pesca · Máximo
     columna: L
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1481,7 +1513,7 @@ bloques:
     nombre: Explotación de minas y canteras · Mínimo
     columna: M
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1491,7 +1523,7 @@ bloques:
     nombre: Explotación de minas y canteras · Máximo
     columna: N
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1501,7 +1533,7 @@ bloques:
     nombre: Industrias manufactureras · Mínimo
     columna: O
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1511,7 +1543,7 @@ bloques:
     nombre: Industrias manufactureras · Máximo
     columna: P
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1521,7 +1553,7 @@ bloques:
     nombre: Suministro de electricidad, gas, vapor y aire acondicionado · Mínimo
     columna: Q
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1531,7 +1563,7 @@ bloques:
     nombre: Suministro de electricidad, gas, vapor y aire acondicionado · Máximo
     columna: R
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1541,7 +1573,7 @@ bloques:
     nombre: Distribución de agua; evacuación y tratamiento de aguas residuales, gestión de desechos y actividades · Mínimo
     columna: S
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1551,7 +1583,7 @@ bloques:
     nombre: Distribución de agua; evacuación y tratamiento de aguas residuales, gestión de desechos y actividades · Máximo
     columna: T
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1561,7 +1593,7 @@ bloques:
     nombre: Construcción · Mínimo
     columna: U
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1571,7 +1603,7 @@ bloques:
     nombre: Construcción · Máximo
     columna: V
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1581,7 +1613,7 @@ bloques:
     nombre: Comercio al por mayor y al por menor; reparación de vehículos automotores y motocicletas · Mínimo
     columna: W
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1591,7 +1623,7 @@ bloques:
     nombre: Comercio al por mayor y al por menor; reparación de vehículos automotores y motocicletas · Máximo
     columna: X
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1601,7 +1633,7 @@ bloques:
     nombre: Transporte y almacenamiento · Mínimo
     columna: Y
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1611,7 +1643,7 @@ bloques:
     nombre: Transporte y almacenamiento · Máximo
     columna: Z
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1621,7 +1653,7 @@ bloques:
     nombre: Alojamiento y servicios de comida · Mínimo
     columna: AA
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1631,7 +1663,7 @@ bloques:
     nombre: Alojamiento y servicios de comida · Máximo
     columna: AB
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1641,7 +1673,7 @@ bloques:
     nombre: Información y comunicaciones · Mínimo
     columna: AC
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1651,7 +1683,7 @@ bloques:
     nombre: Información y comunicaciones · Máximo
     columna: AD
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1661,7 +1693,7 @@ bloques:
     nombre: Actividades financieras y de seguros · Mínimo
     columna: AE
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1671,7 +1703,7 @@ bloques:
     nombre: Actividades financieras y de seguros · Máximo
     columna: AF
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1681,7 +1713,7 @@ bloques:
     nombre: Actividades inmobiliarias · Mínimo
     columna: AG
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1691,7 +1723,7 @@ bloques:
     nombre: Actividades inmobiliarias · Máximo
     columna: AH
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1701,7 +1733,7 @@ bloques:
     nombre: Actividades profesionales, científicas y técnicas · Mínimo
     columna: AI
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1711,7 +1743,7 @@ bloques:
     nombre: Actividades profesionales, científicas y técnicas · Máximo
     columna: AJ
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1721,7 +1753,7 @@ bloques:
     nombre: Actividades de servicios administrativos y de apoyo · Mínimo
     columna: AK
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1731,7 +1763,7 @@ bloques:
     nombre: Actividades de servicios administrativos y de apoyo · Máximo
     columna: AL
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1741,7 +1773,7 @@ bloques:
     nombre: Administración pública y defensa; planes de seguridad social de afiliación obligatoria · Mínimo
     columna: AM
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1751,7 +1783,7 @@ bloques:
     nombre: Administración pública y defensa; planes de seguridad social de afiliación obligatoria · Máximo
     columna: AN
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1761,7 +1793,7 @@ bloques:
     nombre: Educación · Mínimo
     columna: AO
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1771,7 +1803,7 @@ bloques:
     nombre: Educación · Máximo
     columna: AP
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1781,7 +1813,7 @@ bloques:
     nombre: Actividades de atención de la salud humana y de asistencia social · Mínimo
     columna: AQ
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1791,7 +1823,7 @@ bloques:
     nombre: Actividades de atención de la salud humana y de asistencia social · Máximo
     columna: AR
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1801,7 +1833,7 @@ bloques:
     nombre: Actividades artísticas, de entretenimiento y recreación · Mínimo
     columna: AS
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1811,7 +1843,7 @@ bloques:
     nombre: Actividades artísticas, de entretenimiento y recreación · Máximo
     columna: AT
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1821,7 +1853,7 @@ bloques:
     nombre: Otras actividades de servicios · Mínimo
     columna: AU
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1831,7 +1863,7 @@ bloques:
     nombre: Otras actividades de servicios · Máximo
     columna: AV
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1846,12 +1878,14 @@ bloques:
     cita: AY
     presencia: AZ
   palabras_clave: []
+  presencia_key: tarifas.tarifas_de_ica_e_commerce.presencia_ausencia
+  criterio_presencia: pendiente
   campos:
   - key: tarifas.tarifas_de_ica_e_commerce.servicio_de_procesamiento
     nombre: Servicio de Procesamiento
     columna: BA
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1861,7 +1895,7 @@ bloques:
     nombre: Almacenamiento Masivo de Datos
     columna: BB
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1871,7 +1905,7 @@ bloques:
     nombre: Comercio de Datos
     columna: BC
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1881,7 +1915,7 @@ bloques:
     nombre: Plataformas Digitales de Economía Colaborativa
     columna: BD
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1891,7 +1925,7 @@ bloques:
     nombre: Descarga o Consumo de Contenidos Digitales
     columna: BE
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1901,7 +1935,7 @@ bloques:
     nombre: Servicios de Mensajería  de Uso de Plataformas
     columna: BF
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1911,7 +1945,7 @@ bloques:
     nombre: Venta de Bienes y Servicios  a Través de Plataformas de e-Commerce
     columna: BG
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1921,7 +1955,7 @@ bloques:
     nombre: Publicidad online.
     columna: BH
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1931,7 +1965,7 @@ bloques:
     nombre: Servicios de Transmisión Libre
     columna: BI
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1941,7 +1975,7 @@ bloques:
     nombre: Las Suscripciones Digitales a Medios Audiovisuales
     columna: BJ
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null
@@ -1951,7 +1985,7 @@ bloques:
     nombre: No precisa los Hechos Sujetos a ICA
     columna: BK
     tipo: numero
-    unidad: pendiente
+    unidad: por_mil
     valores_permitidos: null
     criterio: pendiente
     critica: null

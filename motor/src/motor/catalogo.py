@@ -1,5 +1,6 @@
 """Catálogo borrador de variables: bloques y campos de la matriz con su tipo inferido."""
 
+import json
 from collections import defaultdict
 from collections.abc import Sequence
 from pathlib import Path
@@ -8,7 +9,7 @@ from typing import Literal
 import yaml
 from pydantic import BaseModel
 
-from motor import config
+from motor import config, llm, localizar, muestras
 from motor.matriz import celdas, estructura
 
 SI_NO = {"si", "no", "no_aplica"}
@@ -36,6 +37,8 @@ class Bloque(BaseModel):
     hoja: str
     columnas: dict[Literal["art", "pag", "cita", "presencia"], str]
     palabras_clave: list[str] = []
+    presencia_key: str | None = None
+    criterio_presencia: str = "pendiente"
     campos: list[Campo]
 
 
@@ -85,6 +88,8 @@ def generar(wb, hojas: Sequence[str]) -> Catalogo:
             b = bloques[col.bloque_key]
             if col.rol in ROLES_BLOQUE:
                 b.columnas[col.rol] = col.letra
+                if col.rol == "presencia":
+                    b.presencia_key = col.campo_key
                 continue
             tipo = inferir_tipo(valores.get(col.campo_key, []))
             b.campos.append(
@@ -93,7 +98,7 @@ def generar(wb, hojas: Sequence[str]) -> Catalogo:
                     nombre=col.campo,
                     columna=col.letra,
                     tipo=tipo,
-                    unidad="pendiente" if tipo == "numero" and hoja == HOJA_TARIFAS else None,
+                    unidad="por_mil" if tipo == "numero" and hoja == HOJA_TARIFAS else None,
                     valores_permitidos=sorted(SI_NO, key=["si", "no", "no_aplica"].index)
                     if tipo == "si_no"
                     else None,
@@ -102,6 +107,91 @@ def generar(wb, hojas: Sequence[str]) -> Catalogo:
     return Catalogo(
         version="borrador-1", fuente=config.MATRIZ.name, bloques=list(bloques.values())
     )
+
+
+def _vacio(v) -> bool:
+    return v is None or v == [] or v == "pendiente"
+
+
+def fusionar(nuevo: Catalogo, previo: Catalogo) -> Catalogo:
+    """Conserva del previo lo editado a mano (por `key`); lo demás sale del nuevo."""
+    pb = {b.key: b for b in previo.bloques}
+    pc = {c.key: c for b in previo.bloques for c in b.campos}
+    res = nuevo.model_copy(deep=True)
+    for b in res.bloques:
+        p = pb.get(b.key)
+        if p:
+            if not _vacio(p.palabras_clave):
+                b.palabras_clave = list(p.palabras_clave)
+            if not _vacio(p.criterio_presencia):
+                b.criterio_presencia = p.criterio_presencia
+        for c in b.campos:
+            q = pc.get(c.key)
+            if not q:
+                continue
+            for attr in ("criterio", "unidad", "critica", "metodo"):
+                if not _vacio(getattr(q, attr)):
+                    setattr(c, attr, getattr(q, attr))
+    return res
+
+
+N_EJEMPLOS_CRITERIO = 5
+
+
+def _prompt_criterio(bloque: Bloque, nombre: str, tipo: str, permitidos, key: str,
+                     ejs: list[muestras.Ejemplo]) -> list[dict]:
+    lineas = []
+    for e in ejs:
+        if key in e.valores:
+            lineas.append(f"- cita: {e.cita!r} -> valor: {e.valores[key]!r}")
+    ejemplos = "\n".join(lineas) or "(sin ejemplos)"
+    usuario = (
+        f"Bloque: {bloque.nombre}\nCampo: {nombre}\nTipo: {tipo}\n"
+        f"Valores permitidos: {permitidos if permitidos else 'libre'}\n"
+        f"Ejemplos del set de oro:\n{ejemplos}\n\n"
+        'Redacta en español de Colombia, en 1 o 2 frases, el criterio para decidir el valor de '
+        'este campo a partir del texto de un acuerdo municipal. Responde en JSON: '
+        '{"criterio": "<texto>"}'
+    )
+    return [
+        {"role": "system", "content": "Eres analista de normativa tributaria municipal (ICA). "
+                                      "Responde solo con un objeto JSON."},
+        {"role": "user", "content": usuario},
+    ]
+
+
+def _criterio(cliente: llm.Cliente, mensajes: list[dict]) -> str | None:
+    try:
+        d = json.loads(cliente.completar(mensajes, max_tokens=500).texto)
+        c = d["criterio"]
+    except (ValueError, KeyError, TypeError):
+        return None
+    return c.strip() if isinstance(c, str) and c.strip() else None
+
+
+def enriquecer(cat: Catalogo, refs, part, cliente: llm.Cliente) -> Catalogo:
+    """Palabras clave por bloque y criterio de cada campo `pendiente` (una llamada por campo)."""
+    res = cat.model_copy(deep=True)
+    citas = {b.key: muestras.citas_referencia(refs, part, b.key) for b in res.bloques}
+    for b in res.bloques:
+        if not b.palabras_clave:
+            otros = [c for k, v in citas.items() if k != b.key for c in v]
+            b.palabras_clave = localizar.palabras_clave(b.nombre, citas[b.key], otros)
+        ejs = muestras.ejemplos(refs, part, b.key, n=N_EJEMPLOS_CRITERIO)
+        if b.presencia_key and b.criterio_presencia == "pendiente":
+            c = _criterio(cliente, _prompt_criterio(
+                b, f"Presencia de {b.nombre}", "si_no", ["si", "no", "no_aplica"],
+                b.presencia_key, ejs))
+            if c:
+                b.criterio_presencia = c
+        for campo in b.campos:
+            if campo.criterio != "pendiente":
+                continue
+            c = _criterio(cliente, _prompt_criterio(
+                b, campo.nombre, campo.tipo, campo.valores_permitidos, campo.key, ejs))
+            if c:
+                campo.criterio = c
+    return res
 
 
 def guardar_yaml(cat: Catalogo, path: Path) -> Path:
