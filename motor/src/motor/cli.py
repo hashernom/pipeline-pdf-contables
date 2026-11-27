@@ -13,6 +13,7 @@ SUBCOMANDOS = {
     "matriz": "Procesa la matriz de investigación.",
     "identidad": "Resuelve la identidad de municipios y departamentos.",
     "catalogo": "Valida el catálogo de variables.",
+    "extraer": "Extrae los bloques de la matriz con el modelo.",
     "verificar": "Verifica citas y valores contra la fuente.",
     "todo": "Ejecuta el pipeline completo.",
 }
@@ -66,6 +67,33 @@ def _catalogo(enriquecer: bool = False) -> None:
     catalogo.exportar_excel(cat, config.INFORMES / "catalogo-borrador.xlsx")
 
 
+def _extraer(grupo: str, estrategia: str, limite: int | None, si: bool) -> int:
+    import sys
+
+    from motor import catalogo, corrida, llm, muestras
+
+    ruta_part = config.EXTRACCION / "particion.csv"
+    if not ruta_part.exists():
+        muestras.escribir_particion(muestras.particion(config.ORO / "set_de_oro.csv"), ruta_part)
+    part = muestras.leer_particion(ruta_part)
+    shas = corrida.documentos_objetivo(grupo, part)
+    if limite is not None:
+        shas = shas[:limite]
+    estimado = corrida.estimar_costo(shas, catalogo.cargar_yaml(config.CATALOGO), estrategia)
+    print(f"Documentos: {len(shas)}. Costo estimado: {estimado:.2f} USD.")
+    if estimado > config.TOPE_USD_CORRIDA:
+        print(f"El costo estimado ({estimado:.2f} USD) supera el tope de "
+              f"{config.TOPE_USD_CORRIDA:.2f} USD por corrida. No se ejecutó nada.",
+              file=sys.stderr)
+        return 2
+    if not si and input("¿Continuar? [s/N] ").strip().lower() not in ("s", "si", "sí"):
+        print("Corrida cancelada.")
+        return 1
+    corrida.correr(grupo, estrategia, limite, llm.Cliente(config.EXTRACCION / "cache"),
+                   config.EXTRACCION)
+    return 0
+
+
 def _verificar() -> None:
     from motor import informe, oro
 
@@ -91,10 +119,17 @@ def main(argv: list[str] | None = None) -> int:
         if nombre == "catalogo":
             p.add_argument("--enriquecer", action="store_true",
                            help="Además genera palabras clave y criterios con el modelo.")
+        if nombre == "extraer":
+            p.add_argument("--grupo", choices=["ajuste", "prueba", "todos"], required=True)
+            p.add_argument("--estrategia", choices=["localizada", "completa"], required=True)
+            p.add_argument("--limite", type=int, default=None, help="Máximo de documentos.")
+            p.add_argument("--si", action="store_true", help="No pedir confirmación.")
     args = parser.parse_args(argv)
     if args.comando == "todo":
         for paso in PASOS.values():
             paso()
+    elif args.comando == "extraer":
+        return _extraer(args.grupo, args.estrategia, args.limite, args.si)
     elif args.comando == "catalogo":
         _catalogo(enriquecer=args.enriquecer)
     else:

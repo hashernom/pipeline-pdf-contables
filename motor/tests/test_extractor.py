@@ -175,3 +175,10 @@ def test_reintento_sin_pagina_dice_indicada(tmp_path):
     c = cli(tmp_path, ok_json(pagina=None, cita="texto totalmente ajeno al documento entregado aqui"))
     extraer_bloque(bloque_sp, P, c, [], [])
     assert "en la página indicada." in c.llamadas[1]["messages"][-1]["content"]
+
+
+def test_uso_real_excluye_respuestas_de_cache(tmp_path):
+    c = cli(tmp_path, ok_json())
+    e1 = extraer_bloque(bloque_sp, P, c, [], [])
+    e2 = extraer_bloque(bloque_sp, P, c, [], [])
+    assert e1.uso_real.salida == 5 and e2.uso.salida == 5 and e2.uso_real.salida == 0

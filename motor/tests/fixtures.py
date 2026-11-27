@@ -1,8 +1,14 @@
 """Constructores de matrices sintéticas con openpyxl para las pruebas."""
 
+import csv
+import hashlib
 from pathlib import Path
 
 import openpyxl
+import pymupdf
+import pytest
+
+from motor import config, corpus
 
 ID_COLS = ["Código Dane", "Departamento", "Municipio", "Acuerdo", "Año de actualización"]
 
@@ -68,3 +74,55 @@ def matriz_con_filas(path: Path, limpieza: bool = True) -> Path:
             ws.cell(12 + k, 8, "\xa0")
     wb.save(path)
     return path
+
+
+CITA = "Son sujetos pasivos del impuesto de industria y comercio las personas naturales y juridicas"
+INVENTADA = "El municipio exonera de por vida a todas las plataformas digitales del pago anual"
+
+
+def leer(path):
+    with open(path, newline="", encoding="utf-8-sig") as fh:
+        return list(csv.DictReader(fh))
+
+
+@pytest.fixture
+def entorno_corpus(tmp_path, monkeypatch):
+    pdf = tmp_path / "corpus" / "doc.pdf"
+    pdf.parent.mkdir()
+    doc = pymupdf.open()
+    doc.new_page().insert_text((72, 72), "Portada del acuerdo")
+    doc.new_page().insert_text((72, 72), "ARTICULO 39. " + CITA, fontsize=7)
+    doc.save(pdf)
+    doc.close()
+    sha = hashlib.sha256(pdf.read_bytes()).hexdigest()
+    with open(tmp_path / "corpus" / "corpus.csv", "w", encoding="utf-8-sig", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["sha256", "archivo_corpus", "archivo_estandar", "digital"])
+        w.writerow([sha, "doc.pdf", "05001_Acuerdo_1_2022.pdf", 2])
+    (tmp_path / "inv").mkdir()
+    with open(tmp_path / "inv" / "paginas.csv", "w", encoding="utf-8-sig", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["sha256", "pagina", "tipo"])
+        w.writerows([[sha, 1, "digital"], [sha, 2, "digital"]])
+    m = matriz_con_filas(tmp_path / "m.xlsx", limpieza=False)
+    wb = openpyxl.load_workbook(m)
+    ws = wb["Tarifas"]
+    ws["G12"], ws["H12"], ws["I12"], ws["J12"], ws["K12"] = "39", "2", CITA, "Si", "4.5"
+    ws["G13"], ws["H13"], ws["I13"], ws["J13"] = "40", "2", INVENTADA, "Si"
+    ws["J14"] = "No"
+    wb.save(m)
+    with open(tmp_path / "documentos.csv", "w", encoding="utf-8-sig", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["fila", "consecutivo", "municipio", "departamento", "dane_original",
+                    "dane_final", "acuerdo", "anio", "estado", "sha256", "candidatos",
+                    "tipo_doc", "es_modificacion", "posible_borrador"])
+        for fila, est in ((12, "coincide"), (13, "coincide"), (14, "sin_documento")):
+            w.writerow([fila, fila - 11, "M", "D", "1", "05001", "A", "2022", est,
+                        sha if est == "coincide" else "", "", "Acuerdo", "False", "False"])
+    monkeypatch.setattr(config, "MATRIZ", m)
+    monkeypatch.setattr(config, "CORPUS", tmp_path / "corpus")
+    monkeypatch.setattr(config, "INVENTARIO", tmp_path / "inv")
+    monkeypatch.setattr(config, "HOJAS_ALCANCE", ("Tarifas",))
+    corpus.limpiar_cache()
+    yield tmp_path
+    corpus.limpiar_cache()

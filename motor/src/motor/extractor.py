@@ -76,7 +76,8 @@ class Extraccion:
     intentos: int
     paginas_contexto: list[int]
     campos: list[ResultadoCampo]
-    uso: llm.Uso
+    uso: llm.Uso  # suma de los intentos, tal como se reportó (incluye respuestas de caché)
+    uso_real: llm.Uso | None = None  # solo los intentos que fueron a la red (los que cuestan)
 
 
 def _permitidos(c: Campo) -> list[str] | None:
@@ -201,6 +202,7 @@ def extraer_bloque(bloque: Bloque, paginas: dict[int, str | None], cliente: llm.
                    ejemplos: list[Ejemplo], citas_ref: list[str],
                    estrategia: str = "localizada", sha256: str = "") -> Extraccion:
     uso = llm.Uso(0, 0, 0, 0.0)
+    uso_real = llm.Uso(0, 0, 0, 0.0)
     claves = _claves(bloque)
 
     def rojo(detalle: str, check: str, intentos: int, ctx: list[int],
@@ -210,7 +212,8 @@ def extraer_bloque(bloque: Bloque, paginas: dict[int, str | None], cliente: llm.
             resp.articulo if resp else None, resp.pagina if resp else None,
             resp.cita if resp else None, check, detalle, enc, "rojo", estrategia,
             intentos, ctx,
-            [ResultadoCampo(k, rol, None, None, "no_aplica") for k, rol, _ in claves], uso)
+            [ResultadoCampo(k, rol, None, None, "no_aplica") for k, rol, _ in claves], uso,
+            uso_real)
 
     if not any(t and t.strip() for t in paginas.values()):
         return rojo(SIN_TEXTO, "no_aplica", 0, [])
@@ -226,6 +229,8 @@ def extraer_bloque(bloque: Bloque, paginas: dict[int, str | None], cliente: llm.
         intentos += 1
         r = cliente.completar(mensajes)
         uso = _sumar(uso, r.uso)
+        if not r.desde_cache:
+            uso_real = _sumar(uso_real, r.uso)
         resp = _interpretar(r)
         if resp is None:
             if intentos == 1:
@@ -260,4 +265,4 @@ def extraer_bloque(bloque: Bloque, paginas: dict[int, str | None], cliente: llm.
     return Extraccion(
         sha256, bloque.hoja, bloque.key, "ENCONTRADO", resp.articulo, resp.pagina, resp.cita,
         ver.check["resultado"], ver.check["detalle"], ver.pagina_encontrada,
-        "verde" if verde else "amarillo", estrategia, intentos, nums, campos, uso)
+        "verde" if verde else "amarillo", estrategia, intentos, nums, campos, uso, uso_real)
