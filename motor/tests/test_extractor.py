@@ -68,6 +68,7 @@ def test_json_invalido_o_cortado_no_revienta(tmp_path, texto, finish):
     e = extraer_bloque(bloque_sp, P, cli(tmp_path, texto, finish=finish), [], [])
     assert e.estado == "NO_ENCONTRADO" and e.semaforo == "rojo"
     assert e.detalle_cita == "El modelo no devolvió una respuesta válida"
+    assert e.intentos == 2
 
 
 def test_pagina_fuera_de_rango(tmp_path):
@@ -139,3 +140,38 @@ def test_completa_pone_paginas_primero():
 def test_localizada_un_solo_mensaje_usuario():
     m = armar_mensajes(bloque_sp, {2: "x"}, [], "localizada")
     assert len(m) == 2 and "=== PÁGINA 2 ===" in m[1]["content"] and SP in m[1]["content"]
+
+
+def test_numeros_sin_comillas_se_aceptan(tmp_path):
+    txt = ('{"estado": "ENCONTRADO", "articulo": 5, "pagina": 2, "cita": "%s", '
+           '"campos": {"%s": "si"}}' % (CITA_OK, SP))
+    e = extraer_bloque(bloque_sp, P, cli(tmp_path, txt), [], [])
+    assert e.estado == "ENCONTRADO" and e.articulo == "5"
+    r = RespuestaModelo.model_validate_json(
+        '{"estado":"ENCONTRADO","campos":{"t.comercio":5},"unidades":{"t.comercio":1}}')
+    assert r.campos["t.comercio"] == "5"
+
+
+@pytest.mark.parametrize("v,u,esperado", [("0,5%", None, "5"), ("5 por mil", None, "5"),
+                                          ("4,5 ‰", None, "4.5"), ("0,5 %", "porcentaje", "5")])
+def test_a_por_mil_con_simbolo(v, u, esperado):
+    assert a_por_mil(v, u) == esperado
+
+
+def test_recupera_en_el_reintento(tmp_path):
+    malo = ok_json(cita="El municipio exonera a todas las plataformas digitales del pago")
+    textos = [malo, ok_json()]
+    llamadas = []
+
+    def t(req):
+        llamadas.append(req)
+        return {"texto": textos[len(llamadas) - 1], "finish_reason": "stop",
+                "uso": {"entrada": 1, "cache": 0, "salida": 1}}
+    e = extraer_bloque(bloque_sp, P, Cliente(tmp_path, transporte=t), [], [])
+    assert e.estado == "ENCONTRADO" and e.semaforo == "verde" and e.intentos == 2
+
+
+def test_reintento_sin_pagina_dice_indicada(tmp_path):
+    c = cli(tmp_path, ok_json(pagina=None, cita="texto totalmente ajeno al documento entregado aqui"))
+    extraer_bloque(bloque_sp, P, c, [], [])
+    assert "en la página indicada." in c.llamadas[1]["messages"][-1]["content"]

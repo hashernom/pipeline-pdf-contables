@@ -2,11 +2,12 @@
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
 from typing import Literal
 
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel, ConfigDict, ValidationError
 
 from motor import llm
 from motor.catalogo import Bloque, Campo
@@ -33,12 +34,14 @@ SISTEMA = (
     '"campos": {"clave_del_campo": "valor"}, '
     '"unidades": {"clave_del_campo_numerico": "por_mil" | "porcentaje" | "pesos"}}. '
     "Usa solo las claves de campo que se te listan. Los campos Sí/No valen "
-    '"si", "no" o "no_aplica". Los números van tal como los escribe el acuerdo, con su unidad. '
+    '"si", "no" o "no_aplica". Cada valor numérico es solo el número, sin el símbolo de unidad, y su unidad va en "unidades". '
     "Si un campo no se puede determinar, déjalo en null."
 )
 
 
 class RespuestaModelo(BaseModel):
+    model_config = ConfigDict(coerce_numbers_to_str=True)
+
     estado: Literal["ENCONTRADO", "NO_ENCONTRADO"]
     articulo: str | None = None
     pagina: int | None = None
@@ -117,7 +120,16 @@ def armar_mensajes(bloque: Bloque, paginas_ctx: dict[int, str], ejemplos: list[E
                       "content": f"{pregunta}\n\nTEXTO DEL DOCUMENTO:\n{_paginas_txt(paginas_ctx)}"}]
 
 
+_SUFIJO_UNIDAD = re.compile(r"\s*(%|‰|por\s+mil|x\s*mil|por\s+ciento)\s*$", re.IGNORECASE)
+
+
 def a_por_mil(valor: str, unidad: str | None) -> str | None:
+    valor = str(valor).strip()
+    m = _SUFIJO_UNIDAD.search(valor)
+    if m:
+        valor = valor[:m.start()].strip()
+        if unidad is None or unidad == "":
+            unidad = "porcentaje" if m.group(0).strip() == "%" else "por_mil"
     if unidad not in (None, "por_mil", "porcentaje"):
         return None
     v = valor_canonico(valor)
@@ -216,6 +228,11 @@ def extraer_bloque(bloque: Bloque, paginas: dict[int, str | None], cliente: llm.
         uso = _sumar(uso, r.uso)
         resp = _interpretar(r)
         if resp is None:
+            if intentos == 1:
+                mensajes = mensajes + [{"role": "user", "content": (
+                    "Tu respuesta no fue un JSON válido o quedó cortada. Responde de nuevo "
+                    "con un JSON válido y más corto, solo con la cita necesaria.")}]
+                continue
             return rojo(SIN_RESPUESTA, "falla", intentos, nums)
         if resp.estado == "NO_ENCONTRADO":
             return rojo("El modelo no encontró el bloque", "no_aplica", intentos, nums, resp)
@@ -226,7 +243,7 @@ def extraer_bloque(bloque: Bloque, paginas: dict[int, str | None], cliente: llm.
         if not hallada and intentos == 1:
             mensajes = mensajes + [
                 {"role": "assistant", "content": r.texto},
-                {"role": "user", "content": f"La cita no aparece literal en la página {pag}. "
+                {"role": "user", "content": f"La cita no aparece literal en la página {pag or 'indicada'}. "
                                             "Cópiala exactamente del texto o responde NO_ENCONTRADO."}]
     assert resp is not None and ver is not None
     if not hallada:
