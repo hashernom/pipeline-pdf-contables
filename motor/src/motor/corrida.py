@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -101,6 +102,7 @@ class CorridaFallida(RuntimeError):
 def _describir_error(exc: Exception) -> str:
     """Tipo y mensaje corto de la excepción (sin headers ni el pedido)."""
     msg = " ".join(str(getattr(exc, "message", None) or exc).split())
+    msg = re.sub(r"\s*\(request_id: [^)]*\)", "", msg)  # distinto en cada error: no agrupa causas
     return f"{type(exc).__name__}: {msg[:200]}"
 
 

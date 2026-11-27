@@ -157,3 +157,10 @@ def test_todos_fallan_sale_con_codigo_3_sin_csv(entorno, monkeypatch, capsys):
     assert not list((entorno / "extraccion").glob("extracciones_*"))
     salida = capsys.readouterr()
     assert "Insufficient Balance" in salida.out + salida.err
+
+
+def test_describir_error_quita_el_id_de_pedido_y_acorta():
+    from motor.corrida import _describir_error
+    e = Error402("Error code: 402 - Insufficient Balance (request_id: abc-123)")
+    assert _describir_error(e) == "Error402: Error code: 402 - Insufficient Balance"
+    assert len(_describir_error(Error402("x" * 1000))) <= 220
