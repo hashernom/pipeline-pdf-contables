@@ -60,7 +60,7 @@ def estimar_costo(shas: list[str], cat: Catalogo, estrategia: str) -> float:
         paginas = corpus.paginas_con_texto(sha)
         for i, b in enumerate(cat.bloques):
             ejemplos, citas = _ejemplos_y_citas(refs, part, b.key, sha)
-            nums = ESTRATEGIAS[estrategia](paginas, citas, b.palabras_clave)
+            nums = ESTRATEGIAS[estrategia](paginas, citas, b.palabras_clave, b.key)
             ctx = {n: paginas[n] for n in nums if paginas.get(n)}
             msgs = armar_mensajes(b, ctx, ejemplos, estrategia)
             tokens = [llm.estimar_tokens(m["content"]) for m in msgs]

@@ -1,4 +1,4 @@
-from motor import localizar
+from motor import config, localizar
 from motor.localizar import (
     ESTRATEGIAS,
     palabras_clave,
@@ -98,3 +98,50 @@ def test_puntajes_en_bloque_igual_al_puntaje_por_pagina():
     esperado = {p: puntaje_pagina(t, refs, claves) for p, t in paginas.items()}
     assert _puntajes(paginas, refs, claves) == esperado
     assert _puntajes(paginas, [], claves) == {p: puntaje_pagina(t, [], claves) for p, t in paginas.items()}
+
+
+def _paginas_tabla():
+    p = {i: f"pagina {i} relleno" for i in range(1, 41)}
+    p[10] = "ARTICULO 39 tarifas del impuesto de industria y comercio"
+    for i in range(11, 40):  # la tabla ocupa de la 11 a la 39
+        p[i] = "Codigo 0111 cultivo de cereales 4.5 5.0 6.5 7.0 por mil"
+    return p
+
+
+def test_bloque_de_tabla_extiende_hacia_adelante_hasta_el_tope():
+    p = _paginas_tabla()
+    refs = ["articulo 39 tarifas del impuesto de industria y comercio"]
+    bk = config.BLOQUES_TABLA[0]
+    normal = paginas_localizadas(p, refs, [], k=1)
+    largo = paginas_localizadas(p, refs, [], k=1, bloque_key=bk)
+    assert max(normal) < 15 and set(normal) < set(largo)
+    assert len(largo) == config.MAX_PAGINAS_CONTEXTO_TABLA
+    assert largo == sorted(largo) and 10 in largo and 39 not in largo
+
+
+def test_extension_se_detiene_en_pagina_sin_cifras_de_tarifa():
+    p = _paginas_tabla()
+    p[14] = "texto corrido sin cifras de ningun tipo"
+    refs = ["articulo 39 tarifas del impuesto de industria y comercio"]
+    res = paginas_localizadas(p, refs, [], k=1, bloque_key=config.BLOQUES_TABLA[0])
+    assert 13 in res and 15 not in res
+
+
+def test_bloque_comun_o_none_no_cambia():
+    p = _paginas_tabla()
+    refs = ["articulo 39 tarifas del impuesto de industria y comercio"]
+    base = paginas_localizadas(p, refs, [], k=1)
+    assert paginas_localizadas(p, refs, [], k=1, bloque_key="elementos.otro") == base
+    assert paginas_localizadas(p, refs, [], k=1, bloque_key=None) == base
+    assert ESTRATEGIAS["localizada"](p, refs, [], config.BLOQUES_TABLA[0]) != ESTRATEGIAS["localizada"](p, refs, [])
+    assert ESTRATEGIAS["localizada"](p, refs, []) == ESTRATEGIAS["localizada"](p, refs, [], None)
+
+
+def test_parece_tabla_tarifas():
+    from motor.localizar import parece_tabla_tarifas
+    assert parece_tabla_tarifas("a 4.5 b 5.0 c 6.5")
+    assert parece_tabla_tarifas("tarifa 7 x mil, 5 por mil y 3 por mil")
+    filas = "\n".join(f"{1000 + i} Actividad {i}\n5" for i in range(5))
+    assert parece_tabla_tarifas(filas)
+    assert not parece_tabla_tarifas("texto corrido del articulo 40 sin cifras")
+    assert not parece_tabla_tarifas(None)

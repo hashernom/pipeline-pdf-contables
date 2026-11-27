@@ -1,5 +1,6 @@
 """Localización de las páginas de un documento relevantes para un bloque."""
 
+import re
 from collections import Counter
 from collections.abc import Callable
 
@@ -69,14 +70,36 @@ def _puntajes(con_texto: dict[int, str], refs: list[str], claves: list[str]) -> 
             for i, p in enumerate(nums)}
 
 
+_DECIMALES = re.compile(r"\d+[.,]\d+")
+_MARCAS_TARIFA = re.compile(r"(?i)por\s*mil|\bx\s*mil|\d\s*x\s*1\.?000|%|‰")
+_LINEA_CODIGO = re.compile(r"(?m)^\s*\d{3,4}\s+\S")
+MIN_DECIMALES_TARIFA = 3
+MIN_MARCAS_TARIFA = 3
+MIN_LINEAS_CODIGO = 4
+
+
+def parece_tabla_tarifas(texto: str | None) -> bool:
+    """Página con cifras de tarifa: decimales, marcas "x mil"/"%" o filas "código descripción"."""
+    if not texto or not texto.strip():
+        return False
+    return (len(_DECIMALES.findall(texto)) >= MIN_DECIMALES_TARIFA
+            or len(_MARCAS_TARIFA.findall(texto)) >= MIN_MARCAS_TARIFA
+            or len(_LINEA_CODIGO.findall(texto)) >= MIN_LINEAS_CODIGO)
+
+
 def paginas_localizadas(
     paginas: dict[int, str | None],
     citas_ref: list[str],
     claves: list[str],
     k: int = 3,
     tope: int = config.MAX_PAGINAS_CONTEXTO,
+    bloque_key: str | None = None,
 ) -> list[int]:
-    """Las k páginas de mayor puntaje más sus vecinas con texto, ordenadas y recortadas a tope."""
+    """Las k páginas de mayor puntaje más sus vecinas con texto, ordenadas y recortadas a tope.
+
+    En los bloques de tabla larga (`config.BLOQUES_TABLA`) sigue además hacia adelante las
+    páginas contiguas que parecen tabla de tarifas, hasta `MAX_PAGINAS_CONTEXTO_TABLA`.
+    """
     con_texto = {p: texto_busqueda(t) for p, t in paginas.items() if t and t.strip()}
     if not con_texto:
         return []
@@ -88,7 +111,16 @@ def paginas_localizadas(
         for v in (p - 1, p + 1):
             if v in con_texto and v not in elegidas:
                 elegidas.append(v)
-    return sorted(elegidas[:tope])
+    elegidas = elegidas[:tope]
+    if bloque_key in config.BLOQUES_TABLA:
+        for p in top:
+            q = p
+            while (len(elegidas) < config.MAX_PAGINAS_CONTEXTO_TABLA
+                   and parece_tabla_tarifas(paginas.get(q + 1))):
+                q += 1
+                if q not in elegidas:
+                    elegidas.append(q)
+    return sorted(elegidas)
 
 
 def paginas_completas(paginas: dict[int, str | None]) -> list[int]:
@@ -96,7 +128,8 @@ def paginas_completas(paginas: dict[int, str | None]) -> list[int]:
     return sorted(p for p, t in paginas.items() if t and t.strip())
 
 
-ESTRATEGIAS: dict[str, Callable[[dict[int, str | None], list[str], list[str]], list[int]]] = {
-    "localizada": lambda paginas, citas_ref, claves: paginas_localizadas(paginas, citas_ref, claves),
-    "completa": lambda paginas, citas_ref, claves: paginas_completas(paginas),
+ESTRATEGIAS: dict[str, Callable[..., list[int]]] = {
+    "localizada": lambda paginas, citas_ref, claves, bloque_key=None: paginas_localizadas(
+        paginas, citas_ref, claves, bloque_key=bloque_key),
+    "completa": lambda paginas, citas_ref, claves, bloque_key=None: paginas_completas(paginas),
 }

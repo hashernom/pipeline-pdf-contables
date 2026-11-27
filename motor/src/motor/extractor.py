@@ -217,7 +217,7 @@ def extraer_bloque(bloque: Bloque, paginas: dict[int, str | None], cliente: llm.
 
     if not any(t and t.strip() for t in paginas.values()):
         return rojo(SIN_TEXTO, "no_aplica", 0, [])
-    nums = ESTRATEGIAS[estrategia](paginas, citas_ref, bloque.palabras_clave)
+    nums = ESTRATEGIAS[estrategia](paginas, citas_ref, bloque.palabras_clave, bloque.key)
     ctx = {n: paginas[n] for n in nums if paginas.get(n)}
     mensajes = armar_mensajes(bloque, ctx, ejemplos, estrategia)
 

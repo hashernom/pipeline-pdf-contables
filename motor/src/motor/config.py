@@ -41,5 +41,11 @@ TOPE_USD_CORRIDA: float = 10.0
 N_AJUSTE: int = 30
 SEMILLA: int = 20261126
 MAX_PAGINAS_CONTEXTO: int = 6
+# Bloques cuya tabla ocupa muchas páginas: la estrategia localizada las sigue hacia adelante.
+MAX_PAGINAS_CONTEXTO_TABLA: int = 24
+BLOQUES_TABLA: tuple[str, ...] = (
+    "tarifas.tarifas_actividades_economicas",
+    "tarifas.tarifas_de_ica_e_commerce",
+)
 N_EJEMPLOS: int = 3
 CONCURRENCIA: int = 8

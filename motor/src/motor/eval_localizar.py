@@ -41,7 +41,7 @@ def evaluar_localizacion(destino: Path, estrategia: str = "localizada") -> list[
         if sha not in paginas_doc:
             paginas_doc[sha] = corpus.paginas_con_texto(sha)
         _, citas = _ejemplos_y_citas(refs, part, bk, sha)
-        nums = ESTRATEGIAS[estrategia](paginas_doc[sha], citas, bloques[bk].palabras_clave)
+        nums = ESTRATEGIAS[estrategia](paginas_doc[sha], citas, bloques[bk].palabras_clave, bk)
         acierta = "exacto" if p in nums else "cerca" if {p - 1, p + 1} & set(nums) else "no"
         filas.append({"sha256": sha, "hoja": hoja, "bloque_key": bk, "pagina_oro": p,
                       "paginas_contexto": ";".join(map(str, nums)), "acierta": acierta})

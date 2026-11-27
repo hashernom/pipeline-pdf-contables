@@ -182,3 +182,22 @@ def test_uso_real_excluye_respuestas_de_cache(tmp_path):
     e1 = extraer_bloque(bloque_sp, P, c, [], [])
     e2 = extraer_bloque(bloque_sp, P, c, [], [])
     assert e1.uso_real.salida == 5 and e2.uso.salida == 5 and e2.uso_real.salida == 0
+
+
+def test_extraer_bloque_pasa_la_clave_del_bloque_a_la_estrategia(monkeypatch):
+    from motor import extractor
+    vistos = []
+
+    def falsa(paginas, citas, claves, bloque_key=None):
+        vistos.append(bloque_key)
+        return [1]
+    monkeypatch.setitem(extractor.ESTRATEGIAS, "localizada", falsa)
+    bloque = Bloque(key="b.k", nombre="B", hoja="H", columnas={}, palabras_clave=[],
+                    presencia_key="b.k.p", criterio_presencia="c", campos=[])
+
+    class Nada:
+        def completar(self, m, max_tokens=4000):
+            raise RuntimeError("fin")
+    with pytest.raises(RuntimeError):
+        extractor.extraer_bloque(bloque, {1: "texto"}, Nada(), [], [], "localizada", "s")
+    assert vistos == ["b.k"]
