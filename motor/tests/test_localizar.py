@@ -85,3 +85,16 @@ def test_completas_y_estrategias():
     assert ESTRATEGIAS["completa"](paginas, [], []) == [1, 3]
     assert ESTRATEGIAS["localizada"](paginas, [], []) == [1, 3]
     assert localizar.config.MAX_PAGINAS_CONTEXTO == 6
+
+
+def test_puntajes_en_bloque_igual_al_puntaje_por_pagina():
+    from motor.localizar import _puntajes, puntaje_pagina
+
+    paginas = {1: "la base gravable se compone de los ingresos ordinarios",
+               2: "el periodo gravable es anual y va del primero de enero al treinta y uno de diciembre",
+               3: "tarifas por mil para actividades industriales"}
+    refs = ["base gravable ingresos ordinarios del periodo", "periodo gravable anual"]
+    claves = ["gravable", "tarifas"]
+    esperado = {p: puntaje_pagina(t, refs, claves) for p, t in paginas.items()}
+    assert _puntajes(paginas, refs, claves) == esperado
+    assert _puntajes(paginas, [], claves) == {p: puntaje_pagina(t, [], claves) for p, t in paginas.items()}

@@ -3,7 +3,7 @@
 from collections import Counter
 from collections.abc import Callable
 
-from rapidfuzz import fuzz
+from rapidfuzz import fuzz, process
 
 from motor import config
 from motor.normalizar import texto_busqueda
@@ -58,6 +58,17 @@ def puntaje_pagina(texto_norm: str, citas_ref_norm: list[str], claves: list[str]
     return mejor + _PESO_CLAVE * presentes
 
 
+def _puntajes(con_texto: dict[int, str], refs: list[str], claves: list[str]) -> dict[int, float]:
+    """Mismo puntaje que `puntaje_pagina`, calculado en bloque y en paralelo (en C++, sin GIL)."""
+    if not refs:
+        return {p: puntaje_pagina(t, refs, claves) for p, t in con_texto.items()}
+    nums = list(con_texto)
+    m = process.cdist([r[:_MAX_CITA] for r in refs], [con_texto[p] for p in nums],
+                      scorer=fuzz.partial_ratio, dtype="float64", workers=-1)
+    return {p: float(m[:, i].max()) + _PESO_CLAVE * sum(1 for c in claves if c in con_texto[p])
+            for i, p in enumerate(nums)}
+
+
 def paginas_localizadas(
     paginas: dict[int, str | None],
     citas_ref: list[str],
@@ -70,7 +81,7 @@ def paginas_localizadas(
     if not con_texto:
         return []
     refs = [r for r in (texto_busqueda(c) for c in citas_ref) if r]
-    puntajes = {p: puntaje_pagina(t, refs, claves) for p, t in con_texto.items()}
+    puntajes = _puntajes(con_texto, refs, claves)
     top = sorted(con_texto, key=lambda p: (-puntajes[p], p))[:k]
     elegidas = list(top)
     for p in top:
