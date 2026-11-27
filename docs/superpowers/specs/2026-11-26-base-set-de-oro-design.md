@@ -6,8 +6,8 @@ Fecha: 26 nov 2026 · Estado: borrador para aprobación
 
 Antes de construir el motor de extracción hace falta una base confiable contra la cual medirlo. El material existe pero está desordenado:
 
-- 638 PDFs únicos de acuerdos tributarios municipales: [base-datos-fuente.md](../../base-datos-fuente.md).
-- Una matriz de investigación (UTS, macroproyecto DIE-PI-001-126) con 508 municipios y 857 columnas: [matriz-ica-diagnostico.md](../../matriz-ica-diagnostico.md).
+- 638 PDFs únicos de acuerdos tributarios municipales: [base-datos-fuente.md](../../datos/base-datos-fuente.md).
+- Una matriz de investigación (UTS, macroproyecto DIE-PI-001-126) con 508 municipios y 857 columnas: [matriz-ica-diagnostico.md](../../datos/matriz-ica-diagnostico.md).
 
 Este trabajo convierte ese material en tres cosas reproducibles:
 
@@ -49,7 +49,7 @@ Fuera de la primera versión: Principios, las copias `_Limpieza` y las otras 8 h
 - **Python 3.12+, entorno con `uv`.** La ficha fija Python para extracción, y `uv` 0.10 ya está instalado.
 - **Librerías,** consultadas en context7: PyMuPDF 1.28 (`import pymupdf`), Pydantic 2.12, RapidFuzz (`fuzz.partial_ratio_alignment`), openpyxl 3.1 y PyYAML 6.
 - **Los datos reales no van a git** (`datos/` ya está ignorado). Sí van a git el código, el catálogo y los informes resumidos.
-- **Interfaz en español de Colombia.** Los `detalle` de los checks se escriben como frases que verá el estudiante, igual que en [integracion-backend.md](../../integracion-backend.md).
+- **Interfaz en español de Colombia.** Los `detalle` de los checks se escriben como frases que verá el estudiante, igual que en [integracion-backend.md](../../arquitectura/integracion-backend.md).
 - **Catálogo con enums propios** (temas y tipos de la matriz). El tipo `Variable` de `web/src/lib/types.ts` se diseñó para estados financieros y no encaja: sus `seccion` y `tipo` son de balance, y `regla`/`critica` son obligatorios. El frontend se adapta en el diseño del motor, con un adaptador o cambiando el tipo. *Decisión de diseño, tomada tras la revisión del constructor.*
 
 ## 5. Enfoques considerados

@@ -1,6 +1,6 @@
 # Folio · frontend
 
-Interfaz del pipeline de extracción verificable de PDF contables (ver `../ficha.txt`).
+Interfaz del pipeline de extracción verificable de PDF contables (ver `../docs/ficha/ficha.txt`).
 **Solo frontend.** Todos los datos son simulados y están marcados como DEMO; "Folio" es un nombre de trabajo.
 
 ## Correr

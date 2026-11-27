@@ -1,6 +1,6 @@
 # Base de datos fuente: verificación del zip (26 nov 2026)
 
-Verificación de solo lectura de `infoEjemplo/OneDrive_2026-11-26.zip` (8,8 GB), extraído en `datos/fuente/` (ignorado por git). No se movió, renombró ni borró ningún archivo del material.
+Verificación de solo lectura de `datos/OneDrive_2026-11-26.zip` (antes en `infoEjemplo/`) (8,8 GB), extraído en `datos/fuente/` (ignorado por git). No se movió, renombró ni borró ningún archivo del material.
 
 - Inventario reproducible: `cd motor && uv run motor inventario` → `datos/inventario/pdfs.csv` (1 fila por PDF) y `paginas.csv` (1 fila por página, 105.818 en total).
 - Clasificación de página según la FAQ de PyMuPDF 1.28.2 (consultada en context7) + cobertura de imagen + calidad de texto.
@@ -74,7 +74,7 @@ Por documento: 309 escaneados, 215 digitales, 102 con capa OCR previa y 12 mixto
 - `Revisión.zip` y las copias de Excel repetidas en raíz y en `Revisión/` (`municipios udes.xlsx` es idéntico a `ORIGINAL SIN EDITAR`).
 - `subregiones.pdf` y `dane_reference_subregiones.csv` (censo 2005, superados por DIVIPOLA).
 - Los `registro_*.tsv` y `verificacion_*.tsv`: historia de movimientos, ya consolidada en la documentación.
-- En el repo: `infoEjemplo/` duplica `Revisión/`, y tiene dos archivos que solo difieren en mayúsculas (`Municipios udes - CORREGIDO.xlsx` / `municipios udes - CORREGIDO.xlsx`). En Windows se pisan entre sí. El zip de 8,8 GB puede borrarse una vez aprobada la base.
+- En el repo: `referencias/` (antes `infoEjemplo/`) duplica parte de `Revisión/`. El duplicado por mayúsculas de `municipios udes - CORREGIDO.xlsx` se resolvió el 26 nov 2026 (la otra versión sigue en `datos/fuente/`). El zip de 8,8 GB (ahora en `datos/`) puede borrarse una vez aprobada la base.
 
 ## Preguntas abiertas que bloquean el motor de extracción
 

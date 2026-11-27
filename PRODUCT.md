@@ -1,5 +1,7 @@
 # Product
 
+> **Nota (26 nov 2026):** el material real resultó ser de acuerdos tributarios municipales del ICA, no de estados financieros. Usuarios y principios siguen vigentes. El dominio actualizado está en [docs/arquitectura/vision-general.md](docs/arquitectura/vision-general.md); el frontend se adapta en el hito 2.
+
 <!-- impeccable:product-schema 1 -->
 
 ## Platform
@@ -8,7 +10,7 @@ web
 
 ## Stack
 
-Next.js (App Router) + PDF.js para el visor, según la ficha técnica (`ficha.txt`). Backend previsto: NestJS + BullMQ/Redis, Supabase (Postgres + Storage), OCR PaddleOCR en Modal, extracción DeepSeek. **Estado actual: solo frontend, todo con datos simulados (mocks) detrás de una capa de datos reemplazable.**
+Next.js (App Router) + PDF.js para el visor, según la ficha técnica (`docs/ficha/ficha.txt`). Backend previsto: NestJS + BullMQ/Redis, Supabase (Postgres + Storage), OCR PaddleOCR en Modal, extracción DeepSeek. **Estado actual: solo frontend, todo con datos simulados (mocks) detrás de una capa de datos reemplazable.**
 
 ## Users
 
@@ -43,7 +45,7 @@ Parte de los PDFs son escaneos (OCR con confianza por palabra). Verificaciones: 
 
 ## Evidence on Hand
 
-- `ficha.txt` / `ficha-tecnica-v4.pdf`: ficha técnica v4 (octubre 2026), Santiago Afanador Aguello y Mariana Acero.
+- `docs/ficha/ficha.txt` / `docs/ficha/ficha-tecnica-v4.pdf`: ficha técnica v4 (octubre 2026), Santiago Afanador Aguello y Mariana Acero.
 - No hay PDFs de muestra, variables definitivas, set de oro, ni métricas reales. No inventar cifras de precisión, clientes ni testimonios.
 
 ## Product Principles

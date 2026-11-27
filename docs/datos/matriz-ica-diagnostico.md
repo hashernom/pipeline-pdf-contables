@@ -1,6 +1,6 @@
 # Diagnóstico de la matriz ICA (26 nov 2026)
 
-Archivo: `Matriz ICA Distribución Curación_verificacion.xlsx` (raíz del repo, 7 MB). Revisión de solo lectura; no se modificó.
+Archivo: `Matriz ICA Distribución Curación_verificacion.xlsx` (`datos/matriz/`, ignorado por git, 7 MB). Revisión de solo lectura; no se modificó.
 
 Origen: macroproyecto de investigación del Programa de Contaduría Pública de las Unidades Tecnológicas de Santander (UTS), *"Alcance del concepto de presencia económica significativa en el impuesto de industria y comercio"*, código DIE-PI-001-126.
 

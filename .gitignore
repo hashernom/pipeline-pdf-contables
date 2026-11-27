@@ -18,7 +18,5 @@ web/public/pdf.worker.min.mjs
 
 # Datos reales (PDFs y material de trabajo): no van al repo
 datos/
-infoEjemplo/*.zip
 .claude/worktrees/
 .superpowers/
-Matriz ICA*.xlsx

@@ -45,4 +45,4 @@ Reglas que la interfaz hace cumplir (de la ficha técnica):
 
 ## Diseño
 
-Ver [DESIGN.md](../DESIGN.md). Tokens en `web/src/app/globals.css` (`@theme` de Tailwind 4). Primitivas en `components/ui/`.
+Ver [DESIGN.md](../../DESIGN.md). Tokens en `web/src/app/globals.css` (`@theme` de Tailwind 4). Primitivas en `components/ui/`.

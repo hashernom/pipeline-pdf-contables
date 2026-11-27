@@ -1,6 +1,6 @@
 # Integración con el backend
 
-El frontend ya define qué necesita. Los tipos están en [`web/src/lib/types.ts`](../web/src/lib/types.ts); cada función de [`web/src/lib/data/index.ts`](../web/src/lib/data/index.ts) corresponde a un endpoint. Los endpoints de abajo son una **propuesta**, no algo implementado.
+El frontend ya define qué necesita. Los tipos están en [`web/src/lib/types.ts`](../../web/src/lib/types.ts); cada función de [`web/src/lib/data/index.ts`](../../web/src/lib/data/index.ts) corresponde a un endpoint. Los endpoints de abajo son una **propuesta**, no algo implementado.
 
 ## Lo que debe producir la verificación (por documento y variable)
 

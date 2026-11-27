@@ -12,8 +12,8 @@ INVENTARIO: Path = RAIZ / "datos/inventario"
 CORPUS: Path = RAIZ / "datos/corpus"
 ORO: Path = RAIZ / "datos/oro"
 
-MATRIZ: Path = RAIZ / "Matriz ICA Distribución Curación_verificacion.xlsx"
-DIVIPOLA: Path = RAIZ / "infoEjemplo/DIVIPOLA-_Códigos_municipios_20260726.xlsx"
+MATRIZ: Path = RAIZ / "datos/matriz/Matriz ICA Distribución Curación_verificacion.xlsx"
+DIVIPOLA: Path = RAIZ / "referencias/DIVIPOLA-_Códigos_municipios_20260726.xlsx"
 POSIBLES_BORRADORES: Path = (
     FUENTE / "Acuerdos municipale s/Revisión/Posibles proyectos de acuerdo.xlsx"
 )
