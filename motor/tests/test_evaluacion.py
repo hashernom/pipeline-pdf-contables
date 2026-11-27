@@ -54,7 +54,9 @@ def cat(tmp_path, monkeypatch):
         campos=[Campo(key=B1 + ".tasa", nombre="Tasa", columna="K", tipo="numero",
                       criterio="la tarifa"),
                 Campo(key=B1 + ".nota", nombre="Nota", columna="L", tipo="texto_libre",
-                      criterio="texto de la nota")])])
+                      criterio="texto de la nota")]),
+        Bloque(key=B2, nombre="Dos", hoja=H, columnas={"art": "G", "pag": "H", "cita": "I"},
+               presencia_key=B2 + ".pres", criterio_presencia="hay otra", campos=[])])
     catalogo.guardar_yaml(c, tmp_path / "v.yaml")
     monkeypatch.setattr(config, "CATALOGO", tmp_path / "v.yaml")
     return c
@@ -77,10 +79,10 @@ def test_metricas_basicas(tmp_path, cat):
     assert m.cobertura == pytest.approx(3 / 4)
     assert m.citas_verdes == 2 and m.citas_amarillas == 1 and m.citas_rojas == 0
     assert m.citas_reales == pytest.approx(1.0)
-    # valores: pres B1 ok, tasa ok, B2 mal, B3 ok, B4 mal (vacío vs "no") -> 3/5
-    assert m.valores_comparables == 5 and m.acierto == pytest.approx(3 / 5)
+    # valores: pres B1 ok, tasa ok, B2 mal, B3 ok, B4 ok (NO_ENCONTRADO = "no") -> 4/5
+    assert m.valores_comparables == 5 and m.acierto == pytest.approx(4 / 5)
     assert r["bloque:" + B1].acierto == pytest.approx(1.0)
-    assert r["hoja:" + H].valores_ok == 3
+    assert r["hoja:" + H].valores_ok == 4
     assert r["campo:" + B1 + ".tasa"].valores_ok == 1
 
 
@@ -216,3 +218,77 @@ def test_cli_evaluar(tmp_path, cat, monkeypatch):
     assert main(["evaluar"]) == 0
     t = (tmp_path / "informes" / "extraccion-piloto.md").read_text(encoding="utf-8")
     assert "prueba_localizada" in t and "0.05 USD" in t
+
+
+def test_presencia_no_encontrada_cuenta_como_no(tmp_path, cat):
+    oro = oro_csv(tmp_path / "oro.csv", [
+        ref(B1, B1 + ".pres", "no"), ref(B2, B2 + ".pres", "si")])
+    ext = ext_csv(tmp_path / "ext.csv", [
+        fila(B1, B1 + ".pres", "", estado="NO_ENCONTRADO", semaforo="rojo", rol="presencia"),
+        fila(B2, B2 + ".pres", "", estado="NO_ENCONTRADO", semaforo="rojo", rol="presencia")])
+    m = evaluar(ext, oro, None)["total"]
+    assert m.valores_comparables == 2 and m.valores_ok == 1
+    assert m.desacuerdos[0][3:5] == ("si", "no")
+
+
+def test_cobertura_ignora_hallazgos_sin_referencia(tmp_path, cat):
+    oro = oro_csv(tmp_path / "oro.csv", [ref(B1, B1 + ".pres", "si"), ref(B2, B2 + ".pres", "si")])
+    ext = ext_csv(tmp_path / "ext.csv", [
+        fila(B1, B1 + ".pres", "si", rol="presencia"),
+        fila(B2, B2 + ".pres", "si", rol="presencia"),
+        fila(B3, B3 + ".pres", "si", rol="presencia")])  # hallazgo sin referencia
+    m = evaluar(ext, oro, None)["total"]
+    assert m.bloques_encontrados == 3 and m.hallazgos_sin_referencia == 1
+    assert m.cobertura == pytest.approx(1.0)  # 2 de 2, no 3 de 2
+    assert m.citas_reales == pytest.approx(1.0)
+
+
+def _preparar_cli(tmp_path, monkeypatch, filas, grupo_csv="todos", particion=None):
+    oro_dir = tmp_path / "oro"
+    oro_dir.mkdir()
+    oro_csv(oro_dir / "set_de_oro.csv", [
+        ref(B1, B1 + ".pres", "si", sha="a1"), ref(B1, B1 + ".pres", "si", sha="p1"),
+        ref(B2, B2 + ".pres", "si", sha="p1")])
+    exdir = tmp_path / "extraccion"
+    exdir.mkdir()
+    ext_csv(exdir / f"extracciones_{grupo_csv}_localizada.csv", filas)
+    if particion:
+        with open(exdir / "particion.csv", "w", newline="", encoding="utf-8-sig") as fh:
+            w = csv.writer(fh)
+            w.writerow(["sha256", "grupo"])
+            w.writerows(particion)
+    monkeypatch.setattr(config, "ORO", oro_dir)
+    monkeypatch.setattr(config, "EXTRACCION", exdir)
+    monkeypatch.setattr(config, "INFORMES", tmp_path / "informes")
+    assert main(["evaluar"]) == 0
+    return (tmp_path / "informes" / "extraccion-piloto.md").read_text(encoding="utf-8")
+
+
+def test_informe_separa_prueba_de_ajuste(tmp_path, cat, monkeypatch):
+    filas = [fila(B1, B1 + ".pres", "si", sha="a1", grupo="ajuste", rol="presencia"),
+             fila(B1, B1 + ".pres", "no", sha="p1", grupo="prueba", rol="presencia"),
+             fila(B2, B2 + ".pres", "no", sha="p1", grupo="prueba", rol="presencia")]
+    t = _preparar_cli(tmp_path, monkeypatch, filas)
+    assert t.index("## Corrida prueba_localizada") < t.index("## Corrida ajuste_localizada")
+    assert "referencia de ajuste, no es la medición final" in t
+    prueba = t.split("## Corrida prueba_localizada")[1].split("## Corrida ajuste")[0]
+    assert "0.0 % (0/2)" in prueba  # solo los documentos de prueba, ambos errados
+
+
+def test_evaluar_solo_grupo_prueba_no_mezcla_ajuste(tmp_path, cat):
+    oro = oro_csv(tmp_path / "oro.csv", [ref(B1, B1 + ".pres", "si", sha="a1"),
+                                         ref(B1, B1 + ".pres", "si", sha="p1")])
+    ext = ext_csv(tmp_path / "ext.csv", [
+        fila(B1, B1 + ".pres", "si", sha="a1", grupo="ajuste", rol="presencia"),
+        fila(B1, B1 + ".pres", "no", sha="p1", grupo="prueba", rol="presencia")])
+    m = evaluar(ext, oro, "prueba")["total"]
+    assert m.valores_comparables == 1 and m.valores_ok == 0
+
+
+def test_informe_lista_bloques_sin_ejemplos(tmp_path, cat, monkeypatch):
+    filas = [fila(B1, B1 + ".pres", "si", sha="p1", grupo="prueba", rol="presencia")]
+    # B1 tiene ejemplo en el documento de ajuste a1; B2 no tiene ninguno
+    t = _preparar_cli(tmp_path, monkeypatch, filas, grupo_csv="prueba",
+                      particion=[("a1", "ajuste"), ("p1", "prueba")])
+    limitaciones = t.split("## Limitaciones")[1].split("## Criterios")[0]
+    assert f"`{B2}`" in limitaciones and f"`{B1}`" not in limitaciones

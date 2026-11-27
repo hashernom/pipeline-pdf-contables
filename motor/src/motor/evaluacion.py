@@ -55,6 +55,7 @@ class Metricas:
 
     @property
     def cobertura(self) -> float | None:
+        """Bloques de referencia que el motor encontró; los hallazgos sin referencia no suman."""
         return self._razon(self.bloques_ref_encontrados, self.bloques_ref)
 
     @property
@@ -164,7 +165,9 @@ def evaluar(extracciones_csv: Path, set_csv: Path, solo_grupo: str | None,
             if ref is None or ref.veredicto not in ("confiable", "revisar"):
                 continue
             tipo = tipos.get(f["campo_key"], "si_no")
-            ok = _igual(tipo, ref.valor, f["valor"])
+            # §6.8.3: un bloque de presencia que el motor no encontró cuenta como "no"
+            extraido = "no" if f["rol"] == "presencia" and not encontrado else f["valor"]
+            ok = _igual(tipo, ref.valor, extraido)
             for m in nivel + acum(f"campo:{f['campo_key']}"):
                 if ref.veredicto == "revisar":
                     m.revisar_comparables += 1
@@ -179,7 +182,7 @@ def evaluar(extracciones_csv: Path, set_csv: Path, solo_grupo: str | None,
             if (not ok and ref.veredicto == "confiable"
                     and len(total.desacuerdos) < MAX_DESACUERDOS):
                 total.desacuerdos.append((sha, f["bloque_key"], f["campo_key"], ref.valor,
-                                          f["valor"], f["cita"]))
+                                          extraido, f["cita"]))
     return res
 
 

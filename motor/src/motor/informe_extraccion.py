@@ -66,7 +66,7 @@ def _costo(costo: dict, nombre: str) -> str:
 
 def _comparaciones(resultados: dict[str, dict[str, Metricas]]) -> list[str]:
     lineas = []
-    for grupo in sorted({n.rsplit("_", 1)[0] for n in resultados}):
+    for grupo in ("ajuste",):  # §5: las estrategias se comparan en el grupo de ajuste
         a, b = resultados.get(f"{grupo}_localizada"), resultados.get(f"{grupo}_completa")
         if a and b:
             lineas += [f"### Grupo {grupo}", "", *_tabla("Estrategia", [
@@ -87,9 +87,12 @@ def escribir(resultados: dict[str, dict[str, Metricas]], costo: dict,
         "que aparece en el documento (verde o amarillo). La cobertura se lee siempre junto a "
         "las citas reales: de los bloques confiables del set de oro, cuántos encontró el "
         "motor. El acierto en valores usa solo referencias `confiable`.", ""]
-    for nombre in sorted(resultados):
+    # la medición final es el grupo de prueba; el de ajuste va aparte, como referencia
+    for nombre in sorted(resultados, key=lambda n: (not n.startswith("prueba"), n)):
         res = resultados[nombre]
-        L += [f"## Corrida {nombre}", "", "### Total", "",
+        etiqueta = ("" if nombre.startswith("prueba") else
+                    " (referencia de ajuste, no es la medición final)")
+        L += [f"## Corrida {nombre}{etiqueta}", "", "### Total", "",
               *_tabla("Corrida", [("total", res["total"])]), "",
               "### Por hoja", "", *_tabla("Hoja", _por_prefijo(res, "hoja:")), ""]
         peores, mejores = _extremos(res)

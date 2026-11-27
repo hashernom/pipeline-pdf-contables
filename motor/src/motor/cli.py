@@ -105,10 +105,16 @@ def _evaluar() -> None:
     resultados, costo = {}, {}
     for ruta in sorted(config.EXTRACCION.glob("extracciones_*.csv")):
         nombre = ruta.stem.removeprefix("extracciones_")
-        resultados[nombre] = evaluacion.evaluar(ruta, csv_oro, None, cat)
-        resumen = config.EXTRACCION / f"resumen_{nombre}.json"
-        if resumen.exists():
-            costo[nombre] = json.loads(resumen.read_text(encoding="utf-8"))
+        grupo_corrida, _, estrategia = nombre.partition("_")
+        for g in ("prueba", "ajuste"):
+            if grupo_corrida not in (g, "todos"):
+                continue
+            res = evaluacion.evaluar(ruta, csv_oro, g, cat)
+            if res["total"].bloques_encontrados or res["total"].bloques_ref:
+                resultados[f"{g}_{estrategia}"] = res
+            resumen = config.EXTRACCION / f"resumen_{nombre}.json"
+            if g == grupo_corrida and resumen.exists():
+                costo[f"{g}_{estrategia}"] = json.loads(resumen.read_text(encoding="utf-8"))
     ruta_part = config.EXTRACCION / "particion.csv"
     sin_ejemplos: list[str] = []
     if ruta_part.exists():
