@@ -14,6 +14,7 @@ SUBCOMANDOS = {
     "identidad": "Resuelve la identidad de municipios y departamentos.",
     "catalogo": "Valida el catálogo de variables.",
     "extraer": "Extrae los bloques de la matriz con el modelo.",
+    "localizar-eval": "Mide sin modelo si la localización incluye la página de oro (ajuste).",
     "evaluar": "Evalúa las extracciones contra el set de oro y escribe el informe.",
     "verificar": "Verifica citas y valores contra la fuente.",
     "todo": "Ejecuta el pipeline completo.",
@@ -131,6 +132,12 @@ def _evaluar() -> None:
     print(f"Informe: {destino}")
 
 
+def _localizar_eval() -> None:
+    from motor import eval_localizar
+
+    eval_localizar.imprimir(eval_localizar.evaluar_localizacion(config.EXTRACCION))
+
+
 def _verificar() -> None:
     from motor import informe, oro
 
@@ -167,6 +174,8 @@ def main(argv: list[str] | None = None) -> int:
             paso()
     elif args.comando == "extraer":
         return _extraer(args.grupo, args.estrategia, args.limite, args.si)
+    elif args.comando == "localizar-eval":
+        _localizar_eval()
     elif args.comando == "evaluar":
         _evaluar()
     elif args.comando == "catalogo":
